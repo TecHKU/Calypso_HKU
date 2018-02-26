@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+	h2 Login Portal
+
+	form(action="/login" method="POST")
+		input(type="Text" placeholder="emailId" name="emailId")
+		input(type="Text" placeholder="****" name="password")
+		|
+		input(type="submit")
+	h2=message
