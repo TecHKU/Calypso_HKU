@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="post" enctype="multipart/form-data" action="/newproject")
+    input(type="Text" placeholder="Project Title" name="title")
+    input(type="Text" placeholder="Project Description" name="description")
+    input(type="file" name="projectImage")
+    input(type="submit" value="Submit")
