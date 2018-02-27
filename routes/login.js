@@ -9,15 +9,15 @@ router.get('/',function(req,res){
 
 
 router.post('/',function(req,res){
-  if (!req.body.fullName || !req.body.password){
+  if (!req.body.emailId || !req.body.password){
 
-    return res.render('login', { title: "login" , message: "Please Enter both username and password"});
+    return res.render('login', { title: "login" , message: "Please Enter both emailId and password"});
   }
   //finding username from account database
-  Account.findOne({fullName: JSON.stringify(req.body.fullName)},function(error,account)
+  Account.findOne({emailId: req.body.emailId},function(error,account)
   { 
     if (error) 
-      return console.log("Error aaya");
+      return console.log("Error in accessing database");
 
     if (!account)
       return console.log(account); //return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
