@@ -21,6 +21,7 @@ accountSchema.pre('save',function(next){
 
 // comparing if the password entered is correct
 accountSchema.methods.compare = function(pw){
+  
   return bcrypt.compareSync(pw,this.password);
 }
 

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
 
+
 router.get('/',function(req,res){
   res.render('login', { title: "login" });
 });
@@ -9,13 +10,17 @@ router.get('/',function(req,res){
 
 router.post('/',function(req,res){
   if (!req.body.emailId || !req.body.password){
-    return res.render('login', { title: "login" , message: "Please Enter both username and password"});
+
+    return res.render('login', { title: "login" , message: "Please Enter both emailId and password"});
   }
   //finding username from account database
-  Account.findOne({emailId:req.body.emailId},function(error,account)
-  {
-    if (error) return console.log("error in accessing the database");
-    else if (!account) return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
+  Account.findOne({emailId: req.body.emailId},function(error,account)
+  { 
+    if (error) 
+      return console.log("Error in accessing database");
+
+    if (!account)
+      return console.log(account); //return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
     // creating a new session
 
     if (account.compare(req.body.password)){
