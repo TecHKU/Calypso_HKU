@@ -15,12 +15,12 @@ router.post('/',function(req,res){
   }
   //finding username from account database
   Account.findOne({emailId: req.body.emailId},function(error,account)
-  { 
-    if (error) 
+  {
+    if (error)
       return console.log("Error in accessing database");
 
     if (!account)
-      return console.log(account); //return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
+      return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
     // creating a new session
 
     if (account.compare(req.body.password)){
