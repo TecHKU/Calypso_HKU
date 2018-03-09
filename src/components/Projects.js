@@ -5,7 +5,7 @@ class Projects extends Component {
   render() {
     return (
         <div className="col-lg-9 projects">
-            <SearchBar/>
+            <SearchBar text="Search Projects"/>
             <ProjectsScreen/>
         </div>
     );
