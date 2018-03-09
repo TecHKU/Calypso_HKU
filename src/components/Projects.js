@@ -4,11 +4,9 @@ import ProjectsScreen from "./ProjectsScreen";
 class Projects extends Component {
   render() {
     return (
-        <div className="row projects">
-            <div className="col-lg-9">
+        <div className="col-lg-9 projects">
             <SearchBar/>
             <ProjectsScreen/>
-            </div>
         </div>
     );
   }

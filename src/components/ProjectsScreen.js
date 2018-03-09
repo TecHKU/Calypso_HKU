@@ -4,10 +4,10 @@ class ProjectsScreen extends Component {
   render() {
     return (
         <div className="projects-container">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Projects</h1>
-                    <p class="lead">The projects will be listed here.</p>
+            <div className="jumbotron jumbotron-fluid">
+                <div className="container">
+                    <h1 className="display-4">Projects</h1>
+                    <p className="lead">The projects will be listed here.</p>
                 </div>
             </div>
         </div>
