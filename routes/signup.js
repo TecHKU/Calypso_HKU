@@ -8,6 +8,7 @@ router.get('/',function(req,res){
 
 
 router.post('/',function(req,res){
+  console.log(req.body.emailId);
   if (!req.body.emailId|| !req.body.password || !req.body.confirmPassword|| !req.body.password){
     return res.render('signup', { title: "signup" , message: "Please Enter all fields"});
   }
