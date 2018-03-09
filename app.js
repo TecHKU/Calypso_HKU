@@ -40,11 +40,11 @@ app.use('/login', login);
 
 app.use('/signup',signup);
 
-
+/*
 app.listen(3000, function(){
 	console.log("Server running on 3000...");
 })
-
+*/
 
 // error handler
 app.use(function(err, req, res, next) {
