@@ -10,7 +10,8 @@ class Tags extends Component {
         checked: 0,
         search: ""
     };
-    componentWillMount = () => {
+
+    componentWillMount(){
         //I need to fetch tags here before the component is loaded
         this.selectedCheckboxes = new Set();
     };
@@ -32,11 +33,13 @@ class Tags extends Component {
                 }
             ));
         }
+        console.log(this.selectedCheckboxes);
     };
 
     createCheckbox = (label) => (
         <CheckBox
             label={label}
+            selected_set = {this.selectedCheckboxes}
             handleCheckboxChange={this.toggleCheckbox}
             key={label}
         />
