@@ -19,14 +19,14 @@ a {
 
 header{
   position: relative;
-  height: 10vh;
+  height: 100px;
   width: 100%;
   box-shadow: 0 5px 5px #E0E0E0;
 }
 
 header h1{
   position: absolute;
-  top:25%;left:5%;
+  top:25%; left:5%;
   font-family: 'Roboto', sans-serif;
   font-size: 250%;
   font-weight: 900
@@ -48,7 +48,7 @@ header h1{
   font-weight: 300;
   text-align: center;
   margin-top: 10vh;
-  line-height: 7vh;
+  line-height: 200%;
   padding-bottom: 2vh;
 }
 
@@ -142,4 +142,19 @@ header h1{
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
+}
+
+.loginbox{
+  position: absolute;
+  border: 1px solid #aaa;
+  background: white;
+  padding-top: 2.5vh;
+  padding-bottom: 2.5vh;
+  padding-right: 2.5vw;
+  padding-left: 2.5vw;
+  width: 200%;
+  top: 120%;
+  right: 5%;
+  box-shadow: 0 5px 5px #E0E0E0;
+  z-index: 100;
 }

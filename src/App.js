@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-fluid">
-          <Header/>
+          <Header isLoggedIn={false} username=""/>
           <Homepage/>
       </div>
     );
