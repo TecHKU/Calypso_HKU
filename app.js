@@ -10,6 +10,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var login=require('./routes/login');
 var signup=require('./routes/signup');
+var getTags=require('./routes/tags');
+var getRoles=require('./routes/roles');
 var session = require('express-session');
 var Account= require('./models/account');
 
@@ -37,8 +39,10 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/newproject',newproject);  // handling creation of new project
 app.use('/login', login);
-
 app.use('/signup',signup);
+app.use('/tags',getTags);              // getting all tags from database
+app.use('/roles',getRoles);            // getting all roles from database
+
 
 /*
 app.listen(3000, function(){
