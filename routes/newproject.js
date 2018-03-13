@@ -4,9 +4,10 @@ var multer = require('multer');
 var project= require('../models/project');
 var Tags=require('../models/tag');
 var Roles=require('../models/role');
+var Account= require('../models/account');
 var listOfTagsId=[];
 var listOfRolesId=[];
-var forEachAsync = require('forEachAsync');
+var forEachAsync = require('foreachasync').forEachAsync;
 
 router.get('/', function(req, res, next) {
  res.render('addproject');
@@ -100,8 +101,11 @@ function createProject(pAuthor,pTitle,pDescription,pImagePath){
   },function(error,addedProject){
       listOfTagsId=[];
       listOfRolesId=[];
-      if(error) return console.log("Error in adding project to database "+error);
-      return console.log("Project created");
+      if(error) {console.log("Error in adding project to database "+error);
+      return null;
+      }
+      console.log("Project created");
+      return addedProject.id;
     }
   );
 }
@@ -136,7 +140,19 @@ var imageName = req.files[0].originalname;
 //synchronously calling three functions
 tagHandler(req.body.tag,function(){
   roleHandler(req.body.role,function(){
-    createProject(req.session.user._id,req.body.title,req.body.description,path);
+    var proId=createProject(req.session.user._id,req.body.title,req.body.description,path);
+    /*
+    if(proId)
+    {
+      Account.update({"_id":req.session.user.id},{"projects"})
+      Person.update({'items.id': 2}, {'$set': {
+    'items.$.name': 'updated item2',
+    'items.$.value': 'two updated'
+}}, function(err) { ...
+
+
+    }
+    */
     res.send("done");
   });
 });

@@ -6,6 +6,7 @@ var accountSchema = new Schema({
   emailId: { type: String, required: true, unique: true },
   password: { type: String, required: true},
   fullName:{ type: String, required: true},
+  projects: [Schema.Types.ObjectId]
 })
 
 // function called before the create function in post handler of signup
@@ -21,7 +22,7 @@ accountSchema.pre('save',function(next){
 
 // comparing if the password entered is correct
 accountSchema.methods.compare = function(pw){
-  
+
   return bcrypt.compareSync(pw,this.password);
 }
 
