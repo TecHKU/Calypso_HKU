@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import Homepage from './components/Homepage';
-import Header from './components/Header';
-
+import { BrowserRouter as Router , Route}from 'react-router-dom'
+import { Landing } from './pages/pages';
 class App extends Component {
   render() {
     return (
-      <div className="container-fluid">
-          <Header isLoggedIn={false} username=""/>
-          <Homepage/>
-      </div>
+        <Router>
+            <Route path={'/'} component={Landing}/>
+        </Router>
     );
   }
 }

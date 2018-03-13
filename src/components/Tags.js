@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import CheckBox from './CheckBox';
 import SearchBar from "./SearchBar";
 
@@ -14,6 +15,10 @@ class Tags extends Component {
     componentWillMount(){
         //I need to fetch tags here before the component is loaded
         this.selectedCheckboxes = new Set();
+        axios.get('localhost:3000/tags')
+            .then(response => {
+                console.log(response);
+            });
     };
 
     toggleCheckbox = (label) => {
