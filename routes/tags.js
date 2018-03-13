@@ -10,9 +10,8 @@ router.get('/',function(req,res){
       return res.send([]);
     }
     var tagList=[];
-    forEachAsync(tags,function (next, tag, index, array){
+    forEachAsync(tags,function (tag, index, array){
       tagList.push(tag.name);
-      next();
     }).then(function(){
       return res.send(tagList);
       });

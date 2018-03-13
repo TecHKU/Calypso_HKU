@@ -48,16 +48,10 @@ app.use('/api/login', login);
 app.use('/signup',signup);
 app.use('/tags',getTags);              // getting all tags from database
 app.use('/roles',getRoles);            // getting all roles from database
-
+//Pass all other requests to the React server
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './build', 'index.html'));
-  
 });
-/*
-app.listen(3000, function(){
-	console.log("Server running on 3000...");
-})
-*/
 
 // error handler
 app.use(function(err, req, res, next) {

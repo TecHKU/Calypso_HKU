@@ -3,22 +3,31 @@ import axios from 'axios';
 import CheckBox from './CheckBox';
 import SearchBar from "./SearchBar";
 
-let tags = ["Computer Science", "Journalism", "Biotech","Mathematics", "Medicine", "Arts","Physics", "Chemistry", "Business"];
+let tags = [];
 let tags_to_display = tags;
 
 class Tags extends Component {
     state = {
         checked: 0,
-        search: ""
+        search: "",
+        tags: []
+    };
+
+    fetchTags = async() => {
+        const res = await fetch('/tags');
+        return res.json();
     };
 
     componentWillMount(){
         //I need to fetch tags here before the component is loaded
         this.selectedCheckboxes = new Set();
-        axios.get('localhost:3000/tags')
-            .then(response => {
-                console.log(response);
+        this.fetchTags()
+            .then(res=> {
+                tags = res;
+                tags_to_display = tags;
+                console.log(res, tags, tags_to_display);
             });
+        this.setState({tags : tags});
     };
 
     toggleCheckbox = (label) => {
