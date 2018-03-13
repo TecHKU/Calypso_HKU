@@ -8,6 +8,9 @@
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build"
   },
+  "engines": {
+    "node": "8.9.4"
+  },
   "proxy": "http://localhost:5000",
   "dependencies": {
     "axios": "^0.18.0",
