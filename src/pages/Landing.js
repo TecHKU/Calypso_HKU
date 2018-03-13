@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Homepage from '../components/Homepage'
 
-class App extends Component {
+class Landing extends Component {
     render() {
         return (
             <div className={'container-fluid'}>
@@ -13,4 +13,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Landing;

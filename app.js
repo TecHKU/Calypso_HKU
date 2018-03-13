@@ -41,15 +41,17 @@ app.use(session({secret: 'ssshhhhh',
 resave: false,
     saveUninitialized: false}));
 
-app.use('/', express.static(path.join(__dirname, 'build'))); //app.use('/', index);
+app.use(express.static(path.resolve(__dirname, './build')));
 app.use('/users', users);
 app.use('/newproject',newproject);  // handling creation of new project
-app.use('/login', login);
+app.use('/api/login', login);
 app.use('/signup',signup);
 app.use('/tags',getTags);              // getting all tags from database
 app.use('/roles',getRoles);            // getting all roles from database
 
-
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, './build', 'index.html'));
+});
 /*
 app.listen(3000, function(){
 	console.log("Server running on 3000...");
