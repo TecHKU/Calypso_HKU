@@ -26,7 +26,7 @@ router.post('/',function(req,res){
     if (account.compare(req.body.password)){
       req.session.user = account;
       req.session.save();
-      console.log("session started");
+      console.log("");
 
       //console.log(req.session.user.username);
       //console.log(req.session);
