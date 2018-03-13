@@ -51,6 +51,7 @@ app.use('/roles',getRoles);            // getting all roles from database
 
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './build', 'index.html'));
+  
 });
 /*
 app.listen(3000, function(){
