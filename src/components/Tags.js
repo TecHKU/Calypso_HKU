@@ -26,8 +26,8 @@ class Tags extends Component {
                 tags = res;
                 tags_to_display = tags;
                 console.log(res, tags, tags_to_display);
+                this.setState({tags : tags});
             });
-        this.setState({tags : tags});
     };
 
     toggleCheckbox = (label) => {
