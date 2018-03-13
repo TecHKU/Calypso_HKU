@@ -6,7 +6,7 @@
     "start": "babel-node bin/www",
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "proxy": "http://localhost:5000",
   "dependencies": {
