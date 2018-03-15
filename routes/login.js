@@ -17,14 +17,14 @@ router.post('/',function(req,res){
   Account.findOne({emailId: req.body.emailId},function(error,account)
   {
     if (error)
-      return console.log("Error in accessing database");
+      return console.log("Error in accessing database. "+ error);
 
     if (!account)
       return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
     // creating a new session
-    if(!isVerified)
+    if(!account.isVerified)
       return res.send("Please verify your account");
-      
+
     if (account.compare(req.body.password)){
       req.session.user = account;
       req.session.save();

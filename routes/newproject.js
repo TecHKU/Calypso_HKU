@@ -97,6 +97,7 @@ function createProject(pAuthor,pTitle,pDescription,pImagePath,callback){
     title: pTitle,
     description:pDescription,
     imagePath:pImagePath,
+    hitCount:0,
     tags:listOfTagsId,
     roles:listOfRolesId
   },function(error,addedProject){

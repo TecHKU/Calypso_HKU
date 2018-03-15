@@ -30,6 +30,7 @@ router.post('/',function(req,res){
       emailId : req.body.emailId,
       password : req.body.password,
       fullName: req.body.fullName,
+      isVerified: false,
       verificationLink:rand,
       projects:[]
       },function(error,account){
