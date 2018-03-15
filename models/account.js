@@ -5,7 +5,9 @@ var bcrypt = require("bcrypt");
 var accountSchema = new Schema({
   emailId: { type: String, required: true, unique: true },
   password: { type: String, required: true},
-  fullName:{ type: String, required: true},
+  fullName: { type: String, required: true},
+  isVerified: { type: Boolean,default: false},
+  verificationLink: {type: String,unique:true},
   projects: [Schema.Types.ObjectId]
 })
 

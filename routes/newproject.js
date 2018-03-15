@@ -9,6 +9,7 @@ var listOfTagsId=[];
 var listOfRolesId=[];
 var forEachAsync = require('foreachasync').forEachAsync;
 
+
 router.get('/', function(req, res, next) {
  res.render('addproject');
 });
@@ -16,14 +17,14 @@ router.get('/', function(req, res, next) {
 
 var authenticate = function(req,res,next){
   if (req.session && req.session.user) return next();
-  return res.redirect('/login');
+  return res.send('not authenticated/ not signed');
 }
 
 
 // creating a list of tag id for the project. Adding new tags to the database if doesnot exist
 function tagHandler(list,callback){
   // synchronously looping
-  forEachAsync(list,function (next, string, index, array){
+  forEachAsync(list,function (next,string, index, array){
     console.log(string+"hahah");
     Tags.findOne({name: string},function(error,tag){
       if (error){
@@ -57,7 +58,7 @@ function tagHandler(list,callback){
 // creating a list of tag id for the project. Adding new tags to the database if doesnot exist
 function roleHandler(list,callback){
   //synchronously looping
-  forEachAsync(list,function (next, string, index, array){
+  forEachAsync(list,function (next,string, index, array){
     console.log(string+"hffff");
     Roles.findOne({name: string},function(error,role){
       if (error){
@@ -90,22 +91,27 @@ function roleHandler(list,callback){
 
 }
 
-function createProject(pAuthor,pTitle,pDescription,pImagePath){
+function createProject(pAuthor,pTitle,pDescription,pImagePath,callback){
   project.create({
     author:pAuthor,
     title: pTitle,
     description:pDescription,
     imagePath:pImagePath,
+    hitCount:0,
     tags:listOfTagsId,
     roles:listOfRolesId
   },function(error,addedProject){
-      listOfTagsId=[];
-      listOfRolesId=[];
-      if(error) {console.log("Error in adding project to database "+error);
-      return null;
-      }
-      console.log("Project created");
-      return addedProject.id;
+      // emptying the arrays
+      listOfTagsId.length=0;
+      listOfRolesId.length=0;
+      if(error) {return console.log("Error in adding project to database "+error);}
+      console.log("Project created by"+ pAuthor);
+      // adding projectid into the user's projects
+      Account.findByIdAndUpdate(pAuthor,{$push:{projects:addedProject._id}},function(error,acc){
+        if(error) console.log("error in adding project to the account details");
+        console.log("pushedd in user project ");
+        callback()
+      });
     }
   );
 }
@@ -140,20 +146,11 @@ var imageName = req.files[0].originalname;
 //synchronously calling three functions
 tagHandler(req.body.tag,function(){
   roleHandler(req.body.role,function(){
-    var proId=createProject(req.session.user._id,req.body.title,req.body.description,path);
-    /*
-    if(proId)
-    {
-      Account.update({"_id":req.session.user.id},{"projects"})
-      Person.update({'items.id': 2}, {'$set': {
-    'items.$.name': 'updated item2',
-    'items.$.value': 'two updated'
-}}, function(err) { ...
+    console.log("Project started by"+ req.session.user._id);
+    createProject(req.session.user._id,req.body.title,req.body.description,path,function(){
+      res.send("done");
+    });
 
-
-    }
-    */
-    res.send("done");
   });
 });
 

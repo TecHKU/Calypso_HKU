@@ -7,6 +7,7 @@ var projectSchema = new Schema({
   description:{type:String, required:true},
   //image:{ data: Buffer, contentType: String }
   imagePath:{type:String,required:true},
+  hitCount: { type: Number, default: 0 },
   tags: [Schema.Types.ObjectId],
   roles:[Schema.Types.ObjectId]
 
