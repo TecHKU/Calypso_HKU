@@ -22,7 +22,9 @@ router.post('/',function(req,res){
     if (!account)
       return res.render('login', { title: "login" , message: "emailId doesnot Exists"});
     // creating a new session
-
+    if(!isVerified)
+      return res.send("Please verify your account");
+      
     if (account.compare(req.body.password)){
       req.session.user = account;
       req.session.save();
