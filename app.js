@@ -17,18 +17,18 @@ var Account= require('./models/account');
 
 var newproject= require('./routes/newproject');
 //mongodb://test:<PASSWORD>@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin
-//var db = mongoose.connect('mongodb://localhost:27017/calpy');
-var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
+var db = mongoose.connect('mongodb://localhost:27017/testcal');
+//var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
 
 var app = express();
 
 // view engine setup
 
-/*
+
 app.engine('pug', require('pug').__express);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-*/
+
 
 
 // uncomment after placing your favicon in /public
@@ -42,12 +42,12 @@ resave: false,
     saveUninitialized: false}));
 
 app.use(express.static(path.resolve(__dirname, './build')));
-app.use('/users', users);
-app.use('/newproject',newproject);  // handling creation of new project
+app.use('/api/users', users);
+app.use('/api/newproject',newproject);  // handling creation of new project
 app.use('/api/login', login);
-app.use('/signup',signup);
-app.use('/tags',getTags);              // getting all tags from database
-app.use('/roles',getRoles);            // getting all roles from database
+app.use('/api/signup',signup);
+app.use('/api/tags',getTags);              // getting all tags from database
+app.use('/api/roles',getRoles);            // getting all roles from database
 //Pass all other requests to the React server
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './build', 'index.html'));

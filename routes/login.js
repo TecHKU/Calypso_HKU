@@ -31,7 +31,8 @@ router.post('/',function(req,res){
       //console.log(req.session.user.username);
       //console.log(req.session);
       //res.render('index',{title:"home",posts:"posts"});
-      res.redirect('/');
+      res.send("logged in");
+      //res.redirect('/');
     }
 
     else return res.render('login', { title: "login" , message: "Wrong password"});

@@ -26,7 +26,8 @@ router.post('/',function(req,res){
     Account.create({
       emailId : req.body.emailId,
       password : req.body.password,
-      fullName: req.body.fullName
+      fullName: req.body.fullName,
+      projects:[]
       },function(error,account){
         if (error) return console.log("Error in adding User to Database");
         else
