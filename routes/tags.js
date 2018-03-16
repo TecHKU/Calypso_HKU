@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var Tags=require('../models/tag');
-var forEachAsync = require('foreachasync').forEachAsync;
+//var forEachAsync = require('foreachasync').forEachAsync;
+var forEachAsync = require('forEachAsync');
 
 router.get('/',function(req,res){
   Tags.find({},function(error,tags){
