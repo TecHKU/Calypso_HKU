@@ -7,8 +7,8 @@ var Roles=require('../models/role');
 var Account= require('../models/account');
 var listOfTagsId=[];
 var listOfRolesId=[];
-var forEachAsync = require('foreachasync').forEachAsync;
-
+//var forEachAsync = require('foreachasync').forEachAsync;
+var forEachAsync = require('forEachAsync').forEachAsync;
 
 router.get('/', function(req, res, next) {
  res.render('addproject');
