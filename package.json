@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "babel-node bin/www",
-    "dev": "react-scripts start",
+    "dev": "npm run build && npm start",
     "build": "react-scripts build",
     "heroku-postbuild": "npm run build"
   },

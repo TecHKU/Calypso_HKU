@@ -1,41 +1,30 @@
 import React, { Component } from 'react';
-import LoginBox from "./LoginBox";
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     state = {
         isLoggedIn: this.props.isLoggedIn,
-        username: this.props.username,
-        showLoginBox: false
+        username: this.props.username
     };
 
-    onLoginClick = () => {
-        console.log("Clicked!");
-        if(this.state.showLoginBox===false){
-            this.setState({showLoginBox: true});
+    componentWillMount(){
+        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
+        if(sessionInfo && sessionInfo.fullName){
+            this.setState({
+                isLoggedIn: true,
+                username: sessionInfo.fullName
+            });
         }
-        else{
-            this.setState({showLoginBox: false});
-        }
-    };
-
-    onSubmitLoginHandler = (username, password) => {
-        this.setState({
-            isLoggedIn: true,
-            username: username,
-            showLoginBox: false
-        })
-    };
+    }
 
     render(){
-        console.log(this.state);
         if(this.state.isLoggedIn===false){
             return (
                 <header>
                     <h1 className="logo">Calypso</h1>
                     <ul className="header-buttons">
                         <li><button type="button" className="btn btn-outline-dark">Start a Project</button></li>
-                        <li><button type="button" className="btn btn-outline-dark" onClick={this.onLoginClick}>Login</button></li>
-                        { this.state.showLoginBox ? <LoginBox submitHandler={this.onSubmitLoginHandler}/> : null }
+                        <Link to={'/login'}><li><button type="button" className="btn btn-outline-dark">Login</button></li></Link>
                     </ul>
                 </header>
             );
@@ -47,7 +36,7 @@ class Header extends Component {
                     <h1 className="logo">Calypso</h1>
                     <ul className="header-buttons">
                         <li><button type="button" className="btn btn-outline-dark">Start a Project</button></li>
-                        <li><button type="button" className="btn btn-outline-dark">Hi! {this.state.username}</button></li>
+                        <li><button type="button" className="btn btn-link">Welcome, {this.state.username}</button></li>
                     </ul>
                 </header>
             );

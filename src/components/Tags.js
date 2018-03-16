@@ -14,20 +14,36 @@ class Tags extends Component {
     };
 
     fetchTags = async() => {
-        const res = await fetch('/tags');
-        return res.json();
+        try{
+            const response = await axios.get('/api/tags', {withCredentials:true});
+            return response.json();
+        }
+        catch (e){
+            //console.log(e);
+            return null;
+        }
     };
 
     componentWillMount(){
         //I need to fetch tags here before the component is loaded
         this.selectedCheckboxes = new Set();
-        this.fetchTags()
-            .then(res=> {
-                tags = res;
-                tags_to_display = tags;
-                console.log(res, tags, tags_to_display);
-                this.setState({tags : tags});
-            });
+        try{
+            this.fetchTags()
+                .then(res=> {
+                    if(res===null){
+                        this.setState({tags: []});
+                    }
+                    else{
+                        tags = res;
+                        tags_to_display = tags;
+                        this.setState({tags : tags});
+                    }
+                });
+        }
+        catch (e){
+            console.log(e);
+        }
+
     };
 
     toggleCheckbox = (label) => {
@@ -59,9 +75,11 @@ class Tags extends Component {
         />
     );
 
-    createCheckboxes = () => (
-        tags_to_display.map(this.createCheckbox)
-    );
+    createCheckboxes = () => {
+        if (tags_to_display) {
+            tags_to_display.map(this.createCheckbox)
+        }
+    };
 
     onSearchTags = (val) =>{
         this.setState({search:val}, () =>{
@@ -73,15 +91,17 @@ class Tags extends Component {
 
     modifyTagsList = (text) =>{
         //Modify the tags array
-        this.setState({search:text});           //This is the jugaad I did not understand
-        tags_to_display = [];
-        if(text===""){
-            tags_to_display = tags;
-        }
-        else{
-            for(let i = 0; i<tags.length; i++){
-                if((tags[i].toLowerCase()).indexOf(text.toLowerCase())!==-1){
-                    tags_to_display.push(tags[i])
+        if(this.state.tags){
+            this.setState({search:text});           //This is the jugaad I did not understand
+            tags_to_display = [];
+            if(text===""){
+                tags_to_display = tags;
+            }
+            else{
+                for(let i = 0; i<tags.length; i++){
+                    if((tags[i].toLowerCase()).indexOf(text.toLowerCase())!==-1){
+                        tags_to_display.push(tags[i])
+                    }
                 }
             }
         }

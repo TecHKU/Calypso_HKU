@@ -11,7 +11,7 @@ class App extends Component {
         return (
             <Router>
                 <div className={"container-fluid"}>
-                    <Route path={'/'} component={Landing}/>
+                    <Route exact={true} path={'/'} component={Landing}/>
                     <Route path={'/login'} component={Login}/>
                 </div>
             </Router>

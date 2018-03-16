@@ -145,16 +145,32 @@ header h1{
 }
 
 .loginbox{
-  position: absolute;
-  border: 1px solid #aaa;
+  position: relative;
   background: white;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-  padding-right: 2.5vw;
-  padding-left: 2.5vw;
-  width: 200%;
-  top: 120%;
-  right: 5%;
+  padding: 2.5vh 2.5vw;
+  width: 100%;
+}
+
+.vertical-center{
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.loginDialog{
+  border: 1px solid #aaa;
+  background: white !important;
   box-shadow: 0 5px 5px #E0E0E0;
   z-index: 100;
+}
+
+.loginDialog div h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 250%;
+  font-weight: 900;
+  text-align: center;
+}
+.loginButton{
+  width: 100%;
 }
