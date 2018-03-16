@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginBox from '../components/LoginBox';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Login extends Component {
@@ -12,10 +12,18 @@ class Login extends Component {
 
     componentWillMount(){
         const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        if(sessionInfo && sessionInfo.fullName){
+        console.log(sessionInfo);
+        console.log(this.state);
+        if(sessionInfo!==null && sessionInfo.fullName){
             this.setState({
                 loginSuccess: true,
                 redirect: true
+            });
+        }
+        else{
+            this.setState({
+                loginSuccess: false,
+                redirect: false
             });
         }
     }
@@ -58,7 +66,7 @@ class Login extends Component {
                 <div className={'row vertical-center'}>
                     <div className={'jumbotron loginDialog col-4 offset-4'}>
                         <div>
-                            <Redirect to={"/"}><h1>Calypso</h1></Redirect>
+                            <Link to={"/"}><h1>Calypso</h1></Link>
                         </div>
                         <hr className={'my-4'}/>
                         <LoginBox submitHandler={this.handleSubmit}/>
