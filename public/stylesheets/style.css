@@ -163,6 +163,7 @@ header h1{
   background: white !important;
   box-shadow: 0 5px 5px #E0E0E0;
   z-index: 100;
+    text-align: center;
 }
 
 .loginDialog div h1{

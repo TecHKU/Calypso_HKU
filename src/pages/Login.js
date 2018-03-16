@@ -70,6 +70,8 @@ class Login extends Component {
                         </div>
                         <hr className={'my-4'}/>
                         <LoginBox submitHandler={this.handleSubmit}/>
+                        <p>New Member?</p>
+                        <Link to={"/"}><p>Sign Up</p></Link>
                     </div>
                 </div>
             </div>
