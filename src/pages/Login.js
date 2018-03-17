@@ -12,8 +12,6 @@ class Login extends Component {
 
     componentWillMount(){
         const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        console.log(sessionInfo);
-        console.log(this.state);
         if(sessionInfo!==null && sessionInfo.fullName){
             this.setState({
                 loginSuccess: true,
@@ -37,7 +35,6 @@ class Login extends Component {
             },{withCredentials: true});
             if(response.data.loginSuccess){
                 sessionStorage.setItem('sessionAccount', JSON.stringify(response.data.session));
-                console.log(response.data.session);
                 this.setState({
                     loginSuccess: true,
                     redirect: true
@@ -45,6 +42,7 @@ class Login extends Component {
             }
             else{
                 sessionStorage.setItem('sessionAccount', null);
+                console.log(response);
             }
         }
         catch(e) {
@@ -53,7 +51,6 @@ class Login extends Component {
     };
 
     handleSubmit = (username, password) =>{
-        console.log(username, password);
         this.verifyUser(username, password);
     };
 
@@ -61,6 +58,7 @@ class Login extends Component {
         if(this.state.redirect){
             return <Redirect to={"/"}/>
         }
+
         return (
             <div className={'container-fluid'}>
                 <div className={'row vertical-center'}>
@@ -71,7 +69,7 @@ class Login extends Component {
                         <hr className={'my-4'}/>
                         <LoginBox submitHandler={this.handleSubmit}/>
                         <p>New Member?</p>
-                        <Link to={"/"}><p>Sign Up</p></Link>
+                        <Link to={"/signup"}><p>Sign Up</p></Link>
                     </div>
                 </div>
             </div>

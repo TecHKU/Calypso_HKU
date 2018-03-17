@@ -50,6 +50,11 @@ router.post('/',function(req,res){
             standardResponse.verified = false;
             standardResponse.loginSuccess = true;
         }
+        else{
+            standardResponse.exists = true;
+            standardResponse.verified = true;
+            standardResponse.loginSuccess = true;
+        }
         standardResponse.session = account;
 
       //console.log(req.session.user.username);
