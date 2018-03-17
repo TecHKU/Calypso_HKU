@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var login=require('./routes/login');
 var signup=require('./routes/signup');
+var logout=require('./routes/logout');
 var getTags=require('./routes/tags');
 var getRoles=require('./routes/roles');
 var sendVerification=require('./routes/sendVerification');
@@ -50,6 +51,7 @@ app.use('/api/users', users);
 app.use('/api/newproject',newproject);  // handling creation of new project
 app.use('/api/login', login);
 app.use('/api/signup',signup);
+app.use('/api/logout',logout);
 app.use('/api/tags',getTags);              // getting all tags from database
 app.use('/api/roles',getRoles);
 app.use('/api/sendVerification',sendVerification);

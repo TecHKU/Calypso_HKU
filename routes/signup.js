@@ -41,7 +41,7 @@ router.post('/',function(req,res){
 
         // creating a new account
         else{
-            let rand=Math.floor(Math.random()*90000) + 10000;
+            let rand=Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
             Account.create({
                 emailId : req.body.emailId,
                 password : req.body.password,
