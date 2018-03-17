@@ -49,20 +49,21 @@ router.post('/',function(req,res){
                 isVerified: false,
                 verificationLink:rand,
                 projects:[]
-            },function(error,account){
-                if (error){
-                  return console.log("Error in adding User to Database");
-                }
-                else
-                {
-                    standardRespoonse.success = true;
-                    standardRespoonse.reason = "none";
+              },function(error,account){
+                  if (error){
+                    standardRespoonse.success = false;
+                    standardRespoonse.reason = "dberror";
                     res.send(standardRespoonse);
-                    //res.send(account);
-                    //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
-                    //console.log(req.body.emailId);
-                    //res.redirect('/');
-                }
+                    console.log("Error in adding User to Database");
+                  }
+                  else
+                  {
+                      standardRespoonse.success = true;
+                      standardRespoonse.reason = "none";
+                      res.send(standardRespoonse);
+                      //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
+                      //console.log(req.body.emailId);
+                  }
             });
         }
     });
