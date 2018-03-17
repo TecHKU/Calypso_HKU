@@ -5,7 +5,6 @@ var projectSchema = new Schema({
   author: Schema.Types.ObjectId,
   title: {type:String, required: true},
   description:{type:String, required:true},
-  //image:{ data: Buffer, contentType: String }
   imagePath:{type:String,required:true},
   hitCount: { type: Number, default: 0 },
   tags: [Schema.Types.ObjectId],
