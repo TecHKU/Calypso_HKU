@@ -28,10 +28,17 @@ router.post('/',function(req,res){
   Account.findOne({emailId: req.body.emailId},function(error,account)
   {
     if (error){
-        return console.log("Error in accessing database. "+ error);
+        standardResponse.status = "incomplete";
+        standardResponse.exists = false;
+        standardResponse.verified = false;
+        standardResponse.loginSuccess = false;
+        console.log("Error in accessing database. "+ error);
+        return res.send(standardResponse);
+
     }
 
-    if (!account){
+    if (!account)
+    {
         standardResponse.status = "complete";
         standardResponse.exists = false;
         standardResponse.verified = false;
@@ -44,24 +51,24 @@ router.post('/',function(req,res){
       req.session.user = account;
       req.session.save();
       console.log("");
-        if(!account.isVerified){
-            standardResponse.status = "incomplete";
-            standardResponse.exists = true;
-            standardResponse.verified = false;
-            standardResponse.loginSuccess = true;
-        }
-        else{
-            standardResponse.exists = true;
-            standardResponse.verified = true;
-            standardResponse.loginSuccess = true;
-        }
-        standardResponse.session = account;
+      if(!account.isVerified)
+      {
+          standardResponse.status = "complete";
+          standardResponse.exists = true;
+          standardResponse.verified = false;
+          standardResponse.loginSuccess = true;
+      }
+      else
+      {
+          standardResponse.status = "complete";
+          standardResponse.exists = true;
+          standardResponse.verified = true;
+          standardResponse.loginSuccess = true;
+      }
 
-      //console.log(req.session.user.username);
+      standardResponse.session = account;
       console.log(req.session);
-      //res.render('index',{title:"home",posts:"posts"});
       res.send(standardResponse);
-      //res.redirect('/');
     }
 
     else{
