@@ -5,9 +5,6 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
 class App extends Component {
-    state = {
-        currentSession: null
-    };
 
     render() {
         return (

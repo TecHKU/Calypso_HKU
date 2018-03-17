@@ -15,8 +15,7 @@ class Tags extends Component {
 
     fetchTags = async() => {
         try{
-            const response = await axios.get('/api/tags', {withCredentials:true});
-            return response.json();
+            return await axios.get('/api/tags');
         }
         catch (e){
             //console.log(e);
@@ -24,26 +23,21 @@ class Tags extends Component {
         }
     };
 
+    putTags = (response) => {
+        tags = response.data;
+        tags_to_display = tags;
+        this.setState({tags:tags});
+    };
+
     componentWillMount(){
-        //I need to fetch tags here before the component is loaded
         this.selectedCheckboxes = new Set();
         try{
             this.fetchTags()
-                .then(res=> {
-                    if(res===null){
-                        this.setState({tags: []});
-                    }
-                    else{
-                        tags = res;
-                        tags_to_display = tags;
-                        this.setState({tags : tags});
-                    }
-                });
+                .then((response) => this.putTags(response));
         }
         catch (e){
             console.log(e);
         }
-
     };
 
     toggleCheckbox = (label) => {
@@ -77,21 +71,20 @@ class Tags extends Component {
 
     createCheckboxes = () => {
         if (tags_to_display) {
-            tags_to_display.map(this.createCheckbox)
+            return tags_to_display.map(this.createCheckbox);
         }
     };
 
-    onSearchTags = (val) =>{
+    onSearchTags = (val) => {
         this.setState({search:val}, () =>{
             //console.log(this.state);
             this.modifyTagsList(this.state.search);
         });
-
     };
 
     modifyTagsList = (text) =>{
         //Modify the tags array
-        if(this.state.tags){
+        if(tags){
             this.setState({search:text});           //This is the jugaad I did not understand
             tags_to_display = [];
             if(text===""){

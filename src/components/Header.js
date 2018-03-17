@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from "axios/index";
+import AccountOptions from '../components/AccountOptions';
 
 class Header extends Component {
     state = {
         isLoggedIn: this.props.isLoggedIn,
         username: this.props.username,
+        verifiedUser: this.props.verifiedUser,
+        displayAccountOptions: false
     };
 
     componentWillMount(){
-        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        console.log(sessionInfo);
-        if(sessionInfo!==null && sessionInfo.fullName){
-            this.setState({
-                isLoggedIn: true,
-                username: sessionInfo.fullName
-            });
-        }
+        this.setState({
+            isLoggedIn: this.props.isLoggedIn,
+            username: this.props.username,
+            verifiedUser: this.props.verifiedUser,
+            displayAccountOptions: false
+        })
     }
 
-    isVerified = () => {
-        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        if(sessionInfo!==null && sessionInfo.isVerified){
-            return true;
-        }
-        return false;
+    showAccountOptions = () => {
+        this.setState({displayAccountOptions: !this.state.displayAccountOptions});
+    };
+
+    logOutUser = () => {
+        const {onLogout} = this.props;
+        onLogout();
     };
 
     render(){
@@ -40,13 +41,14 @@ class Header extends Component {
         }
 
         else{
-            if(this.isVerified()){
+            if(this.state.verifiedUser){
                 return (
                     <header>
                         <h1 className="logo">Calypso</h1>
                         <ul className="header-buttons">
                             <li><button type="button" className="btn btn-outline-dark">Start a Project</button></li>
-                            <li><button type="button" className="btn btn-link">Welcome, {this.state.username}</button></li>
+                            <li><button type="button" onClick={this.showAccountOptions} className="btn btn-link">Welcome, {this.state.username}</button></li>
+                            {this.state.displayAccountOptions ? <AccountOptions logOutHandler={this.logOutUser}/> : null}
                         </ul>
                     </header>
                 );
@@ -57,8 +59,9 @@ class Header extends Component {
                         <h1 className="logo">Calypso</h1>
                         <ul className="header-buttons">
                             <li>Verify your email to start a project</li>
-                            <li><button type="button" className="btn btn-link">Welcome, {this.state.username}</button></li>
+                            <li><button type="button" onClick={this.showAccountOptions} className="btn btn-link">Welcome, {this.state.username}</button></li>
                         </ul>
+                        {this.state.displayAccountOptions ? <AccountOptions logOutHandler={this.logOutUser}/> : null}
                     </header>
                 );
             }
