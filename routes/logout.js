@@ -6,7 +6,7 @@ let standardResponse = {
     reason: ""
 };
 
-router.post('/',function(req,res){
+router.get('/',function(req,res){
   req.session.destroy(function(err) {
     // cannot access session here
     if(err){

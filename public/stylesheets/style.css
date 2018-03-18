@@ -175,3 +175,18 @@ header h1{
 .loginButton{
   width: 100%;
 }
+
+.accountOptions{
+  position: absolute;
+  border: 1px solid #aaa;
+  background: white;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
+  padding-right: .5vw;
+  padding-left: .5vw;
+  width: 10vw;
+  top: 100%;
+  right: 5%;
+  box-shadow: 0 5px 5px #E0E0E0;
+  z-index: 100;
+}
