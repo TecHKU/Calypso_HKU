@@ -16,6 +16,7 @@ var getTags=require('./routes/tags');
 var getRoles=require('./routes/roles');
 var sendVerification=require('./routes/sendVerification');
 var verify=require('./routes/verify');
+var sessionDetail=require('./routes/sessionDetail');
 
 var session = require('express-session');
 var Account= require('./models/account');
@@ -56,6 +57,8 @@ app.use('/api/tags',getTags);              // getting all tags from database
 app.use('/api/roles',getRoles);
 app.use('/api/sendVerification',sendVerification);
 app.use('/api/verify',verify);      // getting all roles from database
+app.use('/api/sessionDetail',sessionDetail);
+
 //Pass all other requests to the React server
 app.get('*', function(request, response) {
   response.sendFile(path.resolve(__dirname, './build', 'index.html'));
