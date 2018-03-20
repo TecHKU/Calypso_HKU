@@ -7,8 +7,8 @@ var projectSchema = new Schema({
   description:{type:String, required:true},
   imagePath:{type:String,required:true},
   hitCount: { type: Number, default: 0 },
-  tags: [Schema.Types.ObjectId],
-  roles:[Schema.Types.ObjectId]
+  tags: [String],
+  roles:[String]
 
 })
 

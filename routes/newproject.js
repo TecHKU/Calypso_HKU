@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var project= require('../models/project');
+var Project= require('../models/project');
 var Tags=require('../models/tag');
 var Roles=require('../models/role');
 var Account= require('../models/account');
 var listOfTagsId=[];
 var listOfRolesId=[];
-//var forEachAsync = require('foreachasync').forEachAsync;
 var forEachAsync = require('forEachAsync').forEachAsync;
 
 router.get('/', function(req, res, next) {
@@ -37,13 +36,13 @@ function tagHandler(list,callback){
           if(error) console.log("Error in adding tags to database");
           else {
             console.log("Tags created");
-            listOfTagsId.push(addedTag._id);
+            listOfTagsId.push(addedTag.name);
           }
           next();
         });
       }
       else{
-        listOfTagsId.push(tag._id);
+        listOfTagsId.push(tag.name);
         console.log(tag.name+"pushed");
         next();
       }
@@ -71,14 +70,14 @@ function roleHandler(list,callback){
           if(error) console.log("Error in adding roles to database");
           else {
             console.log("role created"+addedRole.name);
-            listOfRolesId.push(addedRole._id);
+            listOfRolesId.push(addedRole.name);
           }
           next();
         });
       }
       else
       {
-        listOfRolesId.push(role._id);
+        listOfRolesId.push(role.name);
         console.log(role.name+"pushed");
         next();
       }
@@ -92,7 +91,7 @@ function roleHandler(list,callback){
 }
 
 function createProject(pAuthor,pTitle,pDescription,pImagePath,callback){
-  project.create({
+  Project.create({
     author:pAuthor,
     title: pTitle,
     description:pDescription,
