@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/Header';
 import Homepage from '../components/Homepage'
 import axios from 'axios';
+import getSessionInfo from '../components/getSessionInfo';
 
 class Landing extends Component {
     state = {
@@ -11,20 +12,32 @@ class Landing extends Component {
     };
 
     componentWillMount(){
-        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        if(sessionInfo!==null && sessionInfo.fullName){
-            this.setState({
-                isLoggedIn: true,
-                username: sessionInfo.fullName,
-                verifiedUser: this.isVerified()
+        getSessionInfo()
+            .then(response => {
+                if(response){
+                    this.setState({
+                        isLoggedIn: true,
+                        username: response.fullName,
+                        verifiedUser: response.isVerified
+                    });
+                }
+                else{
+                    this.setState({
+                        username: "",
+                        verifiedUser: false,
+                        isLoggedIn: false
+                    });
+                }
             });
-        }
     }
 
-    isVerified = () => {
-        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        return sessionInfo !== null && sessionInfo.isVerified;
-    };
+    componentDidMount(){
+        this.setState({
+            isLoggedIn: this.state.isLoggedIn,
+            username: this.state.username,
+            verifiedUser: this.state.verifiedUser
+        });
+    }
 
     requestLogout = async() => {
         try{
@@ -38,7 +51,6 @@ class Landing extends Component {
 
     logOutUser = () => {
         if(this.requestLogout()){
-            sessionStorage.setItem('sessionAccount', null);
             this.setState({
                 username: "",
                 verifiedUser: false,

@@ -10,13 +10,13 @@ class Header extends Component {
         displayAccountOptions: false
     };
 
-    componentWillMount(){
+    componentWillReceiveProps(nextProps){
         this.setState({
-            isLoggedIn: this.props.isLoggedIn,
-            username: this.props.username,
-            verifiedUser: this.props.verifiedUser,
+            isLoggedIn: nextProps.isLoggedIn,
+            username: nextProps.username,
+            verifiedUser: nextProps.verifiedUser,
             displayAccountOptions: false
-        })
+        });
     }
 
     showAccountOptions = () => {

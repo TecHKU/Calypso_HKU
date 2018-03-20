@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import LoginBox from '../components/LoginBox';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import getSessionInfo from '../components/getSessionInfo';
 class Login extends Component {
 
     state = {
@@ -11,19 +11,27 @@ class Login extends Component {
     };
 
     componentWillMount(){
-        const sessionInfo = JSON.parse(sessionStorage.getItem('sessionAccount'));
-        if(sessionInfo!==null && sessionInfo.fullName){
-            this.setState({
-                loginSuccess: true,
-                redirect: true
+        let sessionInfo = null;
+        getSessionInfo()
+            .then(response => {
+                if(response){
+                    sessionInfo = response;
+                }
+
+                if(sessionInfo!==null){
+                    this.setState({
+                        loginSuccess: true,
+                        redirect: true
+                    });
+                }
+
+                else{
+                    this.setState({
+                        loginSuccess: false,
+                        redirect: false
+                    });
+                }
             });
-        }
-        else{
-            this.setState({
-                loginSuccess: false,
-                redirect: false
-            });
-        }
     }
 
     verifyUser = async(username, password) => {
@@ -34,15 +42,13 @@ class Login extends Component {
                 "password": password
             },{withCredentials: true});
             if(response.data.loginSuccess){
-                sessionStorage.setItem('sessionAccount', JSON.stringify(response.data.session));
                 this.setState({
                     loginSuccess: true,
                     redirect: true
                 });
             }
             else{
-                sessionStorage.setItem('sessionAccount', null);
-                console.log(response);
+                //console.log(response);
             }
         }
         catch(e) {

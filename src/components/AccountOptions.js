@@ -9,7 +9,7 @@ class AccountOptions extends Component {
     render() {
         return (
             <div className="accountOptions">
-                <div><Link to={'/login'}><button onClick={this.logOut} className="btn btn-link"><p>Logout</p></button></Link></div>
+                <div><Link to={'/'}><button onClick={this.logOut} className="btn btn-link"><p>Logout</p></button></Link></div>
             </div>
         );
     }
