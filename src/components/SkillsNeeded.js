@@ -10,12 +10,13 @@ class SkillsNeeded extends Component {
         }
         console.log(skills);
     };
+
     render() {
         return (
             <div>
                 <hr className="my-4"/>
                 <h4>Skills Needed</h4>
-                    <AutoSuggestionBox enterHandler={this.skillsHandler}/>
+                    <AutoSuggestionBox enterHandler={this.skillsHandler} placeholder={'Skills'}/>
             </div>
         );
     }

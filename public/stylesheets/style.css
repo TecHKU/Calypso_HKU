@@ -9,6 +9,27 @@ a {
   color: #00B7FF;
 }
 
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 250%;
+
+}
+
+h2{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 200%;
+}
+
+h3{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 150%;
+}
+
+h4{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 120%;
+}
+
 .container-fluid{
   padding: 0 !important;
 }
@@ -27,10 +48,10 @@ header{
 header h1{
   position: absolute;
   top:25%; left:5%;
-  font-family: 'Roboto', sans-serif;
   font-size: 250%;
   font-weight: 900
 }
+
 .header-buttons{
   position: absolute;
   top:25%;right:5%;
@@ -43,8 +64,6 @@ header h1{
 }
 
 .motivation-text{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 200%;
   font-weight: 300;
   text-align: center;
   margin-top: 10vh;
@@ -84,8 +103,6 @@ header h1{
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
-
-
 
 .react-autosuggest__container {
   position: relative;
@@ -167,7 +184,6 @@ header h1{
 }
 
 .loginDialog div h1{
-  font-family: 'Roboto', sans-serif;
   font-size: 250%;
   font-weight: 900;
   text-align: center;
@@ -189,4 +205,27 @@ header h1{
   right: 5%;
   box-shadow: 0 5px 5px #E0E0E0;
   z-index: 100;
+}
+
+.newproject{
+  margin-top: 20px;
+}
+
+.projectTags{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tagButton{
+  position: relative;
+  display: inline-block;
+  white-space:nowrap;
+  padding: 10px;
+  color: #39739d;
+  background-color: #E1ECF4;
+  margin-right: 5px;
+}
+
+.tagButtonCross{
+  padding: 5px;
 }

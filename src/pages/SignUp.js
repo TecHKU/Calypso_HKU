@@ -59,7 +59,7 @@ class SignUp extends Component{
         return(
             <div className={'container-fluid'}>
                 <div className={'row vertical-center'}>
-                    <div className={'jumbotron loginDialog col-4 offset-4'}>
+                    <div className={'jumbotron loginDialog col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1'}>
                         <div>
                             <Link to={"/"}><h1>Calypso</h1></Link>
                         </div>

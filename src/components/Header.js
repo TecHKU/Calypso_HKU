@@ -46,7 +46,7 @@ class Header extends Component {
                     <header>
                         <h1 className="logo">Calypso</h1>
                         <ul className="header-buttons">
-                            <li><button type="button" className="btn btn-outline-dark">Start a Project</button></li>
+                            <li><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li>
                             <li><button type="button" onClick={this.showAccountOptions} className="btn btn-link">Welcome, {this.state.username}</button></li>
                             {this.state.displayAccountOptions ? <AccountOptions logOutHandler={this.logOutUser}/> : null}
                         </ul>
