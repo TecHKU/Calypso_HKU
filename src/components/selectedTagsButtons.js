@@ -6,6 +6,12 @@ class SelectedTagsButton extends Component {
         label: this.props.label
     };
 
+    componentWillReceiveProps(newProps){
+        this.setState({
+            label: newProps.label
+        });
+    }
+
     deleteTagHandler = (e) => {
         const { deleteHandler } = this.props;
         deleteHandler(this.state.label);

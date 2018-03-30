@@ -7,14 +7,16 @@ class SelectedTagsButtonView extends Component {
         labels: this.props.labels
     };
 
-    createButton = (label) =>(
-        <div>
-            <SelectedTagsButton
-                label={label}
-                deleteHandler={this.deleteTagsHandler}
-            />
-        </div>
-    );
+    createButton = (label) =>{
+        return (
+            <div>
+                <SelectedTagsButton
+                    label={label}
+                    deleteHandler={this.deleteTagsHandler}
+                />
+            </div>
+        );
+    };
 
     createButtons = () =>{
         if(this.state.labels){

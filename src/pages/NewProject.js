@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import AddTagsToProject from '../components/addTagsToProject';
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
+import ImageUploader from '../components/ImageUploader';
 
 class NewProject extends Component{
+    payload = {
+        title: "",
+        description: "",
+        imagePath: "",
+        hitCount:0,
+        tags:[],
+        roles:[],
+        collaborators: []
+    };
 
     state = {
         tags: [],
@@ -11,15 +20,17 @@ class NewProject extends Component{
         projectTitle: "",
         description: "",
         collaborators: [],
-        coverimage: ""
+        coverImage: ""
     };
 
+    //This function will update the title state variable as the user gives input
     handleTitle = (e) =>{
         this.setState({
             projectTitle: e.target.value
         });
     };
 
+    //This handles the deletion of tags when user clicks the cross button
     removeTag = (tag) => {
         let tags = this.state.tags;
         tags.splice(tags.indexOf(tag),1);
@@ -28,17 +39,20 @@ class NewProject extends Component{
         });
     };
 
+    //This function will update the description state variable as the user gives input
     handleDescription = (e) =>{
         this.setState({
             description: e.target.value
         });
     };
 
+    //This function will update the tags state variable as the user gives input
     handleTags = (tags) => {
         this.setState({
             tags: tags
         });
     };
+
 
     render(){
         return(
@@ -48,9 +62,7 @@ class NewProject extends Component{
                 </header>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>
-                        <div className={'jumbotron'}>
-                            <p>Image will go here</p>
-                        </div>
+                        <ImageUploader/>
                     </div>
                     <div className={'col-lg-4'}>
                         <p>Collaborators</p>

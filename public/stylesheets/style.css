@@ -229,3 +229,14 @@ header h1{
 .tagButtonCross{
   padding: 5px;
 }
+
+.coverImage{
+  width:100%;
+  margin-bottom: 10px;
+}
+
+.coverImage img{
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}

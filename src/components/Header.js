@@ -29,6 +29,8 @@ class Header extends Component {
     };
 
     render(){
+
+        //If the user is not logged in
         if(this.state.isLoggedIn===false){
             return (
                 <header>
@@ -40,7 +42,10 @@ class Header extends Component {
             );
         }
 
+        //If the user is logged in
         else{
+
+            //If user email is verified, we allow new project creation
             if(this.state.verifiedUser){
                 return (
                     <header>
@@ -53,6 +58,8 @@ class Header extends Component {
                     </header>
                 );
             }
+
+            //If not verified, we do not allow new project
             else{
                 return (
                     <header>
