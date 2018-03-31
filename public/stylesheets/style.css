@@ -30,6 +30,11 @@ h4{
   font-size: 120%;
 }
 
+p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
 .container-fluid{
   padding: 0 !important;
 }
@@ -239,4 +244,12 @@ header h1{
   position: relative;
   z-index: 100;
   width: 100%;
+}
+
+.imageUploadBox {
+  padding: 20px;
+}
+
+.imageUploadBox p{
+  padding: 10px;
 }

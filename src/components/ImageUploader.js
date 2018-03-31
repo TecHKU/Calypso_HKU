@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 
 class ImageUploader extends Component {
@@ -17,10 +17,10 @@ class ImageUploader extends Component {
 
     onDropAccepted = () => {
         //Make it the preview file
-        styles.dropZone.zIndex = '200';
-        styles.dropZone.top = 'auto';
-        styles.dropZone.bottom = '10%';
-        styles.dropZone.left = '90%';
+        styles.dropZoneButton.zIndex = '200';
+        styles.dropZoneButton.top = 'auto';
+        styles.dropZoneButton.bottom = '10%';
+        styles.dropZoneButton.left = '90%';
 
         this.setState({
             uploaded: true
@@ -29,27 +29,34 @@ class ImageUploader extends Component {
 
     render() {
         console.log(this.state);
-        if(this.state.uploaded){
+        if (this.state.uploaded) {
             return (
                 <div className={'coverImage'}>
                     <Dropzone
                         onDrop={this.onDrop.bind(this)}
                         onDropAccepted={this.onDropAccepted}
-                        style={styles.dropZone}>
+                        style={styles.dropZoneButton}>
                         <span><i className="fas fa-pencil-alt"></i></span>
                     </Dropzone>
-                    <img src={this.state.image} />
+                    <img src={this.state.image}/>
                 </div>
             );
         }
 
-        else{
+        else {
             return (
                 <div className={'coverImage'}>
                     <Dropzone
                         onDrop={this.onDrop.bind(this)}
                         onDropAccepted={this.onDropAccepted}
-                        style={styles.dropZone}>
+                        multiple={false}
+                        accept='image/png , image/jpg , image/jpeg'
+                        style={styles.dropZoneArea}
+                    >
+                        <div className={'imageUploadBox'}>
+                            <span><i className="text-secondary fas fa-cloud-upload-alt fa-8x"></i></span>
+                            <p className={'text-secondary'}>Drag and drop files to upload</p>
+                        </div>
                     </Dropzone>
                 </div>
             );
@@ -58,7 +65,7 @@ class ImageUploader extends Component {
 }
 
 let styles = {
-    dropZone:{
+    dropZoneButton: {
         position: 'absolute',
         top: '0',
         left: '0',
@@ -66,6 +73,16 @@ let styles = {
         textAlign: 'center',
         padding: '10px',
         zIndex: '1'
+    },
+    dropZoneArea: {
+        position: 'relative',
+        textAlign: 'center',
+        padding: '10px',
+        width: '100%',
+        borderStyle: 'solid',
+        borderWidth: '2px',
+        borderRadius: '10px',
+        borderColor: '#6c757d',
     }
 };
 
