@@ -1,55 +1,52 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 
-// Imagine you have a list of languages that you'd like to autosuggest.
-let suggestions = ['A'];
+class AutoSuggestBox extends Component {
+    state = {
+        value: '',
+        suggestions: [],
+        suggestionList: [],
+        loading: true
+    };
 
-// Teach Autosuggest how to calculate suggestions for any given input value.
-const getSuggestions = value => {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : suggestions.filter(suggestion =>
-        suggestion.toLowerCase().slice(0, inputLength) === inputValue
-    );
-};
+    getSuggestions = value => {
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+        return inputLength === 0 ? [] : this.state.suggestionList.filter(suggestion =>
+            suggestion.toLowerCase().slice(0, inputLength) === inputValue
+        );
+    };
 
 // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
-const getSuggestionValue = suggestion => suggestion;
+    getSuggestionValue = suggestion => suggestion;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = suggestion => (
-    <div>
-        {suggestion}
-    </div>
-);
-
-class AutoSuggestBox extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value: '',
-            suggestions: [],
-            loading: true
-        };
-    }
+    renderSuggestion = suggestion => (
+        <div>
+            {suggestion}
+        </div>
+    );
 
     componentWillMount(){
         if(this.props.suggestionList){
-            suggestions=this.props.suggestionsList;
+            this.setState({
+                suggestionList: this.props.suggestionList
+            });
         }
     }
 
     componentWillReceiveProps(newProps){
         if(newProps.suggestionList){
             this.setState({
-                loading: false
+                loading: false,
+                suggestionList: newProps.suggestionList
             });
-            suggestions = newProps.suggestionList;
         }
     }
+
     onChange = (event, { newValue, method}) => {
         this.setState({
             value: newValue
@@ -60,7 +57,7 @@ class AutoSuggestBox extends Component {
     // You already implemented this logic above, so just use it.
     onSuggestionsFetchRequested = ({ value, reason}) => {
         this.setState({
-            suggestions: getSuggestions(value)
+            suggestions: this.getSuggestions(value)
         });
     };
 
@@ -104,12 +101,13 @@ class AutoSuggestBox extends Component {
         else{
             return (
                 <Autosuggest
+                    id={this.props.id}
                     suggestions={suggestions}
                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                     onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={getSuggestionValue}
+                    getSuggestionValue={this.getSuggestionValue}
                     onSuggestionSelected={this.onSuggestionSelected}
-                    renderSuggestion={renderSuggestion}
+                    renderSuggestion={this.renderSuggestion}
                     inputProps={inputProps}
                 />
             );

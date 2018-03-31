@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import AddTagsToProject from '../components/addTagsToProject';
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
 import ImageUploader from '../components/ImageUploader';
+import SkillsNeeded from "../components/SkillsNeeded";
+import { Link } from 'react-router-dom';
 
 class NewProject extends Component{
     payload = {
@@ -39,6 +41,15 @@ class NewProject extends Component{
         });
     };
 
+    //This handles the deletion of roles when user clicks the cross button
+    removeRole = (role) => {
+        let roles = this.state.roles;
+        roles.splice(roles.indexOf(role),1);
+        this.setState({
+            roles: roles
+        });
+    };
+
     //This function will update the description state variable as the user gives input
     handleDescription = (e) =>{
         this.setState({
@@ -53,11 +64,18 @@ class NewProject extends Component{
         });
     };
 
+    handleRoles = (roles) => {
+        this.setState({
+            roles: roles
+        });
+        console.log(roles);
+    };
 
     render(){
         return(
             <div className={'container-fluid'}>
                 <header>
+                    <Link to={'/'}><span className={'vertical-center'}><i className="fas fa-home fa-2x"></i></span></Link>
                     <h1>Make a new project</h1>
                 </header>
                 <div className={'row newproject'}>
@@ -79,7 +97,9 @@ class NewProject extends Component{
                     </div>
                     <div className={'col-lg-4'}>
                         <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
-                        <SelectedTagButtonView labels={this.state.tags} removeHandler={this.removeTag}/>
+                        <SelectedTagButtonView id={'tags'} labels={this.state.tags} removeHandler={this.removeTag}/>
+                        <SkillsNeeded fetchRoles={this.handleRoles}/>
+                        <SelectedTagButtonView id={'roles'} labels={this.state.roles} removeHandler={this.removeRole}/>
                     </div>
                 </div>
                 <div className={'row'}>

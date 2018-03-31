@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AutoSuggestionBox from './AutoSuggestBox';
+import AutoSuggestBox from './AutoSuggestBox';
 import axios from "axios/index";
 
 let selectedTags = [];
@@ -44,7 +44,7 @@ class AddTagsToProject extends Component {
             <div>
                 <hr className="my-4"/>
                 <h4>Add Tags</h4>
-                <AutoSuggestionBox enterHandler={this.elemsHandler} placeholder={'Enter your tags'} suggestionList={this.state.tagsList}/>
+                <AutoSuggestBox id={'tagsBox'} keyVal={'tagsBox'} enterHandler={this.elemsHandler.bind(this)} placeholder={'Enter your tags'} suggestionList={this.state.tagsList}/>
             </div>
         );
     }
