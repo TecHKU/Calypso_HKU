@@ -116,7 +116,8 @@ function createProject(pAuthor,pTitle,pDescription,pImagePath,callback){
 }
 
 
-
+// This part of code will be handled by the frontend
+/*
 // storing the project image in uploads folder and setting the path
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -127,8 +128,9 @@ var storage = multer.diskStorage({
   }
 })
 var upload = multer({ storage: storage });
+*/
 
-router.post('/',authenticate,upload.any(), function(req, res, next) {
+router.post('/',authenticate,function(req, res, next) {
  //res.send(req.files);
  // path of the project images
 

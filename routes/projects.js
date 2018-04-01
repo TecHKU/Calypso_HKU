@@ -13,7 +13,7 @@ router.get('/',function(req,res){
       console.log("error in accessing projects database "+ error);
       res.send([]);
     }
-    else if(!projects) {
+    else if(!projects){
       console.log("no projects");
       res.send([]);
     }

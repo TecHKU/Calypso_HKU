@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
 
+
+
 let standardResponse = {
     "status": "incomplete",
     "exists": false,
@@ -10,12 +12,15 @@ let standardResponse = {
     "session": null
 };
 
+/*
 router.get('/',function(req,res){
   res.render('login', { title: "login" });
 });
+*/
 
 
 router.post('/',function(req,res){
+  
   if (!req.body.emailId || !req.body.password){
     standardResponse.status = "incomplete";
     standardResponse.exists = false;
