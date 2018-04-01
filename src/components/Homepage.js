@@ -29,7 +29,7 @@ class Homepage extends Component {
             <div className="row">
                 <Projects showFilters={this.showFilters}/>
                 <Drawer
-                    width={600}
+                    width={300}
                     docked={false}
                     openSecondary={true}
                     open={this.state.filters}
