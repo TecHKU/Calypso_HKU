@@ -3,7 +3,9 @@ import AddTagsToProject from '../components/addTagsToProject';
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
 import ImageUploader from '../components/ImageUploader';
 import SkillsNeeded from "../components/SkillsNeeded";
+import Collaborator from '../components/Collaborator';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class NewProject extends Component{
     payload = {
@@ -23,6 +25,13 @@ class NewProject extends Component{
         description: "",
         collaborators: [],
         coverImage: ""
+    };
+
+    postPayload = async() => {
+        const response = await axios.post('/api/newproject',
+            this.payload,
+            { withCredentials: true});
+        return response.data;
     };
 
     //This function will update the title state variable as the user gives input
@@ -64,26 +73,38 @@ class NewProject extends Component{
         });
     };
 
+    //Handles the state variable roles of the project
     handleRoles = (roles) => {
         this.setState({
             roles: roles
         });
-        console.log(roles);
     };
+
+    handleSubmit = () => {
+        this.payload.title = this.state.projectTitle;
+        this.payload.description = this.state.description;
+        this.payload.collaborators = this.state.collaborators;
+        this.payload.imagePath = this.state.coverImage;
+        this.payload.tags = this.state.tags;
+        this.payload.roles = this.state.roles;
+        const response = this.postPayload();
+        console.log(response);
+    };
+
 
     render(){
         return(
             <div className={'container-fluid'}>
                 <header>
-                    <Link to={'/'}><span className={'vertical-center'}><i className="fas fa-home fa-2x"></i></span></Link>
-                    <h1>Make a new project</h1>
+                    <Link to={'/'}><h1>Calypso</h1></Link>
                 </header>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>
                         <ImageUploader/>
                     </div>
                     <div className={'col-lg-4'}>
-                        <p>Collaborators</p>
+                        <h4>Collaborators</h4>
+                        <Collaborator/>
                     </div>
                 </div>
                 <div className={'row'}>
@@ -92,7 +113,7 @@ class NewProject extends Component{
                             <input value={this.state.projectTitle} type="text" className={'form-control'} placeholder={"Give a title to your project"} onChange={this.handleTitle}/>
                         </div>
                         <div className={'form-group'}>
-                            <textarea value={this.state.description} rows="10" className={'form-control'} placeholder={"Give a short description"} onChange={this.handleDescription}/>
+                            <textarea value={this.state.description} rows="15" className={'form-control'} placeholder={"Give a short description"} onChange={this.handleDescription}/>
                         </div>
                     </div>
                     <div className={'col-lg-4'}>
@@ -103,8 +124,8 @@ class NewProject extends Component{
                     </div>
                 </div>
                 <div className={'row'}>
-                    <div className={'col-lg-8 offset-lg-2'}>
-                        <button type="submit" className={"btn btn-primary"}>Create Project</button>
+                    <div className={'col-lg-8 offset-lg-1'}>
+                        <Link to={'/'}><button type="submit" className={"btn btn-primary"} onClick={this.handleSubmit}>Create Project</button></Link>
                     </div>
                 </div>
             </div>
