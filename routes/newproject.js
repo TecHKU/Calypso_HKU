@@ -23,6 +23,7 @@ var authenticate = function(req,res,next){
 // creating a list of tag id for the project. Adding new tags to the database if doesnot exist
 function tagHandler(list,callback){
   // synchronously looping
+    console.log(list);
   forEachAsync(list,function (next,string, index, array){
     console.log(string+"hahah");
     Tags.findOne({name: string},function(error,tag){
@@ -57,6 +58,7 @@ function tagHandler(list,callback){
 // creating a list of tag id for the project. Adding new tags to the database if doesnot exist
 function roleHandler(list,callback){
   //synchronously looping
+    console.log(list);
   forEachAsync(list,function (next,string, index, array){
     console.log(string+"hffff");
     Roles.findOne({name: string},function(error,role){
@@ -136,24 +138,24 @@ router.post('/',authenticate,function(req, res, next) {
 
  //var path = req.files[0].path;
  var path="abc";
+ console.log("Request Body : ", req.body);
 
-/*
-var imageName = req.files[0].originalname;
- var imagepath = {};
- imagepath['path'] = path;
- imagepath['originalname'] = imageName;
-*/
+  /*
+  var imageName = req.files[0].originalname;
+   var imagepath = {};
+   imagepath['path'] = path;
+   imagepath['originalname'] = imageName;
+  */
 
-//synchronously calling three functions
-tagHandler(req.body.tag,function(){
-  roleHandler(req.body.role,function(){
-    console.log("Project started by"+ req.session.user._id);
-    createProject(req.session.user._id,req.body.title,req.body.description,path,function(){
-      res.send("done");
+  //synchronously calling three functions
+  tagHandler(req.body.tags,function() {
+    roleHandler(req.body.roles,function(){
+      console.log("Project started by"+ req.session.user._id);
+      createProject(req.session.user._id,req.body.title,req.body.description,path,function(){
+        res.send("done");
+      });
     });
-
   });
-});
 
 });
 

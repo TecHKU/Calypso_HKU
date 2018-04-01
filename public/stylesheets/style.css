@@ -57,6 +57,13 @@ header h1{
   font-weight: 900
 }
 
+.circle{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+}
+
 .header-buttons{
   position: absolute;
   top:25%;right:5%;
@@ -180,6 +187,15 @@ header h1{
   align-items: center;
 }
 
+.vertical-center-div{
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
 .loginDialog{
   border: 1px solid #aaa;
   background: white !important;
@@ -252,4 +268,8 @@ header h1{
 
 .imageUploadBox p{
   padding: 10px;
+}
+
+.collaborator{
+  width: 100%;
 }
