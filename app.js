@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 var mongo = require('mongodb');
 var mongoose= require('mongoose');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+//var index = require('./routes/index');
+//var users = require('./routes/users');
 var login=require('./routes/login');
 var signup=require('./routes/signup');
 var logout=require('./routes/logout');
@@ -18,7 +18,7 @@ var sendVerification=require('./routes/sendVerification');
 var verify=require('./routes/verify');
 var sessionDetail=require('./routes/sessionDetail');
 var getProjects=require('./routes/projects');
-
+var getCurrentUserProjects=require('./routes/currentUserProjects');
 var session = require('express-session');
 var Account= require('./models/account');
 
@@ -49,7 +49,10 @@ resave: false,
     saveUninitialized: false}));
 
 app.use(express.static(path.resolve(__dirname, './build')));
-app.use('/api/users', users);
+
+// All the routings
+
+//app.use('/api/users', users);
 app.use('/api/newproject',newproject);  // handling creation of new project
 app.use('/api/login', login);
 app.use('/api/signup',signup);
@@ -60,6 +63,7 @@ app.use('/api/sendVerification',sendVerification);
 app.use('/api/verify',verify);      // getting all roles from database
 app.use('/api/sessionDetail',sessionDetail);
 app.use('/api/projects',getProjects);
+app.use('/api/currentUserProjects',getCurrentUserProjects);
 
 
 //Pass all other requests to the React server
