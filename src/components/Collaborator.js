@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {FloatingActionButton} from "material-ui";
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 /**
  * @author utkarsh867
@@ -20,7 +22,9 @@ class Collaborator extends Component {
     render() {
         return (
             <div className={'col-lg-2 collaborator'}>
-                <img className={'img-fluid rounded-circle'} src={'https://png.icons8.com/metro/1600/plus.png'}/>
+                <FloatingActionButton>
+                    <ContentAdd />
+                </FloatingActionButton>
             </div>
         );
     }

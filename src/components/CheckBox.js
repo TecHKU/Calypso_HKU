@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Checkbox} from "material-ui";
 
 /**
  * @author utkarsh867
@@ -33,18 +34,13 @@ class CheckBox extends Component {
 
     render() {
         const {label} = this.props;
-        const {isChecked} = this.state;
         return (
             <div className="checkbox">
-                <label>
-                    <input
-                        type="checkbox"
-                        value={label}
-                        checked={isChecked}
-                        onChange={this.toggleCheckboxChange}
-                    />
-                    <span className="checkbox-text">{label}</span>
-                </label>
+                <Checkbox
+                    label={label}
+                    checked={this.state.isChecked}
+                    onCheck={this.toggleCheckboxChange.bind(this)}
+                />
             </div>
         );
     }

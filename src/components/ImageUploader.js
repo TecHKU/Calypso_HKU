@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
+import {FloatingActionButton} from "material-ui";
+import ContentCreate from 'material-ui/svg-icons/content/create';
 
 /**
  * The Image uploader box on the NewProject page
@@ -47,7 +49,9 @@ class ImageUploader extends Component {
                         onDrop={this.onDrop.bind(this)}
                         onDropAccepted={this.onDropAccepted}
                         style={styles.dropZoneButton}>
-                        <span><i className="fas fa-pencil-alt"></i></span>
+                        <FloatingActionButton>
+                            <ContentCreate/>
+                        </FloatingActionButton>
                     </Dropzone>
                     <img src={this.state.image}/>
                 </div>
@@ -80,7 +84,7 @@ let styles = {
         position: 'absolute',
         top: '0',
         left: '0',
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(0,0,0,0)',
         textAlign: 'center',
         padding: '10px',
         zIndex: '1'

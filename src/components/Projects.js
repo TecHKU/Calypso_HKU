@@ -9,8 +9,8 @@ import ProjectsScreen from "./ProjectsScreen";
 class Projects extends Component {
   render() {
     return (
-        <div className="col-lg-9 projects">
-            <SearchBar text="Search Projects"/>
+        <div className="col-lg-12 projects">
+            <SearchBar text="Search Projects" showFilters={this.props.showFilters}/>
             <ProjectsScreen/>
         </div>
     );
