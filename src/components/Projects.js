@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import SearchBar from "./SearchBar";
 import ProjectsScreen from "./ProjectsScreen";
+
+/**
+ * @author utkarsh867
+ * The projects on the homepage
+ */
 class Projects extends Component {
   render() {
     return (

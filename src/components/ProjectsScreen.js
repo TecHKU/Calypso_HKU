@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ * The Projects view in the Projects component
+ */
 class ProjectsScreen extends Component {
   render() {
     return (

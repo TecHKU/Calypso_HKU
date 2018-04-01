@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ * The design of the label button
+ */
 class SelectedTagsButton extends Component {
 
     state = {
@@ -12,6 +16,10 @@ class SelectedTagsButton extends Component {
         });
     }
 
+    /**
+     * When the user tries to delete the label button
+     * @param e
+     */
     deleteTagHandler = (e) => {
         const { deleteHandler } = this.props;
         deleteHandler(this.state.label);

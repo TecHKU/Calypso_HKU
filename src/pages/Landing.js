@@ -4,6 +4,10 @@ import Homepage from '../components/Homepage'
 import axios from 'axios';
 import getSessionInfo from '../components/getSessionInfo';
 
+/**
+ * @author utkarsh867
+ * The Home page of the project
+ */
 class Landing extends Component {
     state = {
         username: "",

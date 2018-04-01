@@ -7,7 +7,15 @@ import Collaborator from '../components/Collaborator';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+/**
+ * "The Start A New Project" page
+ * @author utkarsh867
+ */
 class NewProject extends Component{
+    /**
+     * The payload that is needed by the server
+     * @type {{title: string, description: string, imagePath: string, hitCount: number, tags: Array, roles: Array, collaborators: Array}}
+     */
     payload = {
         title: "",
         description: "",
@@ -27,6 +35,10 @@ class NewProject extends Component{
         coverImage: ""
     };
 
+    /**
+     * Post the project to the server
+     * @returns {Promise<*>}
+     */
     postPayload = async() => {
         const response = await axios.post('/api/newproject',
             this.payload,
@@ -34,14 +46,20 @@ class NewProject extends Component{
         return response.data;
     };
 
-    //This function will update the title state variable as the user gives input
+    /**
+     * Update the title state variable as the user gives input
+     * @param e The title input box
+     */
     handleTitle = (e) =>{
         this.setState({
             projectTitle: e.target.value
         });
     };
 
-    //This handles the deletion of tags when user clicks the cross button
+    /**
+     * Handles deletion of tags when the user presses x
+     * @param tag The tag value that needs to be deleted
+     */
     removeTag = (tag) => {
         let tags = this.state.tags;
         tags.splice(tags.indexOf(tag),1);
@@ -50,7 +68,10 @@ class NewProject extends Component{
         });
     };
 
-    //This handles the deletion of roles when user clicks the cross button
+    /**
+     * Handles the deletion of roles when user clicks the cross button
+     * @param role The role value that needs to be deleted
+     */
     removeRole = (role) => {
         let roles = this.state.roles;
         roles.splice(roles.indexOf(role),1);
@@ -59,27 +80,39 @@ class NewProject extends Component{
         });
     };
 
-    //This function will update the description state variable as the user gives input
+    /**
+     * Update the description state variable as the user gives input
+     * @param e The description box
+     */
     handleDescription = (e) =>{
         this.setState({
             description: e.target.value
         });
     };
 
-    //This function will update the tags state variable as the user gives input
+    /**
+     * Update the tags state variable as the user gives input
+     * @param tags The tags array that has been selected
+     */
     handleTags = (tags) => {
         this.setState({
             tags: tags
         });
     };
 
-    //Handles the state variable roles of the project
+    /**
+     * Handles the state variable roles of the project
+     * @param roles The roles array that has been selected
+     */
     handleRoles = (roles) => {
         this.setState({
             roles: roles
         });
     };
 
+    /**
+     * When the user submits the project
+     */
     handleSubmit = () => {
         this.payload.title = this.state.projectTitle;
         this.payload.description = this.state.description;

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ * The search bar in the projects component
+ */
 class SearchBar extends Component {
   render() {
     return (

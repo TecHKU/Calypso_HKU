@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Tags from './Tags';
 import SkillsNeeded from './SkillsNeeded';
+
+/**
+ * @author utkarsh867
+ * The side bar on the homepage
+ */
 class SideBar extends Component {
     render() {
         return (

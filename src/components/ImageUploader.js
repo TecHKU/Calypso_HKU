@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 
+/**
+ * The Image uploader box on the NewProject page
+ * @author utkarsh867
+ */
 class ImageUploader extends Component {
 
     state = {
@@ -8,6 +12,10 @@ class ImageUploader extends Component {
         uploaded: false
     };
 
+    /**
+     * When the file is dropped into the area
+     * @param files The file  dropped
+     */
     onDrop(files) {
         this.setState({
             image: files[0].preview
@@ -15,6 +23,9 @@ class ImageUploader extends Component {
         console.log(files);
     }
 
+    /**
+     * When the file is of acceptable type
+     */
     onDropAccepted = () => {
         //Make it the preview file
         styles.dropZoneButton.zIndex = '200';

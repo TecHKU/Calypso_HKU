@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * @author utkarsh867
+ * The little dropdown for user options
+ */
 class AccountOptions extends Component {
     logOut = () => {
         const {logOutHandler} = this.props;

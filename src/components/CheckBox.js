@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ *
+ */
 class CheckBox extends Component {
     state={
         isChecked: false
@@ -12,6 +16,9 @@ class CheckBox extends Component {
         }
     }
 
+    /**
+     * Toggle the tick mark in the checkbox
+     */
     toggleCheckboxChange = () =>{
         const {handleCheckboxChange, label} = this.props;
 

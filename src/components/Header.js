@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
 
+/**
+ * @author utkarsh867
+ * The top header of the home page that renders according to user status
+ */
 class Header extends Component {
     state = {
         isLoggedIn: this.props.isLoggedIn,
@@ -19,10 +23,16 @@ class Header extends Component {
         });
     }
 
+    /**
+     * Sets the display status of user menu
+     */
     showAccountOptions = () => {
         this.setState({displayAccountOptions: !this.state.displayAccountOptions});
     };
 
+    /**
+     * Handles the logout of the user
+     */
     logOutUser = () => {
         const {onLogout} = this.props;
         onLogout();

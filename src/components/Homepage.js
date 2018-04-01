@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import Projects from "./Projects";
 import SideBar from "./SideBar";
+
+/**
+ * @author utkarsh867
+ * The Homepage component of the Landing page
+ */
 class Homepage extends Component {
   render() {
     return (

@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import AutoSuggestBox from './AutoSuggestBox';
 import axios from "axios/index";
 
+/**
+ * @type {Array}
+ */
 let selectedTags = [];
+
+/**
+ * @author utkarsh867
+ * The sidebar in the NewProject that handles the addition of new tags
+ * The selected tags in the list
+ * Pass the following props to this Component:
+ *  selectedTags - A list of currently selected tags
+ *  assignTags - A function that will get back a list of selected tags as argument
+ */
 class AddTagsToProject extends Component {
     state = {
         selectedTags: this.props.selectedTags,
@@ -18,6 +30,10 @@ class AddTagsToProject extends Component {
             });
     }
 
+    /**
+     * This handles the individual tag addition to the selected list
+     * @param val The value in the input box that represents the tag that will be added
+     */
     elemsHandler = (val) => {
         const {assignTags} = this.props;
         if(this.state.selectedTags && this.state.selectedTags.indexOf(val) ===-1 && val!==""){
@@ -29,6 +45,10 @@ class AddTagsToProject extends Component {
         }
     };
 
+    /**
+     * Requests for existing tags in the database to provide suggestions
+     * @returns {Promise<*>}
+     */
     fetchTags = async() => {
         try{
             return await axios.get('/api/tags');

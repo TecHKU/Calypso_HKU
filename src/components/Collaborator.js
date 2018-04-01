@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ * Collaborator in Project page component
+ */
 class Collaborator extends Component {
 
     state = {
