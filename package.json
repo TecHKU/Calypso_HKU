@@ -26,6 +26,7 @@
     "forEachAsync": "^3.0.0",
     "jade": "~1.11.0",
     "jquery": "^3.3.1",
+    "material-ui": "^0.20.0",
     "mongodb": "^3.0.3",
     "mongoose": "^5.0.7",
     "morgan": "~1.9.0",
