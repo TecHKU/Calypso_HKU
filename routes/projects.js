@@ -34,6 +34,7 @@ router.get('/',function(req,res){
           if(error) return console.log("error in accessing accounts database");
           if (!account) return console.log("author id incorrectly stored");
           else{
+            account["password"]="";     // removing password from the data that is being sent
             p["author"]=account;        // sending the complete account information of the author of the project
             console.log("push pro");
             modifiedPro.push(p);

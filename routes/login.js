@@ -20,7 +20,7 @@ router.get('/',function(req,res){
 
 
 router.post('/',function(req,res){
-  
+
   if (!req.body.emailId || !req.body.password){
     standardResponse.status = "incomplete";
     standardResponse.exists = false;
@@ -53,6 +53,7 @@ router.post('/',function(req,res){
 
     // creating a new session
     if (account.compare(req.body.password)){
+      account["password"]="";
       req.session.user = account;
       req.session.save();
       console.log("");
