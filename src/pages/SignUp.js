@@ -3,6 +3,10 @@ import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import SignUpBox from '../components/SignUpBox';
 
+/**
+ * @author utkarsh867
+ * The Sign up page
+ */
 class SignUp extends Component{
 
     state = {
@@ -25,10 +29,19 @@ class SignUp extends Component{
         }
     }
 
+    /**
+     * When the user taps the signup button
+     * @param data JSON object that contains the input fields of signup box
+     */
     handleSubmit = (data) =>{
         this.requestSignUp(data);
     };
 
+    /**
+     * Sends sign up request to the server
+     * @param data JSON object of sign up box
+     * @returns {Promise<void>}
+     */
     requestSignUp = async(data) => {
         try{
             const response = await axios.post('/api/signup',{

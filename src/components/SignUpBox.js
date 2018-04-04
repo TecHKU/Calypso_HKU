@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ * @author utkarsh867
+ * The signup dialog on the signup page
+ */
 class SignUpBox extends Component {
 
     state = {

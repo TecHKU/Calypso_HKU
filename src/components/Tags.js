@@ -6,6 +6,10 @@ import SearchBar from "./SearchBar";
 let tags = [];
 let tags_to_display = tags;
 
+/**
+ * @author utkarsh867
+ * The tags search and select component
+ */
 class Tags extends Component {
     state = {
         checked: 0,
@@ -13,6 +17,10 @@ class Tags extends Component {
         tags: []
     };
 
+    /**
+     * Fetch tags from the database
+     * @returns {Promise<*>}
+     */
     fetchTags = async() => {
         try{
             return await axios.get('/api/tags');
@@ -23,6 +31,10 @@ class Tags extends Component {
         }
     };
 
+    /**
+     * List all the tags that are already present on the database
+     * @param response the response from the server
+     */
     putTags = (response) => {
         tags = response.data;
         tags_to_display = tags;
@@ -40,6 +52,10 @@ class Tags extends Component {
         }
     };
 
+    /**
+     * The checkbox toggle handler
+     * @param label The label of the corresponding checkbox
+     */
     toggleCheckbox = (label) => {
         if(this.selectedCheckboxes.has(label)){
             this.selectedCheckboxes.delete(label);
@@ -60,6 +76,11 @@ class Tags extends Component {
         console.log(this.selectedCheckboxes);
     };
 
+    /**
+     * Create the checkbox components with "label"
+     * @param label The label corresponding to the checkbox
+     * @returns {*} JSX element
+     */
     createCheckbox = (label) => (
         <CheckBox
             label={label}
@@ -69,12 +90,20 @@ class Tags extends Component {
         />
     );
 
+    /**
+     * Map all labels
+     * @returns {any[]}
+     */
     createCheckboxes = () => {
         if (tags_to_display) {
             return tags_to_display.map(this.createCheckbox);
         }
     };
 
+    /**
+     * When search text is being entered
+     * @param val The value of the search field
+     */
     onSearchTags = (val) => {
         this.setState({search:val}, () =>{
             //console.log(this.state);
@@ -82,6 +111,10 @@ class Tags extends Component {
         });
     };
 
+    /**
+     * Modify the list of tags checkboxes as user enters search value
+     * @param text The value of the search field
+     */
     modifyTagsList = (text) =>{
         //Modify the tags array
         if(tags){

@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
+import Snackbar from 'material-ui/Snackbar';
 
+/**
+ * @author utkarsh867
+ * The top header of the home page that renders according to user status
+ */
 class Header extends Component {
     state = {
         isLoggedIn: this.props.isLoggedIn,
         username: this.props.username,
         verifiedUser: this.props.verifiedUser,
-        displayAccountOptions: false
+        displayAccountOptions: false,
+        displayVerifyEmail: !this.props.verifiedUser
     };
 
     componentWillReceiveProps(nextProps){
@@ -15,17 +21,22 @@ class Header extends Component {
             isLoggedIn: nextProps.isLoggedIn,
             username: nextProps.username,
             verifiedUser: nextProps.verifiedUser,
-            displayAccountOptions: false
+            displayVerifyEmail: !nextProps.verifiedUser
         });
     }
 
-    showAccountOptions = () => {
-        this.setState({displayAccountOptions: !this.state.displayAccountOptions});
-    };
-
+    /**
+     * Handles the logout of the user
+     */
     logOutUser = () => {
         const {onLogout} = this.props;
         onLogout();
+    };
+
+    hideVerifyEmail = () =>{
+        this.setState({
+            displayVerifyEmail: false
+        });
     };
 
     render(){
@@ -44,7 +55,21 @@ class Header extends Component {
 
         //If the user is logged in
         else{
-
+            return(
+                <header>
+                    <h1 className="logo">Calypso</h1>
+                    <ul className="header-buttons">
+                        <li><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
+                    </ul>
+                    <Snackbar
+                        open={this.state.displayVerifyEmail}
+                        message="Verify your email address to make your own projects"
+                        autoHideDuration={4000}
+                        onRequestClose={this.hideVerifyEmail}
+                    />
+                </header>
+            );
+            /*
             //If user email is verified, we allow new project creation
             if(this.state.verifiedUser){
                 return (
@@ -52,8 +77,7 @@ class Header extends Component {
                         <h1 className="logo">Calypso</h1>
                         <ul className="header-buttons">
                             <li><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li>
-                            <li><button type="button" onClick={this.showAccountOptions} className="btn btn-link">Welcome, {this.state.username}</button></li>
-                            {this.state.displayAccountOptions ? <AccountOptions logOutHandler={this.logOutUser}/> : null}
+                            <AccountOptions logOutHandler={this.logOutUser}/>
                         </ul>
                     </header>
                 );
@@ -66,13 +90,12 @@ class Header extends Component {
                         <h1 className="logo">Calypso</h1>
                         <ul className="header-buttons">
                             <li>Verify your email to start a project</li>
-                            <li><button type="button" onClick={this.showAccountOptions} className="btn btn-link">Welcome, {this.state.username}</button></li>
+                            <AccountOptions logOutHandler={this.logOutUser}/>
                         </ul>
-                        {this.state.displayAccountOptions ? <AccountOptions logOutHandler={this.logOutUser}/> : null}
                     </header>
                 );
             }
-
+            */
         }
     }
 }

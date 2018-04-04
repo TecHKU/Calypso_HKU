@@ -3,6 +3,11 @@ import AutoSuggestBox from './AutoSuggestBox';
 import axios from "axios/index";
 
 let skills = [];
+
+/**
+ * @author utkarsh867
+ * The Roles search and select component
+ */
 class SkillsNeeded extends Component {
 
     state ={

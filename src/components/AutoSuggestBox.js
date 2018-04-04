@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 
+/**
+ * The auto suggestion box that can provide suggestions based on the props
+ * Pass the following props to it:
+ *  id - Unique id of the element
+ *  enterHandler - The handler that will get the final value selected
+ *  placeholder - The placeholder when nothing is typed
+ *  suggestionList - The list of suggestions for the input field
+ */
 class AutoSuggestBox extends Component {
     state = {
         value: '',

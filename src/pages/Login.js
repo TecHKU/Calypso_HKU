@@ -3,6 +3,11 @@ import LoginBox from '../components/LoginBox';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import getSessionInfo from '../components/getSessionInfo';
+
+/**
+ * Login page
+ * @author utkarsh867
+ */
 class Login extends Component {
 
     state = {
@@ -34,6 +39,12 @@ class Login extends Component {
             });
     }
 
+    /**
+     * Verify the user and login after verification
+     * @param username  The username that has been input
+     * @param password  The password that has been input
+     * @returns {Promise<void>}
+     */
     verifyUser = async(username, password) => {
         try{
             // noinspection JSAnnotator
@@ -56,6 +67,11 @@ class Login extends Component {
         }
     };
 
+    /**
+     * When the user presses login button
+     * @param username  The username that has been input
+     * @param password  The password that has been input
+     */
     handleSubmit = (username, password) =>{
         this.verifyUser(username, password);
     };
