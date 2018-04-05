@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import Homepage from '../components/Homepage'
 import axios from 'axios';
-import getSessionInfo from '../components/getSessionInfo';
-import Loading from '../components/Loading'
+import getSessionInfo from "../components/getSessionInfo";
+import Loading from '../components/Loading';
+import ProfileInfo from '../components/ProfileInfo';
+import MyProjectsSection from '../components/MyProjectsSection';
+
 /**
  * @author utkarsh867
  * The Home page of the project
  */
-class Landing extends Component {
+class MyProfile extends Component {
     state = {
+        user: {},
         username: "",
         verifiedUser: false,
         isLoggedIn: false,
+        projects: [],
+        collabs: [],
         loading: true
     };
 
@@ -22,6 +27,7 @@ class Landing extends Component {
                 if(response){
                     this.setState({
                         isLoggedIn: true,
+                        user: response,
                         username: response.fullName,
                         verifiedUser: response.isVerified
                     });
@@ -65,15 +71,18 @@ class Landing extends Component {
                 <div className={'container'}>
                     <Loading/>
                 </div>
-            )
+            );
         }
-        return (
-            <div className={'container-fluid'}>
-                <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
-                <Homepage/>
-            </div>
-        );
+        else{
+            return (
+                <div className={'container-fluid'}>
+                    <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
+                    <ProfileInfo user={this.state.user}/>
+                    <MyProjectsSection/>
+                </div>
+            );
+        }
     }
 }
 
-export default Landing;
+export default MyProfile;

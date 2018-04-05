@@ -4,6 +4,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NewProject from './pages/NewProject';
+import MyProfile from './pages/MyProfile';
 
 import { MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
 import {grey300, grey600, darkBlack, fullBlack, blue400} from 'material-ui/styles/colors';
@@ -29,6 +30,7 @@ class App extends Component {
                         <Route path={'/login'} component={Login}/>
                         <Route path={'/signup'} component={SignUp}/>
                         <Route path={'/newproject'} component={NewProject}/>
+                        <Route path={'/profile'} component={MyProfile}/>
                     </div>
                 </Router>
             </MuiThemeProvider>

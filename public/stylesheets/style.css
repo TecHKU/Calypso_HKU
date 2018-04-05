@@ -12,27 +12,38 @@ a {
 h1{
   font-family: 'Roboto', sans-serif;
   font-size: 250%;
+    font-weight: 900;
 
 }
 
 h2{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 200%;
+    padding: 10px;
+    font-weight: 700;
 }
 
 h3{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 150%;
+    font-weight: 500;
 }
 
 h4{
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 120%;
+    font-weight: 400;
 }
 
 p{
   font-family: 'Open Sans', sans-serif;
   font-size: 100%;
+}
+
+label{
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 100%;
 }
 
 .container-fluid{
@@ -181,6 +192,7 @@ header h1{
 }
 
 .vertical-center{
+    position: absolute;
   min-height: 100%;
   min-height: 100vh;
   display: flex;
@@ -269,4 +281,10 @@ header h1{
 .collaborator{
   width: 100%;
   padding: 20px;
+}
+
+.personal-info-box{
+    width: 100%;
+    padding:10px !important;
+    background-color: white;
 }

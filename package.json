@@ -26,6 +26,7 @@
     "forEachAsync": "^3.0.0",
     "jade": "~1.11.0",
     "jquery": "^3.3.1",
+    "material-auto-rotating-carousel": "^1.7.0",
     "material-ui": "^0.20.0",
     "mongodb": "^3.0.3",
     "mongoose": "^5.0.7",
@@ -42,6 +43,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1",
     "react-spinners": "^0.2.6",
+    "react-swipeable-views": "^0.12.13",
     "serve-favicon": "~2.4.5"
   }
 }
