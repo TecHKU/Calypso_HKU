@@ -53,7 +53,7 @@ class AccountOptions extends Component {
                     <Menu>
                         {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem primaryText="Create a New Project" /></Link> : null}
                         <Link to={'/profile'}><MenuItem primaryText="My Profile" /></Link>
-                        <MenuItem primaryText="Sign out" onClick={this.logOut}/>
+                        <Link to={'/loggedout'}><MenuItem primaryText="Sign out" onClick={this.logOut}/></Link>
                     </Menu>
                 </Popover>
             </div>

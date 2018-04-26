@@ -288,3 +288,7 @@ header h1{
     padding:10px !important;
     background-color: white;
 }
+
+.error-text{
+    color: #ff0033;
+}

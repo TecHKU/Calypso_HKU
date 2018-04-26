@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Tags from './Tags';
 import SkillsNeeded from './SkillsNeeded';
+import RolesList from './RolesList';
 import SelectedTagButtonView from './selectedTagButtonsView';
 
 /**
@@ -33,8 +34,7 @@ class SideBar extends Component {
             <div className="col-10 offset-1 sidebar">
                 <h3>Filter your search</h3>
                 <Tags/>
-                <SkillsNeeded fetchRoles={this.handleRoles}/>
-                <SelectedTagButtonView id={'roles'} labels={this.state.roles} removeHandler={this.removeRole}/>
+                <RolesList/>
             </div>
         );
     }

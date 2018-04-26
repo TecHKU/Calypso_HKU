@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import Header from '../components/Header';
 import axios from 'axios';
 import getSessionInfo from "../components/getSessionInfo";
 import Loading from '../components/Loading';
 import ProfileInfo from '../components/ProfileInfo';
 import MyProjectsSection from '../components/MyProjectsSection';
-
 /**
  * @author utkarsh867
  * The Home page of the project
@@ -62,6 +62,7 @@ class MyProfile extends Component {
                 verifiedUser: false,
                 isLoggedIn: false
             });
+            return (<Redirect to={'/loggedout'}/>);
         }
     };
 

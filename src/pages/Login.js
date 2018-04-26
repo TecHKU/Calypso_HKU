@@ -12,7 +12,8 @@ class Login extends Component {
 
     state = {
         loginSuccess: false,
-        redirect: false
+        redirect: false,
+        incorrect: false
     };
 
     componentWillMount(){
@@ -55,11 +56,13 @@ class Login extends Component {
             if(response.data.loginSuccess){
                 this.setState({
                     loginSuccess: true,
-                    redirect: true
+                    redirect: true,
                 });
             }
             else{
-                //console.log(response);
+                this.setState({
+                    incorrect: true
+                });
             }
         }
         catch(e) {
@@ -89,6 +92,7 @@ class Login extends Component {
                             <Link to={"/"}><h1>Calypso</h1></Link>
                         </div>
                         <hr className={'my-4'}/>
+                        { (this.state.incorrect)? <div class="error-text"><p>Incorrect username or password</p></div>: null}
                         <LoginBox submitHandler={this.handleSubmit}/>
                         <p>New Member?</p>
                         <Link to={"/signup"}><p>Sign Up</p></Link>

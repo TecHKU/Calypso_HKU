@@ -59,6 +59,7 @@ class Header extends Component {
                 <header>
                     <h1 className="logo">Calypso</h1>
                     <ul className="header-buttons">
+                        {this.state.verifiedUser ? <li><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
                         <li><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
                     </ul>
                     <Snackbar
