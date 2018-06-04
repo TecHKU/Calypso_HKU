@@ -3,27 +3,27 @@ import axios from 'axios';
 import CheckBox from './CheckBox';
 import SearchBar from "./SearchBar";
 
-let tags = [];
-let tags_to_display = tags;
+let roles = [];
+let rolesDisplayed = roles;
 
 /**
  * @author utkarsh867
- * The tags search and select component
+ * The roles search and select component
  */
-class Tags extends Component {
+class RolesList extends Component {
     state = {
         checked: 0,
         search: "",
-        tags: []
+        roles: []
     };
 
     /**
-     * Fetch tags from the database
+     * Fetch roles from the database
      * @returns {Promise<*>}
      */
-    fetchTags = async() => {
+    fetchRoles = async() => {
         try{
-            return await axios.get('/api/tags');
+            return await axios.get('/api/roles');
         }
         catch (e){
             //console.log(e);
@@ -32,20 +32,20 @@ class Tags extends Component {
     };
 
     /**
-     * List all the tags that are already present on the database
+     * List all the roles that are already present on the database
      * @param response the response from the server
      */
-    putTags = (response) => {
-        tags = response.data;
-        tags_to_display = tags;
-        this.setState({tags:tags});
+    putRoles = (response) => {
+        roles = response.data;
+        rolesDisplayed = roles;
+        this.setState({roles:roles});
     };
 
     componentWillMount(){
         this.selectedCheckboxes = new Set();
         try{
-            this.fetchTags()
-                .then((response) => this.putTags(response));
+            this.fetchRoles()
+                .then((response) => this.putRoles(response));
         }
         catch (e){
             console.log(e);
@@ -95,8 +95,8 @@ class Tags extends Component {
      * @returns {any[]}
      */
     createCheckboxes = () => {
-        if (tags_to_display) {
-            return tags_to_display.map(this.createCheckbox);
+        if (rolesDisplayed) {
+            return rolesDisplayed.map(this.createCheckbox);
         }
     };
 
@@ -104,29 +104,28 @@ class Tags extends Component {
      * When search text is being entered
      * @param val The value of the search field
      */
-    onSearchTags = (val) => {
+    onSearchRoles = (val) => {
         this.setState({search:val}, () =>{
             //console.log(this.state);
-            this.modifyTagsList(this.state.search);
+            this.modifyRolesList(this.state.search);
         });
     };
 
     /**
-     * Modify the list of tags checkboxes as user enters search value
+     * Modify the list of roles checkboxes as user enters search value
      * @param text The value of the search field
      */
-    modifyTagsList = (text) =>{
-        //Modify the tags array
-        if(tags){
+    modifyRolesList = (text) =>{
+        if(roles){
             this.setState({search:text});           //This is the jugaad I did not understand
-            tags_to_display = [];
+            rolesDisplayed = [];
             if(text===""){
-                tags_to_display = tags;
+                rolesDisplayed = roles;
             }
             else{
-                for(let i = 0; i<tags.length; i++){
-                    if((tags[i].toLowerCase()).indexOf(text.toLowerCase())!==-1){
-                        tags_to_display.push(tags[i])
+                for(let i = 0; i<roles.length; i++){
+                    if((roles[i].toLowerCase()).indexOf(text.toLowerCase())!==-1){
+                        rolesDisplayed.push(roles[i])
                     }
                 }
             }
@@ -137,7 +136,7 @@ class Tags extends Component {
     render() {
         return (
             <div>
-                <SearchBar text="Search tags" onSearch={this.onSearchTags} />
+                <SearchBar text="Search Roles" onSearch={this.onSearchRoles} />
                 <div className="tags-div">
                     {this.createCheckboxes()}
                 </div>
@@ -148,4 +147,4 @@ class Tags extends Component {
 }
 
 
-export default Tags;
+export default RolesList;

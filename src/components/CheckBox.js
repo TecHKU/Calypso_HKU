@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import {Checkbox} from "material-ui";
 
+/**
+ * @author utkarsh867
+ *
+ */
 class CheckBox extends Component {
     state={
         isChecked: false
@@ -12,6 +17,9 @@ class CheckBox extends Component {
         }
     }
 
+    /**
+     * Toggle the tick mark in the checkbox
+     */
     toggleCheckboxChange = () =>{
         const {handleCheckboxChange, label} = this.props;
 
@@ -20,26 +28,19 @@ class CheckBox extends Component {
                 isChecked: !isChecked,
             }
         ));
-
-        console.log(label);
         handleCheckboxChange(label);
     };
 
 
     render() {
         const {label} = this.props;
-        const {isChecked} = this.state;
         return (
             <div className="checkbox">
-                <label>
-                    <input
-                        type="checkbox"
-                        value={label}
-                        checked={isChecked}
-                        onChange={this.toggleCheckboxChange}
-                    />
-                    <span className="checkbox-text">{label}</span>
-                </label>
+                <Checkbox
+                    label={label}
+                    checked={this.state.isChecked}
+                    onCheck={this.toggleCheckboxChange.bind(this)}
+                />
             </div>
         );
     }

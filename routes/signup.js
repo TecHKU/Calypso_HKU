@@ -1,45 +1,74 @@
 var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
+var appendQuery = require('append-query');
+
+
+let standardRespoonse = {
+    success: false,
+    reason: ""
+};
 
 router.get('/',function(req,res){
-  res.render('signup', { title: "signup" });
+//  res.render('signup', { title: "signup" });
 });
 
 
 router.post('/',function(req,res){
-  console.log(req.body.emailId);
-  if (!req.body.emailId|| !req.body.password || !req.body.confirmPassword|| !req.body.password){
-    return res.render('signup', { title: "signup" , message: "Please Enter all fields"});
-  }
-  else if(req.body.password!=req.body.confirmPassword){
-    return res.render('signup', { title: "signup" , message: "Password and confirm password doesnt match"});
-  }
-  //finding username from account database
-
-  Account.findOne({emailId: req.body.emailId}, function(error,account)
-  {
-    if(account) return res.render('signup', { title: "signup" , message: "emailId Already Exists"});
-    else if (error) return console.log("error in accessing the database");
-    // creating a new account
-    else{
-    Account.create({
-      emailId : req.body.emailId,
-      password : req.body.password,
-      fullName: req.body.fullName
-      },function(error,account){
-        if (error) return console.log("Error in adding User to Database");
-        else
-        {
-          res.send(account);
-          //console.log(req.body.emailId);
-          //res.redirect('/');
-        }
-        });
+    console.log(req.body.emailId);
+    /*Frontend will handle this
+    if (!req.body.emailId|| !req.body.password || !req.body.confirmPassword|| !req.body.password){
+        return res.render('signup', { title: "signup" , message: "Please Enter all fields"});
     }
-  });
+    else if(req.body.password!=req.body.confirmPassword){
+        return res.render('signup', { title: "signup" , message: "Password and confirm password doesnt match"});
+    }
+    */
+    //finding username from account database
 
+    Account.findOne({emailId: req.body.emailId}, function(error,account)
+    {
+        if(account){
+          standardRespoonse.success = false;
+          standardRespoonse.reason = "exists";
+          res.send(standardRespoonse);
+        }
+        else if (error){
+            standardRespoonse.success = false;
+            standardRespoonse.reason = "dberror";
+          res.send(standardRespoonse);
+        }
+
+        // creating a new account
+        else{
+            let rand=Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
+            Account.create({
+                emailId : req.body.emailId,
+                password : req.body.password,
+                fullName: req.body.fullName,
+                isVerified: false,
+                verificationLink:rand,
+                projects:[]
+              },function(error,account){
+                  if (error){
+                    standardRespoonse.success = false;
+                    standardRespoonse.reason = "dberror";
+                    res.send(standardRespoonse);
+                    console.log("Error in adding User to Database");
+                  }
+                  else
+                  {
+                      standardRespoonse.success = true;
+                      standardRespoonse.reason = "none";
+                      res.send(standardRespoonse);
+                      //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
+                      //console.log(req.body.emailId);
+                  }
+            });
+        }
+    });
 });
+
 
 
 

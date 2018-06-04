@@ -9,6 +9,43 @@ a {
   color: #00B7FF;
 }
 
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 250%;
+    font-weight: 900;
+
+}
+
+h2{
+  font-family: 'Roboto', sans-serif;
+  font-size: 200%;
+    padding: 10px;
+    font-weight: 700;
+}
+
+h3{
+  font-family: 'Roboto', sans-serif;
+  font-size: 150%;
+    font-weight: 500;
+}
+
+h4{
+  font-family: 'Roboto', sans-serif;
+  font-size: 120%;
+    font-weight: 400;
+}
+
+p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+label{
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 100%;
+}
+
 .container-fluid{
   padding: 0 !important;
 }
@@ -27,13 +64,20 @@ header{
 header h1{
   position: absolute;
   top:25%; left:5%;
-  font-family: 'Roboto', sans-serif;
   font-size: 250%;
   font-weight: 900
 }
+
+.circle{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+}
+
 .header-buttons{
   position: absolute;
-  top:25%;right:5%;
+  top:25%;right:10%;
   list-style-type: none;
 }
 
@@ -43,8 +87,6 @@ header h1{
 }
 
 .motivation-text{
-  font-family: 'Open Sans', sans-serif;
-  font-size: 200%;
   font-weight: 300;
   text-align: center;
   margin-top: 10vh;
@@ -84,8 +126,6 @@ header h1{
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
-
-
 
 .react-autosuggest__container {
   position: relative;
@@ -145,16 +185,110 @@ header h1{
 }
 
 .loginbox{
-  position: absolute;
-  border: 1px solid #aaa;
+  position: relative;
   background: white;
-  padding-top: 2.5vh;
-  padding-bottom: 2.5vh;
-  padding-right: 2.5vw;
-  padding-left: 2.5vw;
-  width: 200%;
-  top: 120%;
-  right: 5%;
+  padding: 2.5vh 2.5vw;
+  width: 100%;
+}
+
+.vertical-center{
+    position: absolute;
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.vertical-center-div{
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.loginDialog{
+  border: 1px solid #aaa;
+  background: white !important;
   box-shadow: 0 5px 5px #E0E0E0;
   z-index: 100;
+    text-align: center;
+}
+
+.loginDialog div h1{
+  font-size: 250%;
+  font-weight: 900;
+  text-align: center;
+}
+.loginButton{
+  width: 100%;
+}
+
+.accountOptions{
+  position: absolute;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
+  padding-right: .5vw;
+  padding-left: .5vw;
+  width: 10vw;
+  top: 100%;
+  right: 5%;
+}
+
+.newproject{
+  margin-top: 20px;
+}
+
+.projectTags{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tagButton{
+  position: relative;
+  display: inline-block;
+  white-space:nowrap;
+  padding: 10px;
+  color: #39739d;
+  background-color: #E1ECF4;
+  margin-right: 5px;
+}
+
+.tagButtonCross{
+  padding: 5px;
+}
+
+.coverImage{
+  width:100%;
+  margin-bottom: 10px;
+}
+
+.coverImage img{
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.imageUploadBox {
+  padding: 20px;
+}
+
+.imageUploadBox p{
+  padding: 10px;
+}
+
+.collaborator{
+  width: 100%;
+  padding: 20px;
+}
+
+.personal-info-box{
+    width: 100%;
+    padding:10px !important;
+    background-color: white;
+}
+
+.error-text{
+    color: #ff0033;
 }

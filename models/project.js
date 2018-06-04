@@ -5,10 +5,10 @@ var projectSchema = new Schema({
   author: Schema.Types.ObjectId,
   title: {type:String, required: true},
   description:{type:String, required:true},
-  //image:{ data: Buffer, contentType: String }
   imagePath:{type:String,required:true},
-  tags: [Schema.Types.ObjectId],
-  roles:[Schema.Types.ObjectId]
+  hitCount: { type: Number, default: 0 },
+  tags: [String],
+  roles:[String]
 
 })
 
