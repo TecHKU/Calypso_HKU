@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Popover from 'material-ui/Popover/Popover';
-import {Menu, MenuItem} from 'material-ui/Menu';
+import { Manager, Target, Popper } from 'react-popper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { withStyles } from "@material-ui/core/styles";
+
+
+const styles = {
+    root: {
+        display: 'flex',
+    }
+};
+
 /**
  * @author utkarsh867
  * The little dropdown for user options
@@ -16,7 +29,8 @@ class AccountOptions extends Component {
         targetOrigin: {
             horizontal: 'left',
             vertical: 'top',
-        }
+        },
+        anchorEl: null
     };
 
     handleClick = (event) => {
@@ -27,6 +41,7 @@ class AccountOptions extends Component {
             anchorEl: event.currentTarget,
         });
     };
+
 
     handleRequestClose = () => {
         this.setState({
@@ -41,24 +56,53 @@ class AccountOptions extends Component {
 
     render(){
         return (
-            <div>
-                <button type="button" className="btn btn-outline-dark" onClick={this.handleClick}>Hi, {this.props.params.username}</button>
-                <Popover
-                    open={this.state.open}
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={this.state.anchorOrigin}
-                    targetOrigin={this.state.targetOrigin}
-                    onRequestClose={this.handleRequestClose}
-                >
-                    <Menu>
-                        {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem primaryText="Create a New Project" /></Link> : null}
-                        <Link to={'/profile'}><MenuItem primaryText="My Profile" /></Link>
-                        <Link to={'/loggedout'}><MenuItem primaryText="Sign out" onClick={this.logOut}/></Link>
-                    </Menu>
-                </Popover>
+            <div style={styles.root}>
+                <Manager>
+                    <Target>
+                        <div>
+                            <button type="button" className="btn btn-outline-dark" onClick={this.handleClick}>Hi, {this.props.params.username}</button>
+                        </div>
+                    </Target>
+                    <Popper
+                        placement="bottom-start"
+                        eventsEnabled={this.state.open}
+                        style={
+                            {
+                                zIndex: 1000
+                            }
+                        }
+                    >
+                        <ClickAwayListener onClickAway={this.handleRequestClose}>
+                            <Grow in={this.state.open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
+                                <Paper>
+                                    <MenuList role={"menu"}>
+                                        {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem>Start a Project</MenuItem></Link> : null}
+                                        <Link to={'/profile'}><MenuItem>My Profile</MenuItem></Link>
+                                        <Link to={'/loggedout'}><MenuItem onClick={this.logOut}>Sign out</MenuItem></Link>
+                                    </MenuList>
+                                </Paper>
+                            </Grow>
+                        </ClickAwayListener>
+                    </Popper>
+                </Manager>
             </div>
         );
     }
 }
 
-export default AccountOptions;
+
+/*
+                <Menu
+                    open={this.state.open}
+                    anchorEl={this.state.anchorEl}
+                    anchorOrigin={this.state.anchorOrigin}
+                    targetOrigin={this.state.targetOrigin}
+                    onClose={this.handleRequestClose}
+                >
+                    {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem primaryText="Create a New Project" /></Link> : null}
+                    <Link to={'/profile'}><MenuItem primaryText="My Profile" /></Link>
+                    <Link to={'/loggedout'}><MenuItem primaryText="Sign out" onClick={this.logOut}/></Link>
+                </Menu>
+                */
+
+export default withStyles(styles)(AccountOptions);

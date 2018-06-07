@@ -129,7 +129,7 @@ class NewProject extends Component{
         return(
             <div className={'container-fluid'}>
                 <header>
-                    <Link to={'/'}><h1>Calypso</h1></Link>
+                    <Link to={'/'}><h1 className={'logo'}>Calypso</h1></Link>
                 </header>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>

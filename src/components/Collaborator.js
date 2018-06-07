@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {FloatingActionButton} from "material-ui";
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add';
 
 /**
  * @author utkarsh867
@@ -22,9 +22,9 @@ class Collaborator extends Component {
     render() {
         return (
             <div className={'col-lg-2 collaborator'}>
-                <FloatingActionButton>
-                    <ContentAdd />
-                </FloatingActionButton>
+                <Button variant={"fab"} color={"primary"} aria-label={"add"}>
+                    <AddIcon/>
+                </Button>
             </div>
         );
     }

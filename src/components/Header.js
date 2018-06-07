@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from '@material-ui/core/Snackbar';
 
 /**
  * @author utkarsh867
@@ -57,10 +57,10 @@ class Header extends Component {
         else{
             return(
                 <header>
-                    <h1 className="logo">Calypso</h1>
+                    <Link to={'/'}><h1 className="logo">Calypso</h1></Link>
                     <ul className="header-buttons">
-                        {this.state.verifiedUser ? <li><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
-                        <li><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
+                        {this.state.verifiedUser ? <li className={'header-buttons-li'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
+                        <li className={'header-buttons-li'}><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
                     </ul>
                     <Snackbar
                         open={this.state.displayVerifyEmail}
@@ -70,33 +70,6 @@ class Header extends Component {
                     />
                 </header>
             );
-            /*
-            //If user email is verified, we allow new project creation
-            if(this.state.verifiedUser){
-                return (
-                    <header>
-                        <h1 className="logo">Calypso</h1>
-                        <ul className="header-buttons">
-                            <li><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li>
-                            <AccountOptions logOutHandler={this.logOutUser}/>
-                        </ul>
-                    </header>
-                );
-            }
-
-            //If not verified, we do not allow new project
-            else{
-                return (
-                    <header>
-                        <h1 className="logo">Calypso</h1>
-                        <ul className="header-buttons">
-                            <li>Verify your email to start a project</li>
-                            <AccountOptions logOutHandler={this.logOutUser}/>
-                        </ul>
-                    </header>
-                );
-            }
-            */
         }
     }
 }

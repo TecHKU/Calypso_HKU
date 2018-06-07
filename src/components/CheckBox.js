@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Checkbox} from "material-ui";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 /**
  * @author utkarsh867
@@ -13,7 +14,9 @@ class CheckBox extends Component {
     componentWillMount(){
         const {selected_set} = this.props;
         if(selected_set.has(this.props.label)){
-            this.setState({isChecked:true});
+            this.setState({
+                isChecked:true
+            });
         }
     }
 
@@ -36,11 +39,17 @@ class CheckBox extends Component {
         const {label} = this.props;
         return (
             <div className="checkbox">
-                <Checkbox
-                    label={label}
-                    checked={this.state.isChecked}
-                    onCheck={this.toggleCheckboxChange.bind(this)}
+                <FormControlLabel
+                control={
+                    <Checkbox
+                        value={label}
+                        checked={this.state.isChecked}
+                        onChange={this.toggleCheckboxChange.bind(this)}
+                    />
+                }
+                label={label}
                 />
+
             </div>
         );
     }

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import Projects from "./Projects";
-import SideBar from "./SideBar";
-import {Drawer} from "material-ui";
+import SideDrawer from './SideDrawer'
 
 /**
  * @author utkarsh867
  * The Homepage component of the Landing page
  */
 class Homepage extends Component {
-    state = {
-        filters: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {filters: false};
+    }
 
     showFilters = (args) => {
         this.setState({
-            filters: {args}
+            filters: args
         })
     };
 
@@ -28,17 +28,11 @@ class Homepage extends Component {
             </div>
             <div className="row">
                 <Projects showFilters={this.showFilters}/>
-                <Drawer
-                    width={300}
-                    docked={false}
-                    openSecondary={true}
-                    open={this.state.filters}
-                    onRequestChange={(filters) => this.setState({filters}) }>
-                    <SideBar/>
-                </Drawer>
+                <SideDrawer show={this.state.filters}/>
             </div>
         </div>
     );
   }
 }
+
 export default Homepage;

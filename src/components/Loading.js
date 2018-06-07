@@ -1,5 +1,5 @@
 import React from 'react';
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const style = {
     container: {
@@ -15,7 +15,7 @@ const Loading = () => (
     <div className={'row'}>
         <div className={'col-4 offset-4'}>
             <div style={style.container}>
-                <RefreshIndicator
+                <CircularProgress
                     size={100}
                     left={70}
                     top={0}
