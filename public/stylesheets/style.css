@@ -81,7 +81,7 @@ header h1{
   list-style-type: none;
 }
 
-.header-buttons li{
+.header-buttons-li{
   display: inline-block;
   padding: 10px;
 }
@@ -291,4 +291,8 @@ header h1{
 
 .error-text{
     color: #ff0033;
+}
+
+.logo{
+  color: #000;
 }

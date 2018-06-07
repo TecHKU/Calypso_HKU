@@ -7,16 +7,16 @@ import NewProject from './pages/NewProject';
 import MyProfile from './pages/MyProfile';
 import YouHaveBeenLoggedOut from './pages/YouHaveBeenLoggedOut';
 
-import { MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
-import {grey300, grey600, darkBlack, fullBlack, blue400} from 'material-ui/styles/colors';
+import { MuiThemeProvider, createMuiTheme} from '@material-ui/core';
+import {blue, grey} from '@material-ui/core/colors';
 
-const myTheme = getMuiTheme({
+const myTheme = createMuiTheme({
     palette: {
-        primary1Color: blue400,
-        primary2Color: grey600,
-        textColor: darkBlack,
-        borderColor: grey300,
-        shadowColor: fullBlack
+        primary1Color: blue[400],
+        primary2Color: grey[600],
+        textColor: grey[900],
+        borderColor: grey[300],
+        shadowColor: grey[900]
     }
 });
 
