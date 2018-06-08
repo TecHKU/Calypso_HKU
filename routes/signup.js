@@ -29,7 +29,7 @@ router.post('/',function(req,res){
     Account.findOne({emailId: req.body.emailId}, function(error,account)
     {
         if(account){
-          .success = false;
+          standardResponse.success = false;
           standardResponse.reason = "exists";
           res.send(standardResponse);
         }
