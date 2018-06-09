@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProjectTile from './ProjectTile';
-import GridList from '@material-ui/core/GridList';
 import Loading from './Loading';
+import Masonry from 'react-masonry-component';
 
 /**
  * @author utkarsh867
@@ -58,12 +58,12 @@ class ProjectsScreen extends Component {
 
         else{
             return (
-                <div className="projects-container">
-                    <div className="container-fluid">
-                        <GridList cellHeight={200} className={'projectsList'} cols={6}>
-                            {this.projectTiles()}
-                        </GridList>
-                    </div>
+                <div className="projectsContainer container">
+                    <Masonry
+                        className={'projectsList row'}
+                    >
+                        {this.projectTiles()}
+                    </Masonry>
                 </div>
             );
         }

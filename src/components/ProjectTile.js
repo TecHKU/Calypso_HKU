@@ -13,7 +13,7 @@ class ProjectTile extends Component {
 
     render(){
         return (
-            <div className={"projectCardContainer"}>
+            <div className={"projectCardContainer col-lg-2 col-sm-5 col-xs-5"}>
                 <Card className={"projectCard"}>
                     <CardActions>
                         <CardContent>
