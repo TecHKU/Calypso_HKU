@@ -7,13 +7,18 @@ import ProjectsScreen from "./ProjectsScreen";
  * The projects on the homepage
  */
 class Projects extends Component {
-  render() {
-    return (
-        <div className="col-lg-12 projects">
-            <SearchBar text="Search Projects" showFilters={this.props.showFilters} filterButton={true}/>
-            <ProjectsScreen/>
-        </div>
-    );
+
+    onSearch = (val) => {
+        console.log(val);
+    };
+
+    render() {
+        return (
+            <div className="col-lg-12 projects">
+                <SearchBar text="Search Projects" showFilters={this.props.showFilters} filterButton={true} onSearch={this.onSearch}/>
+                <ProjectsScreen/>
+            </div>
+        );
   }
 }
 
