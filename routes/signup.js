@@ -4,7 +4,7 @@ var Account= require('../models/account');
 var appendQuery = require('append-query');
 
 
-let standardRespoonse = {
+let standardResponse = {
     success: false,
     reason: ""
 };
@@ -29,14 +29,14 @@ router.post('/',function(req,res){
     Account.findOne({emailId: req.body.emailId}, function(error,account)
     {
         if(account){
-          standardRespoonse.success = false;
-          standardRespoonse.reason = "exists";
-          res.send(standardRespoonse);
+          standardResponse.success = false;
+          standardResponse.reason = "exists";
+          res.send(standardResponse);
         }
         else if (error){
-            standardRespoonse.success = false;
-            standardRespoonse.reason = "dberror";
-          res.send(standardRespoonse);
+            standardResponse.success = false;
+            standardResponse.reason = "dberror";
+          res.send(standardResponse);
         }
 
         // creating a new account
@@ -51,16 +51,16 @@ router.post('/',function(req,res){
                 projects:[]
               },function(error,account){
                   if (error){
-                    standardRespoonse.success = false;
-                    standardRespoonse.reason = "dberror";
-                    res.send(standardRespoonse);
+                    standardResponse.success = false;
+                    standardResponse.reason = "dberror";
+                    res.send(standardResponse);
                     console.log("Error in adding User to Database");
                   }
                   else
                   {
-                      standardRespoonse.success = true;
-                      standardRespoonse.reason = "none";
-                      res.send(standardRespoonse);
+                      standardResponse.success = true;
+                      standardResponse.reason = "none";
+                      res.send(standardResponse);
                       //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
                       //console.log(req.body.emailId);
                   }
