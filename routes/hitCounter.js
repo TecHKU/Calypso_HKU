@@ -4,11 +4,11 @@ var Project= require('../models/project');
 
 let standardResponse = {
     success: false,
-    reason: ""
+    reason: "none"
 };
 // get projectId and increase the hit count of that project
 router.post('/',function(req,res){
-  
+
   Project.findById(req.body.projectId,function(error,project){
     if(!project){
       standardResponse.reason = "Project Id does not exists";
