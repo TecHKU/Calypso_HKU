@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require("nodemailer");
 
-
-
 var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -12,11 +10,10 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-
 router.get('/',function(req,res){
-
+    console.log("get request to send verification request");
     var host=req.get('host');
-    var link="http://"+host+"/api/verify?id="+req.query.random;
+    var link="http://"+host+"/api/verify?id="+req.query.verificationLink;
     var standardResponse = req.query.standardResponse;
     console.log(link+" this is the new link to be emailed");
     console.log(req.query.emailId+" this is ths email id ");
