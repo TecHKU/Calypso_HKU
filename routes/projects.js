@@ -36,7 +36,6 @@ router.get('/',function(req,res){
           else{
             account["password"]="";     // removing password from the data that is being sent
             p["author"]=account;        // sending the complete account information of the author of the project
-            console.log("push pro");
             modifiedPro.push(p);
             next();
           }
@@ -44,7 +43,6 @@ router.get('/',function(req,res){
         })
 
       }).then(function(){
-        console.log("projects retrieved");
         res.send(modifiedPro);
       });
     }

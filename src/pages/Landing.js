@@ -3,7 +3,8 @@ import Header from '../components/Header';
 import Homepage from '../components/Homepage'
 import axios from 'axios';
 import getSessionInfo from '../components/getSessionInfo';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
+
 /**
  * @author utkarsh867
  * The Home page of the project

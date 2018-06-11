@@ -296,3 +296,32 @@ header h1{
 .logo{
   color: #000;
 }
+
+.projectsContainer{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.projectsList{
+  padding: 10px;
+  width: 100%;
+}
+
+.projectCardContainer{
+  padding: 5px;
+}
+
+.projectCard{
+  padding: 5px;
+}
+
+.projectCardTitle {
+  font-weight: bold;
+}
+
+.projectCardAuthor{
+  font-size: x-small;
+  color: #393939;
+}
