@@ -12,15 +12,15 @@ var smtpTransport = nodemailer.createTransport({
 
 router.get('/',function(req,res){
     console.log("get request to send verification request");
-    var host=req.get('host');
-    var link="http://"+host+"/api/verify?id="+req.query.verificationLink;
+    var host = req.get('host');
+    var link = "http://" + host + "/api/verify?id=" + req.query.verificationLink;
     var standardResponse = req.query.standardResponse;
-    console.log(link+" this is the new link to be emailed");
-    console.log(req.query.emailId+" this is ths email id ");
-    var mailOptions={
+    console.log(link + " this is the new link to be emailed");
+    console.log(req.query.emailId + " this is ths email id ");
+    var mailOptions = {
         to : req.query.emailId,
         subject : "Please confirm your Email account",
-        html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
+        html : "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
