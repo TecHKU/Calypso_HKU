@@ -25,8 +25,8 @@ var Account= require('./models/account');
 var newproject= require('./routes/newproject');
 var hitCount= require('./routes/hitCounter');
 //mongodb://test:<PASSWORD>@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin
-var db = mongoose.connect('mongodb://localhost:27017/testcal');
-//var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
+//var db = mongoose.connect('mongodb://localhost:27017/testcal');
+var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
 
 var app = express();
 
