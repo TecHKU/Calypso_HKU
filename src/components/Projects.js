@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SearchBar from "./SearchBar";
 import ProjectsScreen from "./ProjectsScreen";
 import axios from "axios/index";
+import PropTypes from 'prop-types';
 
 /**
  * @author utkarsh867
@@ -11,6 +12,8 @@ class Projects extends Component {
 
     state = {
         projects: [],
+        tags: [],
+        roles: [],
         loading: true,
         displayProjects: []
     };
@@ -24,6 +27,13 @@ class Projects extends Component {
                 loading: false
             })
         });
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            tags: nextProps.tags,
+            roles: nextProps.roles
+        })
     }
 
     fetchProjects = async() =>{
@@ -54,5 +64,11 @@ class Projects extends Component {
         );
     }
 }
+
+Projects.propTypes = {
+    showFilters: PropTypes.bool,
+    tags: PropTypes.array,
+    roles: PropTypes.array
+};
 
 export default Projects;
