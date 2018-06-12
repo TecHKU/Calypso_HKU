@@ -90,19 +90,4 @@ class AccountOptions extends Component {
     }
 }
 
-
-/*
-                <Menu
-                    open={this.state.open}
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={this.state.anchorOrigin}
-                    targetOrigin={this.state.targetOrigin}
-                    onClose={this.handleRequestClose}
-                >
-                    {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem primaryText="Create a New Project" /></Link> : null}
-                    <Link to={'/profile'}><MenuItem primaryText="My Profile" /></Link>
-                    <Link to={'/loggedout'}><MenuItem primaryText="Sign out" onClick={this.logOut}/></Link>
-                </Menu>
-                */
-
 export default withStyles(styles)(AccountOptions);

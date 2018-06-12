@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,800,800i');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -54,18 +55,10 @@ label{
   width:100%;
 }
 
-header{
+.top-bar{
   position: relative;
-  height: 100px;
   width: 100%;
   box-shadow: 0 5px 5px #E0E0E0;
-}
-
-header h1{
-  position: absolute;
-  top:25%; left:5%;
-  font-size: 250%;
-  font-weight: 900
 }
 
 .circle{
@@ -76,9 +69,8 @@ header h1{
 }
 
 .header-buttons{
-  position: absolute;
-  top:25%;right:10%;
   list-style-type: none;
+  margin-top: auto !important;
 }
 
 .header-buttons-li{
@@ -294,7 +286,18 @@ header h1{
 }
 
 .logo{
+  margin: 0;
+  padding: 0;
   color: #000;
+  font-size: 175%;
+  text-decoration: none !important;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+.logo-container{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .projectsContainer{

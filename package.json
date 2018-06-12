@@ -6,6 +6,7 @@
     "start": "babel-node bin/www",
     "dev": "npm run build && npm start",
     "build": "react-scripts build",
+    "dev_mode": "react-scripts start && npm start",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -47,6 +48,7 @@
     "react-scripts": "^1.1.4",
     "react-spinners": "^0.2.6",
     "react-swipeable-views": "^0.12.13",
-    "serve-favicon": "~2.4.5"
+    "serve-favicon": "~2.4.5",
+    "prop-types": "latest"
   }
 }

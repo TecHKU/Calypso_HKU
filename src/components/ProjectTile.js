@@ -11,6 +11,13 @@ class ProjectTile extends Component {
         author: this.props.info.author.fullName
     };
 
+    componentWillReceiveProps(newProps){
+        this.setState({
+            title: newProps.info.title,
+            author: newProps.info.author.fullName
+        });
+    }
+
     render(){
         return (
             <div className={"projectCardContainer col-lg-2 col-sm-5 col-xs-5"}>

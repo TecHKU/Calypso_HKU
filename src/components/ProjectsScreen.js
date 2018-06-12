@@ -15,27 +15,15 @@ class ProjectsScreen extends Component {
         loading: true
     };
 
-    componentWillMount(){
-        this.fetchProjects().then((projects) =>{
-            this.setState({
-                projects: projects,
-                loading: false
-            })
-        });
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            projects: nextProps.projects,
+            loading: nextProps.loading
+        })
     }
 
-    fetchProjects = async() =>{
-        const response = await axios.get('/api/projects', {withCredentials: true});
-        return response.data;
-    };
-
-    projectsToDisplay = () =>{
-        return this.state.projects;
-    };
-
     projectTiles = () => {
-        const projects = this.projectsToDisplay();
-        console.log(projects);
+        const {projects} = this.state;
         return projects.map(this.generateProjectTile);
     };
 
@@ -59,9 +47,7 @@ class ProjectsScreen extends Component {
         else{
             return (
                 <div className="projectsContainer container">
-                    <Masonry
-                        className={'projectsList row'}
-                    >
+                    <Masonry className={'projectsList row'} >
                         {this.projectTiles()}
                     </Masonry>
                 </div>

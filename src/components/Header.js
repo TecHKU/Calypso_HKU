@@ -39,8 +39,39 @@ class Header extends Component {
         });
     };
 
-    render(){
+    LoginComponent = () => {
+        return(
+            <div className={'d-flex align-content-center'}>
+                <ul className="header-buttons">
+                    <Link to={'/login'}><li className={'header-buttons-li'}><button type="button" className="btn btn-outline-dark">Login</button></li></Link>
+                </ul>
+            </div>
+        );
+    };
 
+    AccountOptionsComponent = () => {
+        return(
+            <div className={'d-flex align-content-center'}>
+                <ul className="header-buttons">
+                    {this.state.verifiedUser ? <li className={'header-buttons-li'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
+                    <li className={'header-buttons-li'}><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
+                </ul>
+            </div>
+        );
+    };
+
+    render(){
+        return(
+            <header className={'d-flex justify-content-around align-content-center top-bar'}>
+                <div className={'d-flex align-content-center'}>
+                    <div className={'logo-container'}>
+                        <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+                    </div>
+                </div>
+                {this.state.isLoggedIn? this.AccountOptionsComponent() : this.LoginComponent() }
+            </header>
+        );
+        /*style={}
         //If the user is not logged in
         if(this.state.isLoggedIn===false){
             return (
@@ -56,7 +87,7 @@ class Header extends Component {
         //If the user is logged in
         else{
             return(
-                <header>
+                <header className={'header-wrapper'}>
                     <Link to={'/'}><h1 className="logo">Calypso</h1></Link>
                     <ul className="header-buttons">
                         {this.state.verifiedUser ? <li className={'header-buttons-li'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
@@ -71,6 +102,7 @@ class Header extends Component {
                 </header>
             );
         }
+        */
     }
 }
 
