@@ -12,8 +12,8 @@ class Projects extends Component {
 
     state = {
         projects: [],
-        tags: [],
-        roles: [],
+        tags: this.props.tags,
+        roles: this.props.roles,
         loading: true,
         displayProjects: []
     };
@@ -25,7 +25,9 @@ class Projects extends Component {
                 projects: projects,
                 displayProjects: projects,
                 loading: false
-            })
+            }, () => {
+                this.onSearch("");
+            });
         });
     }
 
@@ -33,7 +35,10 @@ class Projects extends Component {
         this.setState({
             tags: nextProps.tags,
             roles: nextProps.roles
-        })
+        }, () =>{
+            this.onSearch("");
+        });
+
     }
 
     fetchProjects = async() =>{
@@ -41,18 +46,37 @@ class Projects extends Component {
         return response.data;
     };
 
+    /**
+     * Checks whether there is an intersection of b with a.
+     * @param a The base array which needs to be present
+     * @param b The array to be checked
+     * @returns {boolean}   Whether there is an intersection - Results in whether the project should be added
+     */
+    intersectionSet = (a, b) =>{
+        //If the size of a is zero then there is nothing to compare to
+        if(a.length===0) {
+            return true;
+        }
+        else{
+            for(let i=0; i<a.length; i++){
+                if(b.includes(a[i])){
+                    return true;
+                }
+            }
+            return false;
+        }
+    };
+
     onSearch = (val) => {
-        const displayProjects = [];
+        const displayProjects = [] ;
         for(let i = 0; i<this.state.projects.length; i++){
-            if(((this.state.projects[i].title).toLowerCase()).indexOf((val.toLowerCase())) >= 0){
+            if(((this.state.projects[i].title).toLowerCase()).indexOf((val.toLowerCase())) >= 0 && this.intersectionSet(this.state.roles, this.state.projects[i].roles) && this.intersectionSet(this.state.tags, this.state.projects[i].tags)){
                 displayProjects.push(this.state.projects[i]);
             }
         }
-
         this.setState({
             displayProjects: displayProjects
         });
-
     };
 
     render() {

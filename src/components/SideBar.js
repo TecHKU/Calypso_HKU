@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Tags from './Tags';
-import SkillsNeeded from './SkillsNeeded';
 import RolesList from './RolesList';
-import SelectedTagButtonView from './selectedTagButtonsView';
+import PropTypes from 'prop-types';
 
 /**
  * @author utkarsh867
@@ -15,29 +14,34 @@ class SideBar extends Component {
         tags: []
     };
 
-    handleRoles = (roles) => {
-        this.setState({
-            roles: roles
-        });
+    /**
+     * Called when the Roles List component is updated
+     * @param val The roles currently selected
+     */
+    rolesList = (val) => {
+        const {rolesList} = this.props;
+        rolesList(val);
     };
 
-    removeRole = (role) => {
-        let roles = this.state.roles;
-        roles.splice(roles.indexOf(role),1);
-        this.setState({
-            roles: roles
-        });
+    tagsList = (val) => {
+        const {tagsList} = this.props;
+        tagsList(val);
     };
 
     render() {
         return (
             <div className="col-10 offset-1 sidebar">
                 <h3>Filter your search</h3>
-                <Tags/>
-                <RolesList/>
+                <Tags tagsList={this.tagsList}/>
+                <RolesList rolesList={this.rolesList}/>
             </div>
         );
     }
-}
+};
+
+SideBar.propTypes = {
+    rolesList: PropTypes.func,
+    tagsList: PropTypes.func
+};
 
 export default SideBar;

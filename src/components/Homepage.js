@@ -9,7 +9,11 @@ import SideDrawer from './SideDrawer'
 class Homepage extends Component {
     constructor(props) {
         super(props);
-        this.state = {filters: false};
+        this.state = {
+            filters: false,
+            tags: [],
+            roles: []
+        };
     }
 
     showFilters = (args) => {
@@ -17,6 +21,21 @@ class Homepage extends Component {
             filters: args
         })
     };
+
+    tagsList = (val) => {
+        const tags = Array.from(val);
+        this.setState({
+            tags: tags
+        });
+    };
+
+    rolesList = (val) =>{
+        const roles = Array.from(val);
+        this.setState({
+            roles:roles
+        });
+    };
+
 
   render() {
     return (
@@ -27,8 +46,8 @@ class Homepage extends Component {
                 </h2>
             </div>
             <div className="row">
-                <Projects showFilters={this.showFilters}/>
-                <SideDrawer show={this.state.filters}/>
+                <Projects showFilters={this.showFilters} roles={this.state.roles} tags={this.state.tags}/>
+                <SideDrawer show={this.state.filters} tagsList={this.tagsList} rolesList={this.rolesList}/>
             </div>
         </div>
     );
