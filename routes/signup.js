@@ -60,16 +60,13 @@ router.post('/',function(req,res){
                   {
                       standardResponse.success = true;
                       standardResponse.reason = "none";
-                      res.send(standardResponse);
-                      //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
-                      //console.log(req.body.emailId);
+                      //res.send(standardResponse); // sendVerification sending response back.
+                      res.redirect(appendQuery('/api/sendVerification', {verificationLink:rand,emailId:account.emailId,standardResponse:standardResponse}));
+                      console.log(req.body.emailId);
                   }
             });
         }
     });
 });
-
-
-
 
 module.exports = router;
