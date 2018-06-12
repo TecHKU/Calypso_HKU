@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
+import axios from 'axios';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Snackbar from '@material-ui/core/Snackbar';
 
 /**
@@ -25,18 +27,27 @@ class Header extends Component {
         });
     }
 
+    sendVerificationRequest = () => {
+        axios.get('/api/resendVerification', {withCredentials: true}).then((res)=>{
+            if(res.data.success === true){
+                this.setState({
+                    displayVerifyEmail: false
+                });
+            }
+            else{
+                this.setState({
+                    displayVerifyEmail: false
+                });
+            }
+        })
+    };
+
     /**
      * Handles the logout of the user
      */
     logOutUser = () => {
         const {onLogout} = this.props;
         onLogout();
-    };
-
-    hideVerifyEmail = () =>{
-        this.setState({
-            displayVerifyEmail: false
-        });
     };
 
     LoginComponent = () => {
@@ -53,56 +64,51 @@ class Header extends Component {
         return(
             <div className={'d-flex align-content-center'}>
                 <ul className="header-buttons">
-                    {this.state.verifiedUser ? <li className={'header-buttons-li'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
+                    {this.state.verifiedUser ? <li className={'header-buttons-li'} id={'newProject'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : null}
                     <li className={'header-buttons-li'}><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
                 </ul>
             </div>
         );
     };
 
+    verificationError = () => (
+        <ButtonBase
+            focusRipple
+            style = {{width: "100%"}}
+        >
+            <div onClick={this.sendVerificationRequest} style = {{width: "100%"}} id={'verificationError'} className={'d-flex justify-content-center align-content-center'}>
+                <p id={'verificationErrorText'}>Please verify your email address here</p>
+            </div>
+        </ButtonBase>
+    );
+
+    verificationSent = () => (
+        <div style = {{width: "100%"}} id={'verificationIncText'} className={'d-flex justify-content-center align-content-center'}>
+            <p id={'verificationIncText'}>Verification email has been sent</p>
+        </div>
+    );
+
+    verifyEmailComponent = () => {
+        console.log(this.state);
+        return (
+            <div className={'d-flex justify-content-center align-content-center'}>
+                { this.state.displayVerifyEmail===true ? this.verificationError() : this.verificationSent() }
+            </div>
+        );
+    };
+
     render(){
         return(
-            <header className={'d-flex justify-content-around align-content-center top-bar'}>
-                <div className={'d-flex align-content-center'}>
+            <header className={'top-bar'}>
+                <div className={'d-flex justify-content-around align-content-center'}>
                     <div className={'logo-container'}>
                         <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
                     </div>
+                    {this.state.isLoggedIn? this.AccountOptionsComponent() : this.LoginComponent() }
                 </div>
-                {this.state.isLoggedIn? this.AccountOptionsComponent() : this.LoginComponent() }
+                { (this.state.isLoggedIn===true && this.state.verifiedUser===false) ? this.verifyEmailComponent() : null }
             </header>
         );
-        /*style={}
-        //If the user is not logged in
-        if(this.state.isLoggedIn===false){
-            return (
-                <header>
-                    <h1 className="logo">Calypso</h1>
-                    <ul className="header-buttons">
-                        <Link to={'/login'}><li><button type="button" className="btn btn-outline-dark">Login</button></li></Link>
-                    </ul>
-                </header>
-            );
-        }
-
-        //If the user is logged in
-        else{
-            return(
-                <header className={'header-wrapper'}>
-                    <Link to={'/'}><h1 className="logo">Calypso</h1></Link>
-                    <ul className="header-buttons">
-                        {this.state.verifiedUser ? <li className={'header-buttons-li'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : <li><h4>Verify Email to Create Projects</h4></li>}
-                        <li className={'header-buttons-li'}><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
-                    </ul>
-                    <Snackbar
-                        open={this.state.displayVerifyEmail}
-                        message="Verify your email address to make your own projects"
-                        autoHideDuration={4000}
-                        onRequestClose={this.hideVerifyEmail}
-                    />
-                </header>
-            );
-        }
-        */
     }
 }
 
