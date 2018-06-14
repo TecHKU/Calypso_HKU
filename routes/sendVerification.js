@@ -1,5 +1,4 @@
-var express = require('express');
-var router = express.Router();
+
 var nodemailer = require("nodemailer");
 
 var smtpTransport = nodemailer.createTransport({
@@ -10,11 +9,36 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
+function sendLink(host, emailId, verificationLink, callback) {
+  var link = "http://" + host + "/api/verify?id=" + verificationLink;
+  console.log(link + " this is the new link to be emailed");
+  console.log(emailId + " this is ths email id ");
+  var mailOptions = {
+      to : emailId,
+      subject : "Please confirm your Email account",
+      html : "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+  }
+  console.log(mailOptions);
+  smtpTransport.sendMail(mailOptions, function(error, response){
+   if(error)
+   {
+      console.log(error);
+      callback(false);
+   }
+   else
+   {
+      console.log("Message sent: " + response.message);
+      callback(true);
+    }
+  });
+}
+
+
+/*
 router.get('/',function(req,res){
     console.log("get request to send verification request");
     var host = req.get('host');
     var link = "http://" + host + "/api/verify?id=" + req.query.verificationLink;
-    var standardResponse = req.query.standardResponse;
     console.log(link + " this is the new link to be emailed");
     console.log(req.query.emailId + " this is ths email id ");
     var mailOptions = {
@@ -39,5 +63,5 @@ router.get('/',function(req,res){
       }
     });
 });
-
-module.exports = router;
+*/
+module.exports = sendLink;

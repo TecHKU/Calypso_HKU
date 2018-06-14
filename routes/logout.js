@@ -10,15 +10,14 @@ router.get('/',function(req,res){
   req.session.destroy(function(err) {
     // cannot access session here
     if(err){
-      standardResponse.success=false;
-      standardResponse.reason="sessionError";
-      res.send(standardResponse);
+      standardResponse.success = false;
+      standardResponse.reason = "sessionError";
     }
     else {
-      standardResponse.success=true;
-      standardResponse.reason="none";
-      res.send(standardResponse);
-    }
+      standardResponse.success = true;
+      standardResponse.reason = "none";
+    } 
+    return res.send(standardResponse);
   })
 })
 

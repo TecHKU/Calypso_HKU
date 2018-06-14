@@ -21,7 +21,7 @@ var getProjects=require('./routes/projects');
 var getCurrentUserProjects=require('./routes/currentUserProjects');
 var session = require('express-session');
 var Account= require('./models/account');
-var ResendVerification = require('./routes/resendVerification');
+var resendVerification = require('./routes/resendVerification');
 
 var newproject= require('./routes/newproject');
 var hitCount= require('./routes/hitCounter');
@@ -67,7 +67,7 @@ app.use('/api/sessionDetail',sessionDetail);
 app.use('/api/projects',getProjects);
 app.use('/api/currentUserProjects',getCurrentUserProjects);
 app.use('/api/hitCounter', hitCount);
-app.use('/api/resendVerification',ResendVerification);
+app.use('/api/resendVerification',resendVerification);
 
 
 //Pass all other requests to the React server

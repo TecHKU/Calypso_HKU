@@ -2,17 +2,14 @@ var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
 var appendQuery = require('append-query');
-
+var sendVerification = require('./sendVerification');
 
 let standardResponse = {
     success: false,
-    reason: ""
+    reason: "",
+    isLinkSent:false
+    
 };
-
-router.get('/',function(req,res){
-//  res.render('signup', { title: "signup" });
-});
-
 
 router.post('/',function(req,res){
     console.log(req.body.emailId);
@@ -31,17 +28,23 @@ router.post('/',function(req,res){
         if(account){
           standardResponse.success = false;
           standardResponse.reason = "exists";
-          res.send(standardResponse);
+          return res.send(standardResponse);
         }
         else if (error){
             standardResponse.success = false;
             standardResponse.reason = "dberror";
-          res.send(standardResponse);
+            return res.send(standardResponse);
         }
 
         // creating a new account
         else{
-            let rand=Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
+            let rand = Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++)
+              text += possible.charAt(Math.floor(Math.random() * possible.length));
+            rand = text.concat(rand.toString());
+            console.log(rand +"rand");
             Account.create({
                 emailId : req.body.emailId,
                 password : req.body.password,
@@ -52,17 +55,19 @@ router.post('/',function(req,res){
               },function(error,account){
                   if (error){
                     standardResponse.success = false;
-                    standardResponse.reason = "dberror";
-                    res.send(standardResponse);
-                    console.log("Error in adding User to Database");
+                    standardResponse.reason = "dberror "+ error;
+                    console.log("Error in adding User to Database" + error);
+                    return res.send(standardResponse);
                   }
                   else
                   {
-                      standardResponse.success = true;
-                      standardResponse.reason = "none";
-                      //res.send(standardResponse); // sendVerification sending response back.
-                      res.redirect(appendQuery('/api/sendVerification', {verificationLink:rand,emailId:account.emailId,standardResponse:standardResponse}));
-                      console.log(req.body.emailId);
+                    standardResponse.success = true;
+                    standardResponse.reason = "none";
+                    console.log(req.get('host')+ "kk");
+                    sendVerification(req.get('host'),account.emailId,account.verificationLink, function(isLinkSent){
+                      standardResponse.isLinkSent = isLinkSent;
+                      return res.send(standardResponse);
+                    });
                   }
             });
         }
