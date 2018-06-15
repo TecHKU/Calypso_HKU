@@ -34,15 +34,6 @@ var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mo
 
 var app = express();
 
-// view engine setup
-
-/*
-app.engine('pug', require('pug').__express);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-*/
-
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -56,8 +47,6 @@ resave: false,
 app.use(express.static(path.resolve(__dirname, './build')));
 
 // All the routings
-
-//app.use('/api/users', users);
 app.use('/api/newproject',newproject);  // handling creation of new project
 app.use('/api/login', login);
 app.use('/api/signup',signup);
