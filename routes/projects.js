@@ -32,7 +32,10 @@ router.get('/',function(req,res){
 
         Account.findOne({"_id":project.author},function(error,account){
           if(error) return console.log("error in accessing accounts database");
-          if (!account) return console.log("author id incorrectly stored");
+          if (!account){
+            console.log("author id incorrectly stored for project title: " + project.title);
+            next();
+          } 
           else{
             account["password"]="";     // removing password from the data that is being sent
             p["author"]=account;        // sending the complete account information of the author of the project
