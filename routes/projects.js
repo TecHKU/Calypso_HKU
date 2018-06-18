@@ -22,13 +22,6 @@ router.get('/',function(req,res){
 
       forEachAsync(projects,function (next,project, index, array){
         // project details of a particular project in the json object
-        let p={};
-        p["tags"]=project.tags;
-        p["hitCount"]=project.hitCount;
-        p["description"]=project.description;
-        p["imagePath"]=project.imagePath;
-        p["title"]=project.title;
-        p["roles"]=project.roles;
 
         Account.findOne({"_id":project.author},function(error,account){
           if(error) return console.log("error in accessing accounts database");
@@ -37,6 +30,13 @@ router.get('/',function(req,res){
             next();
           } 
           else{
+            let p={};
+            p["tags"]=project.tags;
+            p["hitCount"]=project.hitCount;
+            p["description"]=project.description;
+            p["imagePath"]=project.imagePath;
+            p["title"]=project.title;
+            p["roles"]=project.roles;
             account["password"]="";     // removing password from the data that is being sent
             p["author"]=account;        // sending the complete account information of the author of the project
             modifiedPro.push(p);
