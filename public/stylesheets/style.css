@@ -328,3 +328,29 @@ label{
   font-size: x-small;
   color: #393939;
 }
+
+#verificationError{
+  background-color: #B00020;
+  height: 30px;
+  line-height: 30px;
+}
+
+#verificationErrorText{
+  color: white;
+  font-weight: 600;
+}
+
+#verificationIncText{
+  color: black;
+  height: 30px;
+  line-height: 30px;
+  background-color: #FFDE03;
+  font-weight: 600;
+}
+
+
+@media screen and (max-width: 460px){
+  #newProject{
+    display: none;
+  }
+}
