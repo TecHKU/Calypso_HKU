@@ -22,7 +22,6 @@ class ImageUploader extends Component {
         this.setState({
             image: files[0].preview
         });
-        console.log(files);
     }
 
     /**
