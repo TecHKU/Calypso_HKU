@@ -37,6 +37,7 @@ router.get('/',function(req,res){
             p["imagePath"]=project.imagePath;
             p["title"]=project.title;
             p["roles"]=project.roles;
+            p["_id"] = project._id;
             account["password"]="";     // removing password from the data that is being sent
             p["author"]=account;        // sending the complete account information of the author of the project
             modifiedPro.push(p);

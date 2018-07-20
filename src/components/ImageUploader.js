@@ -40,7 +40,6 @@ class ImageUploader extends Component {
     };
 
     render() {
-        console.log(this.state);
         if (this.state.uploaded) {
             return (
                 <div className={'coverImage'}>
