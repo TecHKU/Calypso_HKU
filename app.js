@@ -5,38 +5,34 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongo = require('mongodb');
-var mongoose= require('mongoose');
+var mongoose = require('mongoose');
 
 //var index = require('./routes/index');
 //var users = require('./routes/users');
-var login=require('./routes/login');
-var signup=require('./routes/signup');
-var logout=require('./routes/logout');
-var getTags=require('./routes/tags');
-var getRoles=require('./routes/roles');
-var sendVerification=require('./routes/sendVerification');
-var verify=require('./routes/verify');
-var sessionDetail=require('./routes/sessionDetail');
-var getProjects=require('./routes/projects');
-var getCurrentUserProjects=require('./routes/currentUserProjects');
+var login = require('./routes/login');
+var signup = require('./routes/signup');
+var logout = require('./routes/logout');
+var getTags = require('./routes/tags');
+var getRoles = require('./routes/roles');
+var sendVerification = require('./routes/sendVerification');
+var verify = require('./routes/verify');
+var sessionDetail = require('./routes/sessionDetail');
+var getProjects = require('./routes/projects');
+var getCurrentUserProjects = require('./routes/currentUserProjects');
 var session = require('express-session');
-var Account= require('./models/account');
+var Account = require('./models/account');
+var resendVerification = require('./routes/resendVerification');
+var deleteAccount = require('./routes/deleteAccount');
+var deleteProject = require('./routes/deleteProject');
 
-var newproject= require('./routes/newproject');
+
+var newproject = require('./routes/newproject');
+var hitCount = require('./routes/hitCounter');
 //mongodb://test:<PASSWORD>@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin
 //var db = mongoose.connect('mongodb://localhost:27017/testcal');
 var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
 
 var app = express();
-
-// view engine setup
-
-/*
-app.engine('pug', require('pug').__express);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-*/
-
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -51,8 +47,6 @@ resave: false,
 app.use(express.static(path.resolve(__dirname, './build')));
 
 // All the routings
-
-//app.use('/api/users', users);
 app.use('/api/newproject',newproject);  // handling creation of new project
 app.use('/api/login', login);
 app.use('/api/signup',signup);
@@ -64,6 +58,10 @@ app.use('/api/verify',verify);      // getting all roles from database
 app.use('/api/sessionDetail',sessionDetail);
 app.use('/api/projects',getProjects);
 app.use('/api/currentUserProjects',getCurrentUserProjects);
+app.use('/api/hitCounter', hitCount);
+app.use('/api/resendVerification',resendVerification);
+app.use('/api/deleteAccount',deleteAccount);
+app.use('/api/deleteProject',deleteProject);
 
 
 //Pass all other requests to the React server

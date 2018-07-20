@@ -73,7 +73,8 @@ class Tags extends Component {
                 }
             ));
         }
-        console.log(this.selectedCheckboxes);
+        const {tagsList} = this.props;
+        tagsList(this.selectedCheckboxes);
     };
 
     /**

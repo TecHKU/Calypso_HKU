@@ -2,17 +2,14 @@ var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
 var appendQuery = require('append-query');
+var sendVerification = require('./sendVerification');
 
-
-let standardRespoonse = {
+let standardResponse = {
     success: false,
-    reason: ""
+    reason: "",
+    isLinkSent:false
+    
 };
-
-router.get('/',function(req,res){
-//  res.render('signup', { title: "signup" });
-});
-
 
 router.post('/',function(req,res){
     console.log(req.body.emailId);
@@ -29,19 +26,25 @@ router.post('/',function(req,res){
     Account.findOne({emailId: req.body.emailId}, function(error,account)
     {
         if(account){
-          standardRespoonse.success = false;
-          standardRespoonse.reason = "exists";
-          res.send(standardRespoonse);
+          standardResponse.success = false;
+          standardResponse.reason = "exists";
+          return res.send(standardResponse);
         }
         else if (error){
-            standardRespoonse.success = false;
-            standardRespoonse.reason = "dberror";
-          res.send(standardRespoonse);
+            standardResponse.success = false;
+            standardResponse.reason = "dberror";
+            return res.send(standardResponse);
         }
 
         // creating a new account
         else{
-            let rand=Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
+            let rand = Math.floor(Math.random()*90000) + 10000;   // generating a random integer for user verification
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i = 0; i < 5; i++)
+              text += possible.charAt(Math.floor(Math.random() * possible.length));
+            rand = text.concat(rand.toString());
+            console.log(rand +"rand");
             Account.create({
                 emailId : req.body.emailId,
                 password : req.body.password,
@@ -51,25 +54,24 @@ router.post('/',function(req,res){
                 projects:[]
               },function(error,account){
                   if (error){
-                    standardRespoonse.success = false;
-                    standardRespoonse.reason = "dberror";
-                    res.send(standardRespoonse);
-                    console.log("Error in adding User to Database");
+                    standardResponse.success = false;
+                    standardResponse.reason = "dberror "+ error;
+                    console.log("Error in adding User to Database" + error);
+                    return res.send(standardResponse);
                   }
                   else
                   {
-                      standardRespoonse.success = true;
-                      standardRespoonse.reason = "none";
-                      res.send(standardRespoonse);
-                      //res.redirect(appendQuery('/api/sendVerification', {random:rand,emailId:account.emailId}));
-                      //console.log(req.body.emailId);
+                    standardResponse.success = true;
+                    standardResponse.reason = "none";
+                    console.log(req.get('host')+ "kk");
+                    sendVerification(req.get('host'),account.emailId,account.verificationLink, function(isLinkSent){
+                      standardResponse.isLinkSent = isLinkSent;
+                      return res.send(standardResponse);
+                    });
                   }
             });
         }
     });
 });
-
-
-
 
 module.exports = router;

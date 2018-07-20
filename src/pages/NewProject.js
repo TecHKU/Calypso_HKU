@@ -128,8 +128,12 @@ class NewProject extends Component{
     render(){
         return(
             <div className={'container-fluid'}>
-                <header>
-                    <Link to={'/'}><h1 className={'logo'}>Calypso</h1></Link>
+                <header className={'d-flex justify-content-around align-content-center top-bar'}>
+                    <div className={'d-flex align-content-center'}>
+                        <div className={'logo-container'}>
+                            <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+                        </div>
+                    </div>
                 </header>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>

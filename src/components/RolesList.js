@@ -73,7 +73,8 @@ class RolesList extends Component {
                 }
             ));
         }
-        console.log(this.selectedCheckboxes);
+        const {rolesList} = this.props;
+        rolesList(this.selectedCheckboxes);
     };
 
     /**

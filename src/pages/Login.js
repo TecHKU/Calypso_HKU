@@ -89,7 +89,7 @@ class Login extends Component {
                 <div className={'row vertical-center'}>
                     <div className={'jumbotron loginDialog col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1'}>
                         <div>
-                            <Link to={"/"}><h1>Calypso</h1></Link>
+                            <h1><Link to={"/"} className={"logo"}>Calypso</Link></h1>
                         </div>
                         <hr className={'my-4'}/>
                         { (this.state.incorrect)? <div class="error-text"><p>Incorrect username or password</p></div>: null}
