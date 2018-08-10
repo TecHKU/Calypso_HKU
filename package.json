@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node bin/www",
+    "start": "node bin/www",
     "dev": "npm run build && npm start",
     "build": "react-scripts build",
     "dev_mode": "react-scripts start && npm start",
@@ -36,6 +36,7 @@
     "multer": "~1.3.0",
     "nodemailer": "^4.6.3",
     "popper.js": "^1.12.9",
+    "prop-types": "latest",
     "pug": "^2.0.0-rc.4",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
@@ -48,7 +49,6 @@
     "react-scripts": "^1.1.4",
     "react-spinners": "^0.2.6",
     "react-swipeable-views": "^0.12.13",
-    "serve-favicon": "~2.4.5",
-    "prop-types": "latest"
+    "serve-favicon": "~2.4.5"
   }
 }

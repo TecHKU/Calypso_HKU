@@ -22,7 +22,6 @@ class ImageUploader extends Component {
         this.setState({
             image: files[0].preview
         });
-        console.log(files);
     }
 
     /**
@@ -41,7 +40,6 @@ class ImageUploader extends Component {
     };
 
     render() {
-        console.log(this.state);
         if (this.state.uploaded) {
             return (
                 <div className={'coverImage'}>

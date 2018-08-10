@@ -5,6 +5,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import NewProject from './pages/NewProject';
 import MyProfile from './pages/MyProfile';
+import ProjectPage from './pages/ProjectPage';
+
 import YouHaveBeenLoggedOut from './pages/YouHaveBeenLoggedOut';
 
 import { MuiThemeProvider, createMuiTheme} from '@material-ui/core';
@@ -31,6 +33,7 @@ class App extends Component {
                         <Route path={'/login'} component={Login}/>
                         <Route path={'/signup'} component={SignUp}/>
                         <Route path={'/newproject'} component={NewProject}/>
+                        <Route path={'/project'} component={ProjectPage}/>
                         <Route path={'/profile'} component={MyProfile}/>
                         <Route path={'/loggedout'} component={YouHaveBeenLoggedOut}/>
                     </div>

@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import Loading from './Loading';
 import axios from 'axios';
+import ProjectsScreen from "./ProjectsScreen";
 
-const loadingStyle = {
-    height: '50px'
+/**
+ * Styles for child components inside this component
+ * @type {{jumbotronStyle: {backgroundColor: string}}}
+ */
+const styles ={
+    jumbotronStyle: {
+        backgroundColor: 'white'
+    }
 };
+
 
 class MyProjectsSection extends Component{
 
     state = {
-        loading: true
+        loading: true,
+        displayProjects: []
     };
 
+    /**
+     * This function makes the server request and returns the all the projects of the current user
+     * @returns {Promise<any>} The "data" property has the projects
+     */
     requestProjects = async() => {
-        const response = await axios.get('/api/projects', {withCredentials: true});
+        const response = await axios.get('/api/currentUserProjects', {withCredentials: true});
         return response;
     };
 
@@ -22,30 +34,23 @@ class MyProjectsSection extends Component{
             .then(response => {
                 console.log(response);
                 this.setState({
-                    loading: false
+                    loading: false,
+                    displayProjects: response.data
                 })
             });
     }
 
+
     render(){
-        if(this.state.loading){
-            return(
-                <div style={loadingStyle} className={'row'}>
-                    <div className={'col-10 offset-1'}>
-                        <Loading/>
-                    </div>
+        return(
+            <div className={'row'}>
+                <div style={styles.jumbotronStyle} className={'jumbotron col-lg-10 offset-lg-1'}>
+                    <h2>My Projects</h2>
+                    <hr className={'my-4'}/>
+                    <ProjectsScreen projects={this.state.displayProjects} loading={this.state.loading}/>
                 </div>
-            )
-        }
-        else{
-            return(
-                <div className={'row'}>
-                    <div className={'col-10 offset-1'}>
-                        <p>There it goes</p>
-                    </div>
-                </div>
-            );
-        }
+            </div>
+        )
     }
 }
 
