@@ -44,7 +44,6 @@ router.post('/',function(req,res){
             for (var i = 0; i < 5; i++)
               text += possible.charAt(Math.floor(Math.random() * possible.length));
             rand = text.concat(rand.toString());
-            console.log(rand +"rand");
             Account.create({
                 emailId : req.body.emailId,
                 password : req.body.password,
@@ -63,9 +62,10 @@ router.post('/',function(req,res){
                   {
                     standardResponse.success = true;
                     standardResponse.reason = "none";
-                    console.log(req.get('host')+ "kk");
-                    sendVerification(req.get('host'),account.emailId,account.verificationLink, function(isLinkSent){
+                    sendVerification(req.get('host'),account.emailId,account.verificationLink, function(isLinkSent, reason){
                       standardResponse.isLinkSent = isLinkSent;
+					  standardResponse.reason = reason;
+					  console.log('signup mail send', standardResponse);
                       return res.send(standardResponse);
                     });
                   }
