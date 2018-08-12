@@ -8,6 +8,7 @@ var accountSchema = new Schema({
   fullName: { type: String, required: true},
   isVerified: { type: Boolean,default: false},
   verificationLink: {type: String},
+  resetPasswordLink: {type: String},
   projects: [Schema.Types.ObjectId]
 })
 

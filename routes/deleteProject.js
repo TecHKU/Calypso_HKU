@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var mongoose= require('mongoose');
-var mongodb = require('mongodb');
 var Project = require('../models/project');
 
 router.post('/',function(req,res) {

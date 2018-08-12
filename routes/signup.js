@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var Account= require('../models/account');
-var appendQuery = require('append-query');
 var sendVerification = require('./sendVerification');
 
 let standardResponse = {
@@ -49,7 +48,8 @@ router.post('/',function(req,res){
                 password : req.body.password,
                 fullName: req.body.fullName,
                 isVerified: false,
-                verificationLink:rand,
+                verificationLink: rand,
+				resetPasswordLink: null, 
                 projects:[]
               },function(error,account){
                   if (error){

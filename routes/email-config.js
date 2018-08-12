@@ -1,7 +1,7 @@
 module.exports = () => {
   const emailConfig = {
-    apiKey: 'c3d0510602a0c7403d66c18fa5b0efb0-7efe8d73-c0d61641',
-    domain: 'sandbox5a8e42a582f844c4a85cb3d6563e7c4c.mailgun.org'
+    apiKey: '6840c720a634b6e10a20a444ebc4987c-7efe8d73-46fb188a',
+    domain: 'sandbox6e3231a8b9b441419774a8fb264f98c8.mailgun.org'
   };
 return emailConfig;
 };

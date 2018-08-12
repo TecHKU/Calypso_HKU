@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Account = require('../models/account');
-var appendQuery = require('append-query');
 var sendVerification = require('./sendVerification');
 
 let standardResponse = {
