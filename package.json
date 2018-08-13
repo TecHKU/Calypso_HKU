@@ -30,6 +30,7 @@
     "forEachAsync": "^3.0.0",
     "jade": "~1.11.0",
     "jquery": "^3.3.1",
+    "mailgun-js": "^0.20.0",
     "material-auto-rotating-carousel": "^1.7.0",
     "mongodb": "^3.0.3",
     "mongoose": "^5.0.7",

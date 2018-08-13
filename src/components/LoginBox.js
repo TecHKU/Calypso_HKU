@@ -51,7 +51,7 @@ class LoginBox extends Component {
         return (
             <div className="loginbox">
                 <div className="form-group">
-                    <input value={this.state.username} onChange={this.updateUsername} type="email" className="form-control" id="exampleInputEmail1" placeholder="Username" name="username"/>
+                    <input value={this.state.username} onChange={this.updateUsername} type="email" className="form-control" id="exampleInputEmail1" placeholder="Email Id" name="username"/>
                 </div>
                 <div className="form-group">
                     <input type="password" className="form-control" onChange={this.updatePassword} onKeyDown={this.onSubmitAfterPassword} placeholder="Password" name="password"/>

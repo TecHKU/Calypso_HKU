@@ -24,6 +24,8 @@ var Account = require('./models/account');
 var resendVerification = require('./routes/resendVerification');
 var deleteAccount = require('./routes/deleteAccount');
 var deleteProject = require('./routes/deleteProject');
+var forgotPassword = require('./routes/forgotPassword');
+var resetPassword = require('./routes/resetPassword');
 
 
 var newproject = require('./routes/newproject');
@@ -62,6 +64,10 @@ app.use('/api/hitCounter', hitCount);
 app.use('/api/resendVerification',resendVerification);
 app.use('/api/deleteAccount',deleteAccount);
 app.use('/api/deleteProject',deleteProject);
+app.use('/api/forgotPassword',forgotPassword);
+app.use('/api/resetPassword',resetPassword);
+
+
 
 
 //Pass all other requests to the React server

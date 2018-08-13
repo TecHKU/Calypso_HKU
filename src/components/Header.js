@@ -77,7 +77,7 @@ class Header extends Component {
             style = {{width: "100%"}}
         >
             <div onClick={this.sendVerificationRequest} style = {{width: "100%"}} id={'verificationError'} className={'d-flex justify-content-center align-content-center'}>
-                <p id={'verificationErrorText'}>Please verify your email address here</p>
+                <p id={'verificationErrorText'}>Please verify your account by clicking on the link in the mail sent to your registered email address. Click here to resend the mail.</p>
             </div>
         </ButtonBase>
     );

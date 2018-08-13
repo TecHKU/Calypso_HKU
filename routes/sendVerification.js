@@ -1,67 +1,21 @@
-
-var nodemailer = require("nodemailer");
-
-var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: "techku.calypso@gmail.com",
-        pass: "techku2018"
-    }
-});
+const sendEmail = require('./sendEmail');
 
 function sendLink(host, emailId, verificationLink, callback) {
-  var link = "http://" + host + "/api/verify?id=" + verificationLink;
-  console.log(link + " this is the new link to be emailed");
-  console.log(emailId + " this is ths email id ");
-  var mailOptions = {
-      to : emailId,
-      subject : "Please confirm your Email account",
-      html : "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
-  }
-  console.log(mailOptions);
-  smtpTransport.sendMail(mailOptions, function(error, response){
-   if(error)
-   {
-      console.log(error);
-      callback(false);
-   }
-   else
-   {
-      console.log("Message sent: " + response.message);
-      callback(true);
-    }
-  });
+	var link = "http://" + host + "/api/verify?id=" + verificationLink;
+
+	var message = {
+		subject : "CALYPSO: Please confirm your Email account for Calypso",
+		html : "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>",
+		text: "text"
+	};
+	sendEmail(emailId, message, null)
+		.then(() => {
+			console.log('resoled and calling callback');
+			callback(true, null);
+		}).catch((reason) => {
+			console.log('Handle rejected promise ('+reason+') here.');
+			callback(false, reason);
+		})
 }
 
-
-/*
-router.get('/',function(req,res){
-    console.log("get request to send verification request");
-    var host = req.get('host');
-    var link = "http://" + host + "/api/verify?id=" + req.query.verificationLink;
-    console.log(link + " this is the new link to be emailed");
-    console.log(req.query.emailId + " this is ths email id ");
-    var mailOptions = {
-        to : req.query.emailId,
-        subject : "Please confirm your Email account",
-        html : "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
-    }
-    console.log(mailOptions);
-    smtpTransport.sendMail(mailOptions, function(error, response){
-     if(error)
-     {
-            console.log(error);
-            standardResponse.success = false;
-            standardResponse.reason = "verification email sending error";
-            res.send(standardResponse);
-     }
-     else
-     {
-        console.log("Message sent: " + response.message);
-        standardResponse.success = true;
-        res.send(standardResponse);
-      }
-    });
-});
-*/
 module.exports = sendLink;
