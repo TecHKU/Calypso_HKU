@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node bin/www",
+    "start": "babel-node bin/www",
     "dev": "npm run build && npm start",
     "build": "react-scripts build",
     "dev_mode": "react-scripts start && npm start",
@@ -17,6 +17,7 @@
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
     "append-query": "^2.0.1",
+    "aws-sdk": "^2.289.0",
     "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "bcrypt": "^1.0.3",
