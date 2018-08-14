@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "babel-node bin/www",
-    "dev": "npm run build && npm start",
-    "build": "react-scripts build",
+    "start": "node bin/www",
+    "production": "npm run prod && npm start",
+    "prod": "webpack --mode production",
+    "dev_build": "react-scripts build",
     "dev_mode": "react-scripts start && npm start",
     "heroku-postbuild": "npm run build"
   },
@@ -52,5 +53,21 @@
     "react-spinners": "^0.2.6",
     "react-swipeable-views": "^0.12.13",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.22.1",
+    "tapable": "^1.0.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
   }
 }

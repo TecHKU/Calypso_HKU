@@ -46,7 +46,7 @@ app.use(session({secret: 'ssshhhhh',
 resave: false,
     saveUninitialized: false}));
 
-app.use(express.static(path.resolve(__dirname, './build')));
+app.use(express.static(path.resolve(__dirname, './dist')));
 
 // All the routings
 app.use('/api/newproject',newproject);  // handling creation of new project
@@ -72,7 +72,7 @@ app.use('/api/imageUpload', imageUpload);
 
 //Pass all other requests to the React server
 app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, './build', 'index.html'));
+  response.sendFile(path.resolve(__dirname, './dist', 'index.html'));
 });
 
 // error handler
