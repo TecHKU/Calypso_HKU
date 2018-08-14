@@ -93,8 +93,8 @@ class ProjectPage extends Component{
                 <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>
-                        <div style={styles.dropZoneArea}>
-                            <h4>Image</h4>
+                        <div className={'coverImage'}>
+                            <img src={this.state.project.imagePath}></img>
                         </div>
                     </div>
                 </div>

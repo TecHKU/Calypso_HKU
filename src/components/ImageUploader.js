@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 import Button from "@material-ui/core/Button";
 import Icon from '@material-ui/core/Icon';
+import PropTypes from 'prop-types';
 
 /**
  * The Image uploader box on the NewProject page
@@ -18,11 +19,14 @@ class ImageUploader extends Component {
      * When the file is dropped into the area
      * @param files The file  dropped
      */
-    onDrop(files) {
+    onDrop = (files) => {
         this.setState({
-            image: files[0].preview
+            image: files[0]
+        }, () => {
+            const {handleUpload} = this.props;
+            handleUpload(this.state.image);
         });
-    }
+    };
 
     /**
      * When the file is of acceptable type
@@ -51,12 +55,10 @@ class ImageUploader extends Component {
                             <Icon>edit_icon</Icon>
                         </Button>
                     </Dropzone>
-                    <img src={this.state.image}/>
+                    <img src={this.state.image.preview}/>
                 </div>
             );
-        }
-
-        else {
+        } else {
             return (
                 <div className={'coverImage'}>
                     <Dropzone
@@ -97,6 +99,10 @@ let styles = {
         borderRadius: '10px',
         borderColor: '#6c757d',
     }
+};
+
+ImageUploader.propTypes = {
+    handleUpload: PropTypes.func
 };
 
 export default ImageUploader;

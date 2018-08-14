@@ -32,7 +32,8 @@ class NewProject extends Component{
         projectTitle: "",
         description: "",
         collaborators: [],
-        coverImage: ""
+        coverImage: "",
+        enableSubmit: false
     };
 
     /**
@@ -81,6 +82,36 @@ class NewProject extends Component{
     };
 
     /**
+     * Handles image uploading to AWS S3 and gets back a URL
+     * @param image The image object
+     */
+    handleImage = (image) => {
+        this.setState({
+            coverImage: image
+        }, () => {
+            this.setState({
+                enableSubmit: true
+            })
+        });
+    };
+
+    /**
+     * Gets the signed URL from the server to upload the image
+     */
+    callImageUploadAPI = async(file, callback) => {
+        const response = await axios.post('/api/imageUpload', {filename: file.name }, {withCredentials: true});
+        const options = {
+            headers: {
+                'Content-Type': file.type,
+                'x-amz-acl': 'public-read'
+            }
+        };
+        const aws_response = await axios.put(response.data.signedRequest, file, options);
+        //console.log(aws_response);
+        callback(response.data.url);
+    };
+
+    /**
      * Update the description state variable as the user gives input
      * @param e The description box
      */
@@ -112,16 +143,20 @@ class NewProject extends Component{
 
     /**
      * When the user submits the project
+     *
+     * The image uploading will take place first. Then the rest.
      */
     handleSubmit = () => {
-        this.payload.title = this.state.projectTitle;
-        this.payload.description = this.state.description;
-        this.payload.collaborators = this.state.collaborators;
-        this.payload.imagePath = this.state.coverImage;
-        this.payload.tags = this.state.tags;
-        this.payload.roles = this.state.roles;
-        const response = this.postPayload();
-        console.log(response);
+        this.callImageUploadAPI(this.state.coverImage, (url)=>{
+            console.log(url);
+            this.payload.title = this.state.projectTitle;
+            this.payload.description = this.state.description;
+            this.payload.collaborators = this.state.collaborators;
+            this.payload.imagePath = url;
+            this.payload.tags = this.state.tags;
+            this.payload.roles = this.state.roles;
+            this.postPayload();
+        });
     };
 
 
@@ -137,7 +172,7 @@ class NewProject extends Component{
                 </header>
                 <div className={'row newproject'}>
                     <div className={'col-lg-7 offset-lg-1'}>
-                        <ImageUploader/>
+                        <ImageUploader handleUpload = {this.handleImage}/>
                     </div>
                     <div className={'col-lg-4'}>
                         <h4>Collaborators</h4>
