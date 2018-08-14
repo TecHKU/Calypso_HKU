@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node bin/www",
-    "production": "npm run prod && npm start",
-    "prod": "webpack --mode production",
+    "start": "forever start bin/www",
+    "stop": "forever stopall",
+    "production": "webpack --mode production",
     "dev_build": "react-scripts build",
     "dev_mode": "react-scripts start && npm start",
     "heroku-postbuild": "npm run build"
@@ -64,6 +64,7 @@
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
+    "forever": "^0.15.3",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^0.22.1",
     "tapable": "^1.0.0",
