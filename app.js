@@ -26,7 +26,7 @@ var deleteAccount = require('./routes/deleteAccount');
 var deleteProject = require('./routes/deleteProject');
 var forgotPassword = require('./routes/forgotPassword');
 var resetPassword = require('./routes/resetPassword');
-
+var imageUpload = require('./routes/s3Sign');
 
 var newproject = require('./routes/newproject');
 var hitCount = require('./routes/hitCounter');
@@ -66,7 +66,7 @@ app.use('/api/deleteAccount',deleteAccount);
 app.use('/api/deleteProject',deleteProject);
 app.use('/api/forgotPassword',forgotPassword);
 app.use('/api/resetPassword',resetPassword);
-
+app.use('/api/imageUpload', imageUpload);
 
 
 
@@ -83,7 +83,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
 // catch 404 and forward to error handler
