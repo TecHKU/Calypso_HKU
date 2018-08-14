@@ -110,7 +110,7 @@ function createProject(pAuthor,pTitle,pDescription,pImagePath,callback){
       // adding projectid into the user's projects
       Account.findByIdAndUpdate(pAuthor,{$push:{projects:addedProject._id}},function(error,acc){
         if(error) console.log("error in adding project to the account details");
-        console.log("pushedd in user project ");
+        console.log("pushed in user project ");
         callback()
       });
     }
@@ -133,25 +133,13 @@ var upload = multer({ storage: storage });
 */
 
 router.post('/',authenticate,function(req, res, next) {
- //res.send(req.files);
- // path of the project images
-
- //var path = req.files[0].path;
- var path="abc";
  console.log("Request Body : ", req.body);
-
-  /*
-  var imageName = req.files[0].originalname;
-   var imagepath = {};
-   imagepath['path'] = path;
-   imagepath['originalname'] = imageName;
-  */
 
   //synchronously calling three functions
   tagHandler(req.body.tags,function() {
     roleHandler(req.body.roles,function(){
       console.log("Project started by"+ req.session.user._id);
-      createProject(req.session.user._id,req.body.title,req.body.description,path,function(){
+      createProject(req.session.user._id,req.body.title,req.body.description,req.body.imagePath,function(){
         res.send("done");
       });
     });
