@@ -17,14 +17,29 @@ class SelectedTagsButtonView extends Component {
      * @returns {*} JSX element
      */
     createButton = (label) =>{
-        return (
-            <div>
-                <SelectedTagsButton
-                    label={label}
-                    deleteHandler={this.deleteTagsHandler}
-                />
-            </div>
-        );
+
+        if(this.props.removeHandler === null){
+            return (
+                <div>
+                    <SelectedTagsButton
+                        label={label}
+                        deleteHandler={null}
+                    />
+                </div>
+            );
+        }
+
+        else{
+            return (
+                <div>
+                    <SelectedTagsButton
+                        label={label}
+                        deleteHandler={this.deleteTagsHandler}
+                    />
+                </div>
+            );
+        }
+
     };
 
     /**

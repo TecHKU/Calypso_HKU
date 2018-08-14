@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 /**
  * @author utkarsh867
  * The design of the label button
@@ -26,16 +26,31 @@ class SelectedTagsButton extends Component {
     };
 
     render() {
-        return (
-            <div className={'tagButton'}>
-                <span>{this.state.label}
-                    <span className={'tagButtonCross'} onClick={this.deleteTagHandler} id={this.props.label}>
-                        <i className="fas fa-times"></i>
+        if(this.props.deleteHandler === null){
+            return (
+                <div className={'tagButton'}>
+                    <span>{this.state.label}</span>
+                </div>
+            );
+        }
+        else{
+            return (
+                <div className={'tagButton'}>
+                    <span>{this.state.label}
+                        <span className={'tagButtonCross'} onClick={this.deleteTagHandler} id={this.props.label}>
+                            <i className="fas fa-times"></i>
+                        </span>
                     </span>
-                </span>
-            </div>
-        );
+                </div>
+            );
+        }
+
     }
 }
+
+SelectedTagsButton.propTypes = {
+    label: PropTypes.string,
+    deleteHandler: PropTypes.func
+};
 
 export default SelectedTagsButton;
