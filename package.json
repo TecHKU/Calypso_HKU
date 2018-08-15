@@ -7,8 +7,7 @@
     "stop": "forever stopall",
     "production": "webpack --mode production",
     "dev_build": "react-scripts build",
-    "dev_mode": "react-scripts start && npm start",
-    "heroku-postbuild": "npm run build"
+    "dev_mode": "react-scripts start && npm start"
   },
   "engines": {
     "node": "8.9.4"
