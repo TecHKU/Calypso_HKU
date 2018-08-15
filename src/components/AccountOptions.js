@@ -74,13 +74,14 @@ class AccountOptions extends Component {
                     >
                         <ClickAwayListener onClickAway={this.handleRequestClose}>
                             <Grow in={this.state.open} id="menu-list-grow" style={{ transformOrigin: '0 0 0' }}>
-                                <Paper>
-                                    <MenuList role={"menu"}>
-                                        {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem>Start a Project</MenuItem></Link> : null}
-                                        <Link to={'/profile'}><MenuItem>My Profile</MenuItem></Link>
-                                        <Link to={'/loggedout'}><MenuItem onClick={this.logOut}>Sign out</MenuItem></Link>
-                                    </MenuList>
-                                </Paper>
+                                {this.state.open ?
+                                    <Paper>
+                                        <MenuList role={"menu"}>
+                                            {this.props.params.verifiedUser ? <Link to={'/newproject'}><MenuItem>Start a Project</MenuItem></Link> : null}
+                                            <Link to={'/profile'}><MenuItem>My Profile</MenuItem></Link>
+                                            <Link to={'/loggedout'}><MenuItem onClick={this.logOut}>Sign out</MenuItem></Link>
+                                        </MenuList>
+                                    </Paper> : <div></div>}
                             </Grow>
                         </ClickAwayListener>
                     </Popper>
