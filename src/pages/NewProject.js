@@ -4,8 +4,10 @@ import SelectedTagButtonView from '../components/selectedTagButtonsView';
 import ImageUploader from '../components/ImageUploader';
 import SkillsNeeded from "../components/SkillsNeeded";
 import Collaborator from '../components/Collaborator';
-import { Link } from 'react-router-dom';
+import { Link , Redirect} from 'react-router-dom';
+import Loading from '../components/Loading';
 import axios from 'axios';
+import getSessionInfo from "../components/getSessionInfo";
 
 /**
  * "The Start A New Project" page
@@ -33,8 +35,29 @@ class NewProject extends Component{
         description: "",
         collaborators: [],
         coverImage: "",
-        enableSubmit: false
+        enableSubmit: false,
+        verifiedUser: false,
+        loading: true
     };
+
+    componentWillMount(){
+        getSessionInfo()
+            .then(response => {
+                console.log(response);
+                if(response){
+                    this.setState({
+                        verifiedUser: response.isVerified,
+                        loading: false
+                    });
+                }
+                else{
+                    this.setState({
+                        verifiedUser: false,
+                        loading: false
+                    })
+                }
+            });
+    }
 
     /**
      * Post the project to the server
@@ -161,47 +184,64 @@ class NewProject extends Component{
 
 
     render(){
-        return(
-            <div className={'container-fluid'}>
-                <header className={'d-flex justify-content-around align-content-center top-bar'}>
-                    <div className={'d-flex align-content-center'}>
-                        <div className={'logo-container'}>
-                            <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+
+        if(this.state.loading){
+            return(
+                <div className={'container'}>
+                    <Loading/>
+                </div>
+            );
+        }
+        else if(this.state.verifiedUser === true){
+            return(
+                <div className={'container-fluid'}>
+                    <header className={'d-flex justify-content-around align-content-center top-bar'}>
+                        <div className={'d-flex align-content-center'}>
+                            <div className={'logo-container'}>
+                                <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+                            </div>
+                        </div>
+                    </header>
+                    <div className={'row newproject'}>
+                        <div className={'col-lg-7 offset-lg-1'}>
+                            <ImageUploader handleUpload = {this.handleImage}/>
+                        </div>
+                        <div className={'col-lg-4'}>
+                            <h4>Collaborators</h4>
+                            <Collaborator/>
                         </div>
                     </div>
-                </header>
-                <div className={'row newproject'}>
-                    <div className={'col-lg-7 offset-lg-1'}>
-                        <ImageUploader handleUpload = {this.handleImage}/>
-                    </div>
-                    <div className={'col-lg-4'}>
-                        <h4>Collaborators</h4>
-                        <Collaborator/>
-                    </div>
-                </div>
-                <div className={'row'}>
-                    <div className={'col-lg-7 offset-lg-1'}>
-                        <div className={'form-group'}>
-                            <input value={this.state.projectTitle} type="text" className={'form-control'} placeholder={"Give a title to your project"} onChange={this.handleTitle}/>
+                    <div className={'row'}>
+                        <div className={'col-lg-7 offset-lg-1'}>
+                            <div className={'form-group'}>
+                                <input value={this.state.projectTitle} type="text" className={'form-control'} placeholder={"Give a title to your project"} onChange={this.handleTitle}/>
+                            </div>
+                            <div className={'form-group'}>
+                                <textarea value={this.state.description} rows="15" className={'form-control'} placeholder={"Give a short description"} onChange={this.handleDescription}/>
+                            </div>
                         </div>
-                        <div className={'form-group'}>
-                            <textarea value={this.state.description} rows="15" className={'form-control'} placeholder={"Give a short description"} onChange={this.handleDescription}/>
+                        <div className={'col-lg-4'}>
+                            <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
+                            <SelectedTagButtonView id={'tags'} labels={this.state.tags} removeHandler={this.removeTag}/>
+                            <SkillsNeeded fetchRoles={this.handleRoles}/>
+                            <SelectedTagButtonView id={'roles'} labels={this.state.roles} removeHandler={this.removeRole}/>
                         </div>
                     </div>
-                    <div className={'col-lg-4'}>
-                        <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
-                        <SelectedTagButtonView id={'tags'} labels={this.state.tags} removeHandler={this.removeTag}/>
-                        <SkillsNeeded fetchRoles={this.handleRoles}/>
-                        <SelectedTagButtonView id={'roles'} labels={this.state.roles} removeHandler={this.removeRole}/>
+                    <div className={'row'}>
+                        <div className={'col-lg-8 offset-lg-1'}>
+                            <Link to={'/'}><button type="submit" className={"btn btn-primary"} onClick={this.handleSubmit}>Create Project</button></Link>
+                        </div>
                     </div>
                 </div>
-                <div className={'row'}>
-                    <div className={'col-lg-8 offset-lg-1'}>
-                        <Link to={'/'}><button type="submit" className={"btn btn-primary"} onClick={this.handleSubmit}>Create Project</button></Link>
-                    </div>
-                </div>
-            </div>
-        );
+            );
+        }
+
+        else{
+            return(
+                <Redirect to={'/'}/>
+            );
+        }
+
     }
 }
 
