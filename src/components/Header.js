@@ -63,23 +63,49 @@ class Header extends Component {
     };
 
     AccountOptionsComponent = () => {
-        return(
-            <div className={'d-flex align-content-center'}>
-                <ul className="header-buttons">
-                    {this.state.verifiedUser ?
-                        <li className={'header-buttons-li'} id={'newProject'}>
-                            <Link to={'/newproject'}>
-                                <button type="button" className="btn btn-outline-light" style={styles.buttonSpan}>
-                                    Start a project
-                                </button>
-                            </Link>
-                        </li> : null}
-                    <li className={'header-buttons-li'}>
-                        <AccountOptions logOutHandler={this.logOutUser} params={this.state}/>
-                    </li>
-                </ul>
-            </div>
-        );
+        if(this.props.screen && this.props.screen === "newproject"){
+            return(
+                <div className={'d-flex align-items-center'}>
+                    <div style={{padding: "10px"}}>
+                        {this.state.verifiedUser ?
+                            <div>
+                                <Link to={'/newproject'}>
+                                    <button type="button" className="btn btn-outline-light" style={styles.buttonSpan}>
+                                        FIND PROJECTS
+                                    </button>
+                                </Link>
+                            </div> : null}
+                    </div>
+                    <div style={{padding: "10px"}}>
+                        <div>
+                            <AccountOptions logOutHandler={this.logOutUser} params={this.state}/>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        else{
+            return(
+                <div className={'d-flex align-items-center'}>
+                    <div style={{padding: "10px"}}>
+                        {this.state.verifiedUser ?
+                            <div>
+                                <Link to={'/newproject'}>
+                                    <button type="button" className="btn btn-outline-light" style={styles.buttonSpan}>
+                                        Start a project
+                                    </button>
+                                </Link>
+                            </div> : null}
+                    </div>
+                    <div style={{padding: "10px"}}>
+                        <div>
+                            <AccountOptions logOutHandler={this.logOutUser} params={this.state}/>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     };
 
     verificationError = () => (
@@ -102,7 +128,7 @@ class Header extends Component {
     verifyEmailComponent = () => {
         console.log(this.state);
         return (
-            <div className={'d-flex justify-content-center align-content-center'}>
+            <div className={'d-flex justify-content-center align-items-center'}>
                 { this.state.displayVerifyEmail===true ? this.verificationError() : this.verificationSent() }
             </div>
         );
@@ -111,7 +137,7 @@ class Header extends Component {
     render(){
         return(
             <header style={styles.headerComponent}>
-                <div className={'d-flex'} style={styles.topBar}>
+                <div className={'d-flex align-items-center'} style={styles.topBar}>
                     <div className={'mr-auto'}>
                         <h1 style={styles.logo}><Link style={styles.logo} to={'/'}>Calypso</Link></h1>
                     </div>
@@ -138,13 +164,17 @@ const styles = {
         color: "white"
     },
     topBar: {
-        marginTop: "1.875rem"
+        marginTop: "1.875rem",
+        marginBottom: "1.875rem"
     },
     buttonSpan: {
         paddingTop: "10px",
         paddingLeft: "20px",
         paddingRight:"20px",
-        paddingBottom: "10px"
+        paddingBottom: "10px",
+        fontSize: "18px",
+        fontWeight: "bold",
+        borderWidth: "2px"
     },
     loginButton: {
         outline: "none",

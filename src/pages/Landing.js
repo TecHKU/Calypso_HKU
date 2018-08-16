@@ -4,7 +4,8 @@ import HomepageProjects from '../components/HomepageProjects'
 import axios from 'axios';
 import getSessionInfo from '../components/getSessionInfo';
 import Loading from '../components/Loading';
-import HomepageButtons from '../components/HomepageButtons'
+import HomepageButtons from '../components/HomepageButtons';
+import myStyles from './css/Landing.css';
 
 /**
  * @author utkarsh867
@@ -85,7 +86,14 @@ class Landing extends Component {
                                 </h2>
                             </div>
                             <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
-                                <a href={'#projects'}><button className={'btn'}>EXPLORE PROJECTS</button></a>
+                                <a href={'#projects'}>
+                                    <button
+                                        className={'btn ExploreButton'}
+                                        style={styles.homepageBannerButton}
+                                    >
+                                        EXPLORE PROJECTS
+                                    </button>
+                                </a>
                             </div>
                             <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
                                 <h3 style={styles.homepageBannerMinorText}>Backed and Supported By</h3>
@@ -181,6 +189,19 @@ const styles = {
         fontSize: "20px",
         lineHeight: "48px",
         marginTop: "50px"
+    },
+    homepageBannerButton: {
+        backgroundColor: "white",
+        backgroundImage: "none",
+        color: "#3F5EDD",
+        borderColor: "white",
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "bold",
+        paddingTop: "22px",
+        paddingBottom: "22px",
+        paddingLeft: "42px",
+        paddingRight: "42px"
     },
     homepageBannerRows: {
         paddingTop: "30px",

@@ -61,13 +61,22 @@ class AddTagsToProject extends Component {
 
     render() {
         return (
-            <div>
-                <hr className="my-4"/>
-                <h4>Add Tags</h4>
+            <div style={styles.formField}>
+                <h4 style={styles.fieldTitle}>Project Tags</h4>
                 <AutoSuggestBox id={'tagsBox'} keyVal={'tagsBox'} enterHandler={this.elemsHandler.bind(this)} placeholder={'Enter your tags'} suggestionList={this.state.tagsList}/>
             </div>
         );
     }
 }
+
+const styles = {
+    formField: {
+        paddingTop: "10px",
+        paddingBottom: "10px"
+    },
+    fieldTitle: {
+        fontSize: "14px"
+    }
+};
 
 export default AddTagsToProject;

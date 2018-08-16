@@ -8,6 +8,7 @@ import { Link , Redirect} from 'react-router-dom';
 import Loading from '../components/Loading';
 import axios from 'axios';
 import getSessionInfo from "../components/getSessionInfo";
+import Header from '../components/Header';
 
 /**
  * "The Start A New Project" page
@@ -37,6 +38,8 @@ class NewProject extends Component{
         coverImage: "",
         enableSubmit: false,
         verifiedUser: false,
+        isLoggedIn: false,
+        username: "",
         loading: true
     };
 
@@ -47,6 +50,8 @@ class NewProject extends Component{
                 if(response){
                     this.setState({
                         verifiedUser: response.isVerified,
+                        isLoggedIn: true,
+                        username: response.emailId,
                         loading: false
                     });
                 }
@@ -183,6 +188,26 @@ class NewProject extends Component{
     };
 
 
+    requestLogout = async() => {
+        try{
+            const response = await axios.get('/api/logout', {withCredentials:true});
+            return response.data.success;
+        }
+        catch(e){
+            //Handle error
+        }
+    };
+
+    logOutUser = () => {
+        if(this.requestLogout()){
+            this.setState({
+                username: "",
+                verifiedUser: false,
+                isLoggedIn: false
+            });
+        }
+    };
+
     render(){
 
         if(this.state.loading){
@@ -195,41 +220,84 @@ class NewProject extends Component{
         else if(this.state.verifiedUser === true){
             return(
                 <div className={'container-fluid'}>
-                    <header className={'d-flex justify-content-around align-content-center top-bar'}>
-                        <div className={'d-flex align-content-center'}>
-                            <div className={'logo-container'}>
-                                <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+                    <div className={'row'} style={styles.pageBanner}>
+                        <div style={styles.overlayBanner}>
+                            <div className={'container'} style={styles.pageContent}>
+                                <Header
+                                    isLoggedIn={this.state.isLoggedIn}
+                                    username={this.state.username}
+                                    verifiedUser={this.state.verifiedUser}
+                                    onLogout={this.logOutUser}
+                                    screen={"newproject"}
+                                />
                             </div>
-                        </div>
-                    </header>
-                    <div className={'row newproject'}>
-                        <div className={'col-lg-7 offset-lg-1'}>
-                            <ImageUploader handleUpload = {this.handleImage}/>
-                        </div>
-                        <div className={'col-lg-4'}>
-                            <h4>Collaborators</h4>
-                            <Collaborator/>
                         </div>
                     </div>
-                    <div className={'row'}>
-                        <div className={'col-lg-7 offset-lg-1'}>
-                            <div className={'form-group'}>
-                                <input value={this.state.projectTitle} type="text" className={'form-control'} placeholder={"Give a title to your project"} onChange={this.handleTitle}/>
+
+                    <div className={'row'} style={styles.mainFields}>
+                        <div className={'container'}>
+                            <div className={'row'}>
+                                <div className={'col-lg-9'}>
+                                    <div className={'form-group'} style={styles.formField}>
+                                        <label htmlFor="Title">Project Title</label>
+                                        <input value={this.state.projectTitle} type="text" id="Title"
+                                               className={'form-control'} placeholder={"Give a title to your project"}
+                                               onChange={this.handleTitle}/>
+                                    </div>
+                                    <div className={'form-group'} style={styles.formField}>
+                                        <label htmlFor={'Description'}>Headline Description (keep it short!)</label>
+                                        <textarea value={this.state.description} rows="2" id="Description" className={'form-control'}
+                                              placeholder={"Give a short description"}
+                                              onChange={this.handleDescription}/>
+                                    </div>
+                                </div>
                             </div>
-                            <div className={'form-group'}>
-                                <textarea value={this.state.description} rows="15" className={'form-control'} placeholder={"Give a short description"} onChange={this.handleDescription}/>
+
+                            <div className={'row'} style={styles.mainFields}>
+                                <div className={'col-lg-9'} style={styles.formField}>
+                                    <ImageUploader handleUpload = {this.handleImage}/>
+                                </div>
+                                <div className={'col-lg-3'}>
+                                    <h4>Collaborators</h4>
+                                    <Collaborator/>
+                                </div>
                             </div>
-                        </div>
-                        <div className={'col-lg-4'}>
-                            <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
-                            <SelectedTagButtonView id={'tags'} labels={this.state.tags} removeHandler={this.removeTag}/>
-                            <SkillsNeeded fetchRoles={this.handleRoles}/>
-                            <SelectedTagButtonView id={'roles'} labels={this.state.roles} removeHandler={this.removeRole}/>
                         </div>
                     </div>
-                    <div className={'row'}>
-                        <div className={'col-lg-8 offset-lg-1'}>
-                            <Link to={'/'}><button type="submit" className={"btn btn-primary"} onClick={this.handleSubmit}>Create Project</button></Link>
+
+                    <div className={'row'} style={{marginBottom: "200px"}}>
+                        <div className={'container'}>
+                            <div className={'row'}>
+                                <div className={'col-lg-9'}>
+                                    <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
+                                    <SelectedTagButtonView id={'tags'} labels={this.state.tags}
+                                                           removeHandler={this.removeTag}/>
+                                    <hr className="my-4"/>
+                                    <SkillsNeeded fetchRoles={this.handleRoles}/>
+                                    <SelectedTagButtonView id={'roles'} labels={this.state.roles}
+                                                           removeHandler={this.removeRole}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={'row'} style={styles.footer}>
+                        <div className={'container'}>
+                            <div className={'row d-flex align-items-center'}>
+                                <div className={'mr-auto'}>
+                                    <Link to={'/'} style={{color: "white"}}><p><span><object data= {require("../imgs/backarrow.svg")} type="image/svg+xml"></object></span> home page</p></Link>
+                                </div>
+                                <div>
+                                    <Link to={'/'}>
+                                        <button
+                                        className={'btn ExploreButton'}
+                                        style={styles.footerButton}
+                                        >
+                                            PUBLISH NOW    <span><object data= {require("../imgs/arrow.svg")} type="image/svg+xml"></object></span>
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,5 +312,47 @@ class NewProject extends Component{
 
     }
 }
+
+const styles = {
+    pageBanner: {
+        width: "100%",
+        margin: "0"
+    },
+    overlayBanner: {
+        backgroundColor: "#3F5EDD",
+        width: "100%",
+    },
+    pageContent: {
+        maxWidth: "960px"
+    },
+    formField: {
+        paddingTop: "10px",
+        paddingBottom: "10px"
+    },
+    mainFields: {
+        backgroundColor: "#F7F7F7"
+    },
+    footer: {
+        position: "fixed",
+        bottom: "0",
+        backgroundColor: "#3F5EDD",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+        color: "white"
+    },
+    footerButton: {
+        backgroundColor: "white",
+        backgroundImage: "none",
+        color: "#3F5EDD",
+        borderColor: "white",
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "bold",
+        paddingTop: "22px",
+        paddingBottom: "22px",
+        paddingLeft: "42px",
+        paddingRight: "42px"
+    }
+};
 
 export default NewProject;

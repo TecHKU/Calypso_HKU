@@ -69,8 +69,8 @@ class ImageUploader extends Component {
                         style={styles.dropZoneArea}
                     >
                         <div className={'imageUploadBox'}>
-                            <span><i className="text-secondary fas fa-cloud-upload-alt fa-8x"></i></span>
-                            <p className={'text-secondary'}>Drag and drop files to upload</p>
+                            <p style={styles.dropZoneText}>Insert a header image</p>
+                            <span style={styles.dropZonePlus}>+</span>
                         </div>
                     </Dropzone>
                 </div>
@@ -94,10 +94,20 @@ let styles = {
         textAlign: 'center',
         padding: '10px',
         width: '100%',
-        borderStyle: 'solid',
-        borderWidth: '2px',
-        borderRadius: '10px',
-        borderColor: '#6c757d',
+        borderStyle: 'dashed',
+        borderWidth: '4px',
+        borderColor: '#CECECE',
+    },
+    dropZonePlus: {
+        fontSize: "72px",
+        lineHeight: "84px",
+        color: "#3F5EDD"
+    },
+    dropZoneText: {
+        color: "#AEAEAE",
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "300"
     }
 };
 

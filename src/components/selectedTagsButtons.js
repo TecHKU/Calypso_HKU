@@ -28,8 +28,8 @@ class SelectedTagsButton extends Component {
     render() {
         if(this.props.deleteHandler === null){
             return (
-                <div className={'tagButton'}>
-                    <span>{this.state.label}</span>
+                <div>
+                    <span style={{padding: "10px"}}>#{this.state.label}</span>
                 </div>
             );
         }

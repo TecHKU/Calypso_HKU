@@ -47,13 +47,22 @@ class SkillsNeeded extends Component {
 
     render() {
         return (
-            <div>
-                <hr className="my-4"/>
-                <h4>Roles</h4>
+            <div style={styles.formField}>
+                <h4 style={styles.fieldTitle}>Project Roles</h4>
                 <AutoSuggestBox id={'rolesBox'} keyVal={'rolesBox'} enterHandler={this.skillsHandler.bind(this)} placeholder={'Skills'} suggestionList={this.state.rolesList}/>
             </div>
         );
     }
 }
+
+const styles = {
+    formField: {
+        paddingTop: "10px",
+        paddingBottom: "10px"
+    },
+    fieldTitle: {
+        fontSize: "14px"
+    }
+};
 
 export default SkillsNeeded;

@@ -90,24 +90,44 @@ class ProjectPage extends Component{
     render(){
         return(
             <div className={'container-fluid'}>
-                <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
-                <div className={'row newproject'}>
-                    <div className={'col-lg-7 offset-lg-1'}>
-                        <div className={'coverImage'}>
-                            <img src={this.state.project.imagePath}></img>
+                <div className={'row'} style={styles.pageBanner}>
+                    <div style={styles.overlayBanner}>
+                        <div className={'container'} style={styles.pageContent}>
+                            <Header
+                                isLoggedIn={this.state.isLoggedIn}
+                                username={this.state.username}
+                                verifiedUser={this.state.verifiedUser}
+                                onLogout={this.logOutUser}
+                                screen={"newproject"}
+                            />
                         </div>
                     </div>
                 </div>
-                <div className={'row'}>
-                    <div className={'col-lg-7 offset-lg-1'}>
-                        <h1 style={styles.title}>{this.state.project.title}</h1>
-                        <p style={styles.description}>{this.state.project.description}</p>
-                    </div>
-                    <div className={'col-lg-4'}>
-                        <h4>Tags</h4>
-                        <SelectedTagButtonView id={'tags'} labels={this.state.project.tags} removeHandler={null}/>
-                        <h4>Roles</h4>
-                        <SelectedTagButtonView id={'roles'} labels={this.state.project.roles} removeHandler={null}/>
+
+                <div className={'row'} style={styles.mainFields}>
+                    <div className={'container'}>
+                        <div className={'row'}>
+                            <div className={'col-lg-9'}>
+                                <div>
+                                    <h1 style={styles.title}>{this.state.project.title}</h1>
+                                </div>
+                                <div>
+                                    <h3 style={styles.description}>{this.state.project.description}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={'row'}>
+                            <div className={'col-lg-9'}>
+                                <img src={this.state.project.imagePath} style={styles.projectImage}></img>
+                            </div>
+                            <div className={'col-lg-3'}>
+                                <h4>Collaborators</h4>
+                                <p>Feature still in development</p>
+                                <h4>Tags</h4>
+                                <SelectedTagButtonView id={'tags'} labels={this.state.project.tags} removeHandler={null}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,7 +135,27 @@ class ProjectPage extends Component{
     }
 }
 
+/*
+<h4>Roles</h4>
+<SelectedTagButtonView id={'roles'} labels={this.state.project.roles} removeHandler={null}/>
+ */
+
 const styles = {
+    pageBanner: {
+        width: "100%",
+        margin: "0"
+    },
+    overlayBanner: {
+        backgroundColor: "#3F5EDD",
+        width: "100%",
+    },
+    pageContent: {
+        maxWidth: "960px"
+    },
+    mainFields: {
+        backgroundColor: "#F7F7F7",
+        padding: "20px"
+    },
     dropZoneArea: {
         position: 'relative',
         textAlign: 'center',
@@ -127,12 +167,20 @@ const styles = {
         borderColor: '#6c757d',
     },
     title: {
-        paddingTop: '20px',
-        paddingBottom: '20px'
+        fontSize: "34px",
+        fontWeight: "300",
+        color: "black",
+        marginBottom: "20px"
     },
     description: {
-        paddingTop: '10px',
-    }
+        fontSize: "20px",
+        color: "grey",
+        fontWeight: "100",
+        marginBottom: "20px"
+    },
+    projectImage: {
+        width: "100%"
+    },
 };
 
 export default ProjectPage;
