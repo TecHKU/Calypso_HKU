@@ -30,14 +30,13 @@ class SideBar extends Component {
 
     render() {
         return (
-            <div className="col-10 offset-1 sidebar">
-                <h3>Filter your search</h3>
+            <div>
                 <Tags tagsList={this.tagsList}/>
                 <RolesList rolesList={this.rolesList}/>
             </div>
         );
     }
-};
+}
 
 SideBar.propTypes = {
     rolesList: PropTypes.func,

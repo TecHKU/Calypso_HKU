@@ -40,57 +40,58 @@ var app = express();
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(session({secret: 'ssshhhhh',
-resave: false,
-    saveUninitialized: false}));
+app.use(session({
+    secret: 'ssshhhhh',
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(express.static(path.resolve(__dirname, './dist')));
 
 // All the routings
-app.use('/api/newproject',newproject);  // handling creation of new project
+app.use('/api/newproject', newproject);  // handling creation of new project
 app.use('/api/login', login);
-app.use('/api/signup',signup);
-app.use('/api/logout',logout);
-app.use('/api/tags',getTags);              // getting all tags from database
-app.use('/api/roles',getRoles);
-app.use('/api/sendVerification',sendVerification);
-app.use('/api/verify',verify);      // getting all roles from database
-app.use('/api/sessionDetail',sessionDetail);
-app.use('/api/projects',getProjects);
-app.use('/api/currentUserProjects',getCurrentUserProjects);
+app.use('/api/signup', signup);
+app.use('/api/logout', logout);
+app.use('/api/tags', getTags);              // getting all tags from database
+app.use('/api/roles', getRoles);
+app.use('/api/sendVerification', sendVerification);
+app.use('/api/verify', verify);      // getting all roles from database
+app.use('/api/sessionDetail', sessionDetail);
+app.use('/api/projects', getProjects);
+app.use('/api/currentUserProjects', getCurrentUserProjects);
 app.use('/api/hitCounter', hitCount);
-app.use('/api/resendVerification',resendVerification);
-app.use('/api/deleteAccount',deleteAccount);
-app.use('/api/deleteProject',deleteProject);
-app.use('/api/forgotPassword',forgotPassword);
-app.use('/api/resetPassword',resetPassword);
+app.use('/api/resendVerification', resendVerification);
+app.use('/api/deleteAccount', deleteAccount);
+app.use('/api/deleteProject', deleteProject);
+app.use('/api/forgotPassword', forgotPassword);
+app.use('/api/resetPassword', resetPassword);
 app.use('/api/imageUpload', imageUpload);
 
 
-
 //Pass all other requests to the React server
-app.get('*', function(request, response) {
-  response.sendFile(path.resolve(__dirname, './dist', 'index.html'));
+app.get('*', function (request, response) {
+    response.sendFile(path.resolve(__dirname, './dist', 'index.html'));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.send('error');
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 module.exports = app;

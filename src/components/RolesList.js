@@ -136,7 +136,8 @@ class RolesList extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.containerDiv}>
+                <h4 style={styles.containerTitle}>Project Roles</h4>
                 <SearchBar text="Search Roles" onSearch={this.onSearchRoles} />
                 <div className="tags-div">
                     {this.createCheckboxes()}
@@ -147,5 +148,13 @@ class RolesList extends Component {
 
 }
 
-
+const styles = {
+    containerTitle: {
+        fontSize: "14px",
+        fontWeight: "bold"
+    },
+    containerDiv: {
+        margin: "10px"
+    }
+};
 export default RolesList;

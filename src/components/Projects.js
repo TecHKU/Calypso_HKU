@@ -81,8 +81,8 @@ class Projects extends Component {
 
     render() {
         return (
-            <div className="col-lg-12 projects">
-                <SearchBar text="Search Projects" showFilters={this.props.showFilters} filterButton={true} onSearch={this.onSearch}/>
+            <div className="col-lg-12">
+                <SearchBar text="Search Projects" onSearch={this.onSearch}/>
                 <ProjectsScreen projects={this.state.displayProjects} loading={this.state.loading}/>
             </div>
         );
@@ -90,7 +90,6 @@ class Projects extends Component {
 }
 
 Projects.propTypes = {
-    showFilters: PropTypes.bool,
     tags: PropTypes.array,
     roles: PropTypes.array
 };

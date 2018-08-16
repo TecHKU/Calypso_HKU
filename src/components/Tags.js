@@ -137,7 +137,8 @@ class Tags extends Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.containerDiv}>
+                <h4 style={styles.containerTitle}>Project Tags</h4>
                 <SearchBar text="Search tags" onSearch={this.onSearchTags} />
                 <div className="tags-div">
                     {this.createCheckboxes()}
@@ -148,5 +149,14 @@ class Tags extends Component {
 
 }
 
+const styles = {
+    containerTitle: {
+        fontSize: "14px",
+        fontWeight: "bold"
+    },
+    containerDiv: {
+        margin: "10px"
+    }
+};
 
 export default Tags;

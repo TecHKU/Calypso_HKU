@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
 import axios from 'axios';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import Snackbar from '@material-ui/core/Snackbar';
 
 /**
  * @author utkarsh867
@@ -26,7 +25,6 @@ class Header extends Component {
             displayVerifyEmail: !nextProps.verifiedUser
         });
     }
-
     sendVerificationRequest = () => {
         axios.get('/api/resendVerification', {withCredentials: true}).then((res)=>{
             if(res.data.success === true){
@@ -54,7 +52,11 @@ class Header extends Component {
         return(
             <div className={'d-flex align-content-center'}>
                 <ul className="header-buttons">
-                    <Link to={'/login'}><li className={'header-buttons-li'}><button type="button" className="btn btn-outline-dark">Login</button></li></Link>
+                    <li className={'header-buttons-li'}>
+                        <Link to={'/login'}>
+                            <button type="button" className="btn" style={styles.loginButton}>LOGIN</button>
+                        </Link>
+                    </li>
                 </ul>
             </div>
         );
@@ -64,8 +66,17 @@ class Header extends Component {
         return(
             <div className={'d-flex align-content-center'}>
                 <ul className="header-buttons">
-                    {this.state.verifiedUser ? <li className={'header-buttons-li'} id={'newProject'}><Link to={'/newproject'}><button type="button" className="btn btn-outline-dark">Start a Project</button></Link></li> : null}
-                    <li className={'header-buttons-li'}><AccountOptions logOutHandler={this.logOutUser} params={this.state}/></li>
+                    {this.state.verifiedUser ?
+                        <li className={'header-buttons-li'} id={'newProject'}>
+                            <Link to={'/newproject'}>
+                                <button type="button" className="btn btn-outline-light" style={styles.buttonSpan}>
+                                    Start a project
+                                </button>
+                            </Link>
+                        </li> : null}
+                    <li className={'header-buttons-li'}>
+                        <AccountOptions logOutHandler={this.logOutUser} params={this.state}/>
+                    </li>
                 </ul>
             </div>
         );
@@ -99,10 +110,10 @@ class Header extends Component {
 
     render(){
         return(
-            <header className={'top-bar'}>
-                <div className={'d-flex justify-content-around align-content-center'}>
-                    <div className={'logo-container'}>
-                        <h1 className="logo"><Link className={'logo'} to={'/'}>Calypso</Link></h1>
+            <header style={styles.headerComponent}>
+                <div className={'d-flex'} style={styles.topBar}>
+                    <div className={'mr-auto'}>
+                        <h1 style={styles.logo}><Link style={styles.logo} to={'/'}>Calypso</Link></h1>
                     </div>
                     {this.state.isLoggedIn? this.AccountOptionsComponent() : this.LoginComponent() }
                 </div>
@@ -111,5 +122,37 @@ class Header extends Component {
         );
     }
 }
+
+const styles = {
+    headerComponent: {
+        width: "100%",
+        position: "relative",
+        color: "white"
+    },
+    logo: {
+        margin: "0",
+        padding: "0",
+        fontSize: "48px",
+        textDecoration: "none",
+        fontWeight: "bold",
+        color: "white"
+    },
+    topBar: {
+        marginTop: "1.875rem"
+    },
+    buttonSpan: {
+        paddingTop: "10px",
+        paddingLeft: "20px",
+        paddingRight:"20px",
+        paddingBottom: "10px"
+    },
+    loginButton: {
+        outline: "none",
+        color: "white",
+        backgroundColor: "rgba(0,0,0,0)",
+        fontSize: "18px",
+        fontWeight: "bold"
+    }
+};
 
 export default Header;

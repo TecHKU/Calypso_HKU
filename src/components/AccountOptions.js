@@ -12,6 +12,13 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = {
     root: {
         display: 'flex',
+    },
+    myAccountButton: {
+        outline: "none",
+        color: "white",
+        backgroundColor: "rgba(0,0,0,0)",
+        fontSize: "18px",
+        fontWeight: "bold"
     }
 };
 
@@ -60,7 +67,7 @@ class AccountOptions extends Component {
                 <Manager>
                     <Target>
                         <div>
-                            <button type="button" className="btn btn-outline-dark" onClick={this.handleClick}>Hi, {this.props.params.username}</button>
+                            <button type="button" className="btn" onClick={this.handleClick} style={styles.myAccountButton}>MY ACCOUNT</button>
                         </div>
                     </Target>
                     <Popper

@@ -45,11 +45,11 @@ class CheckBox extends Component {
                         value={label}
                         checked={this.state.isChecked}
                         onChange={this.toggleCheckboxChange.bind(this)}
+                        style = {{width: "30px", height: "30px", marginLeft: "14px"}}
                     />
                 }
                 label={label}
                 />
-
             </div>
         );
     }

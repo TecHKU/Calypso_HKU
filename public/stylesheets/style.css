@@ -13,8 +13,7 @@ a {
 h1{
   font-family: 'Roboto', sans-serif;
   font-size: 250%;
-    font-weight: 900;
-
+  font-weight: 900;
 }
 
 h2{
@@ -53,12 +52,12 @@ label{
 
 .row{
   width:100%;
+  margin: 0;
 }
 
 .top-bar{
   position: relative;
   width: 100%;
-  box-shadow: 0 5px 5px #E0E0E0;
 }
 
 .circle{
@@ -84,10 +83,6 @@ label{
   margin-top: 10vh;
   line-height: 200%;
   padding-bottom: 2vh;
-}
-
-.projects{
-  padding:2vw;
 }
 
 .projects-container{
@@ -288,7 +283,6 @@ label{
 .logo{
   margin: 0;
   padding: 0;
-  color: #000;
   font-size: 175%;
   text-decoration: none !important;
   font-family: 'Pacifico', cursive;
@@ -298,35 +292,6 @@ label{
 .logo-container{
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.projectsContainer{
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 100%;
-  max-width: 100%;
-}
-
-.projectsList{
-  padding: 10px;
-  width: 100%;
-}
-
-.projectCardContainer{
-  padding: 5px;
-}
-
-.projectCard{
-  padding: 5px;
-}
-
-.projectCardTitle {
-  font-weight: bold;
-}
-
-.projectCardAuthor{
-  font-size: x-small;
-  color: #393939;
 }
 
 #verificationError{

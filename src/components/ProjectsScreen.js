@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ProjectTile from './ProjectTile';
 import Loading from './Loading';
 import Masonry from 'react-masonry-component';
@@ -46,8 +45,8 @@ class ProjectsScreen extends Component {
 
         else{
             return (
-                <div className="projectsContainer container">
-                    <Masonry className={'projectsList row'} >
+                <div className="container-fluid">
+                    <Masonry className={'row'} >
                         {this.projectTiles()}
                     </Masonry>
                 </div>

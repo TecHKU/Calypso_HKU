@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import Homepage from '../components/Homepage'
+import HomepageProjects from '../components/HomepageProjects'
 import axios from 'axios';
 import getSessionInfo from '../components/getSessionInfo';
 import Loading from '../components/Loading';
+import HomepageButtons from '../components/HomepageButtons'
 
 /**
  * @author utkarsh867
@@ -70,11 +71,133 @@ class Landing extends Component {
         }
         return (
             <div className={'container-fluid'}>
-                <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
-                <Homepage/>
+                <div className={'row'} style={styles.homepageBanner}>
+                    <div style={styles.overlayBanner}>
+                        <div className={'container'} style={styles.homepageContent}>
+                            <Header
+                                isLoggedIn={this.state.isLoggedIn}
+                                username={this.state.username}
+                                verifiedUser={this.state.verifiedUser}
+                                onLogout={this.logOutUser}/>
+                            <div className={'row'} style={styles.homepageBannerText}>
+                                <h2>
+                                    Discover, present and collaborate on student projects all over HKU
+                                </h2>
+                            </div>
+                            <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
+                                <button className={'btn'}>EXPLORE PROJECTS</button>
+                            </div>
+                            <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
+                                <h3 style={styles.homepageBannerMinorText}>Backed and Supported By</h3>
+                            </div>
+                            <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
+                                <img src={require('../imgs/hkulogocolor150dpi.png')} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={'row'}
+                    style={{backgroundColor: "#FEFEFE"}}
+                >
+                    <div className={'container'}>
+                        <div
+                            className={'row'}
+                            style={styles.homepageContentRows}
+                        >
+                            <div className={'col-lg-8 col-sm-12 ml-auto mr-auto'}>
+                                <h2>Looking for teammates in HKU to startup your great idea?</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
+                                </p>
+                                <HomepageButtons text="Advertise your project" link = ""/>
+                            </div>
+                            <div className={'col-lg-4 col-sm-12 ml-auto mr-auto'}>
+                                <img src={require('../imgs/homeilloteam.png')} style={{width: "100%", padding: "10px"}}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={'row'}
+                    style={{backgroundColor: "#F7F7F7"}}
+                >
+                    <div className={'container'}>
+                        <div
+                            className={'row'}
+                            style={styles.homepageContentRows}
+                        >
+                            <div className={'col-lg-4 col-sm-12'}>
+                                <img src={require('../imgs/homeprojects.png')} style={{width: "100%", padding: "10px"}}/>
+                            </div>
+
+                            <div className={'col-lg-8 col-sm-12'}>
+                                <h2>Finding projects to collaborate on right here in HKU?</h2>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
+                                </p>
+                                <HomepageButtons text="Find a project" link = ""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    className={'row'}
+                    style={{backgroundColor: "#F7F7F7"}}
+                >
+                    <div className={'container'}>
+                        <div
+                            className={'row'}
+                            style={styles.homepageContentRows}
+                        >
+                            <HomepageProjects/>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
+
+const styles = {
+    homepageBanner: {
+        backgroundImage: `url(${require('../imgs/homepage.png')})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100%",
+        width: "100%",
+        margin: "0"
+    },
+    overlayBanner: {
+        backgroundColor: "rgba(90,79,255, 0.7)",
+        width: "100%",
+    },
+    homepageBannerText: {
+        textAlign: "center",
+        color: "white",
+        fontWeight: "bold",
+        fontSize: "20px",
+        lineHeight: "48px",
+        marginTop: "50px"
+    },
+    homepageBannerRows: {
+        paddingTop: "30px",
+        paddingBottom: "30px"
+    },
+    homepageContent: {
+        maxWidth: "960px"
+    },
+    homepageContentRows: {
+        padding: "30px"
+    },
+    homepageBannerMinorText: {
+        fontSize: "24px",
+        lineHeight: "28px",
+        fontWeight: "100",
+        color: "#A19AFF"
+    }
+};
 
 export default Landing;
