@@ -42,6 +42,7 @@ class HomepageProjects extends Component {
         <div className="container-fluid">
             <div className="row">
                 <div className={'col-lg-9 col-sm-12'}>
+                    <a name="projects"></a>
                     <Projects roles={this.state.roles} tags={this.state.tags}/>
                 </div>
                 <div className={'col-lg-3 col-sm-12'}>

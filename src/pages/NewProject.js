@@ -238,7 +238,7 @@ class NewProject extends Component{
 
         else{
             return(
-                <Redirect to={'/'}/>
+                <Redirect to={'/login'}/>
             );
         }
 

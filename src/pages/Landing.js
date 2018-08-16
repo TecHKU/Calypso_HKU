@@ -85,7 +85,7 @@ class Landing extends Component {
                                 </h2>
                             </div>
                             <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
-                                <button className={'btn'}>EXPLORE PROJECTS</button>
+                                <a href={'#projects'}><button className={'btn'}>EXPLORE PROJECTS</button></a>
                             </div>
                             <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
                                 <h3 style={styles.homepageBannerMinorText}>Backed and Supported By</h3>
@@ -111,7 +111,7 @@ class Landing extends Component {
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
                                 </p>
-                                <HomepageButtons text="Advertise your project" link = ""/>
+                                <HomepageButtons text="Advertise your project" link = "/newproject"/>
                             </div>
                             <div className={'col-lg-4 col-sm-12 ml-auto mr-auto'}>
                                 <img src={require('../imgs/homeilloteam.png')} style={{width: "100%", padding: "10px"}}/>
@@ -138,7 +138,7 @@ class Landing extends Component {
                                 <p>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
                                 </p>
-                                <HomepageButtons text="Find a project" link = ""/>
+                                <HomepageButtons text="Find a project" link = "#projects"/>
                             </div>
                         </div>
                     </div>
