@@ -46,7 +46,6 @@ class NewProject extends Component{
     componentWillMount(){
         getSessionInfo()
             .then(response => {
-                console.log(response);
                 if(response){
                     this.setState({
                         verifiedUser: response.isVerified,
@@ -250,14 +249,9 @@ class NewProject extends Component{
                                               placeholder={"Give a short description"}
                                               onChange={this.handleDescription}/>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className={'row'} style={styles.mainFields}>
-                                <div className={'col-lg-9'} style={styles.formField}>
                                     <ImageUploader handleUpload = {this.handleImage}/>
                                 </div>
-                                <div className={'col-lg-3'}>
+                                <div className={'col-lg-3'} style={styles.formField}>
                                     <h4>Collaborators</h4>
                                     <Collaborator/>
                                 </div>
@@ -345,11 +339,12 @@ const styles = {
         backgroundImage: "none",
         color: "#3F5EDD",
         borderColor: "white",
+        borderRadius: "5px",
         fontSize: "18px",
         lineHeight: "21px",
         fontWeight: "bold",
-        paddingTop: "22px",
-        paddingBottom: "22px",
+        paddingTop: "15px",
+        paddingBottom: "15px",
         paddingLeft: "42px",
         paddingRight: "42px"
     }

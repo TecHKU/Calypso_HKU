@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import getSessionInfo from '../components/getSessionInfo';
 import Header from "../components/Header";
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
+import CollaboratorTile from '../components/CollaboratorTile';
 import axios from "axios/index";
 
 class ProjectPage extends Component{
@@ -12,7 +13,8 @@ class ProjectPage extends Component{
         verifiedUser: false,
         isLoggedIn: false,
         loading: true,
-        project: {}
+        project: {},
+        inProgressDialog: false
     };
 
     componentWillMount(){
@@ -34,7 +36,8 @@ class ProjectPage extends Component{
                                 username: res.emailId,
                                 verifiedUser: res.isVerified,
                                 isLoggedIn: true,
-                                project: project
+                                project: project,
+                                loading: false
                             });
                         });
                 }
@@ -52,7 +55,8 @@ class ProjectPage extends Component{
                                 username: "",
                                 verifiedUser: false,
                                 isLoggedIn: false,
-                                project: project
+                                project: project,
+                                loading: false
                             });
                         });
                 }
@@ -88,50 +92,90 @@ class ProjectPage extends Component{
     };
 
     render(){
-        return(
-            <div className={'container-fluid'}>
-                <div className={'row'} style={styles.pageBanner}>
-                    <div style={styles.overlayBanner}>
-                        <div className={'container'} style={styles.pageContent}>
-                            <Header
-                                isLoggedIn={this.state.isLoggedIn}
-                                username={this.state.username}
-                                verifiedUser={this.state.verifiedUser}
-                                onLogout={this.logOutUser}
-                                screen={"newproject"}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className={'row'} style={styles.mainFields}>
-                    <div className={'container'}>
-                        <div className={'row'}>
-                            <div className={'col-lg-9'}>
-                                <div>
-                                    <h1 style={styles.title}>{this.state.project.title}</h1>
-                                </div>
-                                <div>
-                                    <h3 style={styles.description}>{this.state.project.description}</h3>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className={'row'}>
-                            <div className={'col-lg-9'}>
-                                <img src={this.state.project.imagePath} style={styles.projectImage}></img>
-                            </div>
-                            <div className={'col-lg-3'}>
-                                <h4>Collaborators</h4>
-                                <p>Feature still in development</p>
-                                <h4>Tags</h4>
-                                <SelectedTagButtonView id={'tags'} labels={this.state.project.tags} removeHandler={null}/>
+        if(!this.state.loading){
+            return(
+                <div className={'container-fluid'}>
+                    <div className={'row'} style={styles.pageBanner}>
+                        <div style={styles.overlayBanner}>
+                            <div className={'container'} style={styles.pageContent}>
+                                <Header
+                                    isLoggedIn={this.state.isLoggedIn}
+                                    username={this.state.username}
+                                    verifiedUser={this.state.verifiedUser}
+                                    onLogout={this.logOutUser}
+                                    screen={"newproject"}
+                                />
                             </div>
                         </div>
                     </div>
+
+                    <div className={'row'} style={styles.mainFields}>
+                        <div className={'container'}>
+                            <div className={'row'}>
+                                <div className={'col-lg-9'}>
+                                    <div>
+                                        <h1 style={styles.title}>{this.state.project.title}</h1>
+                                    </div>
+                                    <div>
+                                        <h3 style={styles.description}>{this.state.project.description}</h3>
+                                    </div>
+                                    <div>
+                                        <img src={this.state.project.imagePath} style={styles.projectImage}></img>
+                                    </div>
+                                </div>
+                                <div className={'col-lg-3'}>
+                                    {(this.state.username === this.state.project.author.emailId) ?
+                                        <div>
+                                            <button
+                                            className={'btn'}
+                                            style={styles.editButton}
+                                            onClick={() => { this.setState({inProgressDialog: true}); }}
+                                            >
+                                            EDIT LISTING  <span><object data={require("../imgs/arrow.svg")} type="image/svg+xml"></object></span>
+                                            </button>
+                                        </div>
+                                        : <div></div>
+                                    }
+                                    <div style={styles.collaboratorTiles}>
+                                        <h4 style={styles.minorTitle}>Collaborators</h4>
+                                        <CollaboratorTile name={this.state.project.author.fullName} email={this.state.project.author.emailId}/>
+                                    </div>
+                                    <h4 style={styles.minorTitle}>Tags</h4>
+                                    <SelectedTagButtonView id={'tags'} labels={this.state.project.tags} removeHandler={null}/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={'row'} style={styles.selectionBar}>
+                        <div className={'container'}>
+                            <div className={'row d-flex align-items-center'}>
+                                <div className={'col-1'}>
+                                    <h1 style={styles.selectionBarText}>Campaign</h1>
+                                </div>
+                                <div className={'mr-auto col-1 offset-1'}>
+                                    <h1 style={styles.selectionBarText}>Roles</h1>
+                                </div>
+                                <div>
+                                    <button
+                                        className={'btn ExploreButton'}
+                                        style={styles.selectionBarButton}
+                                    >
+                                        MESSAGE
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-        );
+            );
+        }
+
+        else{
+            return(
+                <div></div>
+            );
+        }
     }
 }
 
@@ -154,7 +198,9 @@ const styles = {
     },
     mainFields: {
         backgroundColor: "#F7F7F7",
-        padding: "20px"
+        paddingTop: "40px",
+        paddingBottom: "40px",
+        borderBottom: "0.5px solid black"
     },
     dropZoneArea: {
         position: 'relative',
@@ -174,13 +220,65 @@ const styles = {
     },
     description: {
         fontSize: "20px",
-        color: "grey",
+        color: "black",
         fontWeight: "100",
-        marginBottom: "20px"
+        marginBottom: "30px"
     },
     projectImage: {
         width: "100%"
     },
+    selectionBar: {
+        backgroundColor: "white",
+        borderBottom: "0.5px solid black",
+        paddingTop: "10px",
+        paddingBottom: "10px"
+    },
+    selectionBarText: {
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "100",
+        marginRight: "40px"
+    },
+    selectionBarButton: {
+        backgroundColor: "#3F5EDD",
+        backgroundImage: "none",
+        color: "white",
+        borderColor: "#3F5EDD",
+        borderRadius: "5px",
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "bold",
+        paddingTop: "15px",
+        paddingBottom: "15px",
+        paddingLeft: "42px",
+        paddingRight: "42px"
+    },
+    collaboratorTiles: {
+        width: "100%",
+        marginTop: "10px",
+        marginBottom: "50px"
+    },
+    minorTitle: {
+        fontSize: "18px",
+        fontWeight: "bold",
+        lineHeight: "21px",
+        color: "black"
+    },
+    editButton: {
+        backgroundColor: "white",
+        backgroundImage: "none",
+        color: "#3F5EDD",
+        borderColor: "#3F5EDD",
+        borderRadius: "5px",
+        fontSize: "18px",
+        lineHeight: "21px",
+        fontWeight: "bold",
+        paddingTop: "10px",
+        paddingBottom: "10px",
+        paddingLeft: "42px",
+        paddingRight: "42px",
+        marginBottom: "32px",
+    }
 };
 
 export default ProjectPage;
