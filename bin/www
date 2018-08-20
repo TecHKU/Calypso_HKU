@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+console.log(process.env);
 /**
  * Module dependencies.
  */
@@ -13,7 +14,6 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '3000');
-console.log(process.env);
 app.set('port', port);
 
 /**
