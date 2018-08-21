@@ -174,7 +174,7 @@ const styles = {
     homepageBanner: {
         backgroundImage: `url(${require('../imgs/homepage.png')})`,
         backgroundRepeat: "no-repeat",
-        backgroundSize: "100%",
+        backgroundSize: "cover",
         width: "100%",
         margin: "0"
     },
