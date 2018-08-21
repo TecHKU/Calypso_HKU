@@ -20,6 +20,7 @@ class Landing extends Component {
     };
 
     componentWillMount(){
+        this.props.history.push('/');
         getSessionInfo()
             .then(response => {
                 if(response){
@@ -65,7 +66,7 @@ class Landing extends Component {
     render() {
         if(this.state.loading){
             return(
-                <div className={'container'}>
+                <div className={'vertical-center justify-content-center'} style={{width: "100%"}}>
                     <Loading/>
                 </div>
             )

@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
 import CollaboratorTile from '../components/CollaboratorTile';
 import axios from "axios/index";
+import Loading from '../components/Loading';
 
 class ProjectPage extends Component{
 
@@ -173,7 +174,9 @@ class ProjectPage extends Component{
 
         else{
             return(
-                <div></div>
+                <div className={'vertical-center justify-content-center'} style={{width: "100%"}}>
+                    <Loading/>
+                </div>
             );
         }
     }
