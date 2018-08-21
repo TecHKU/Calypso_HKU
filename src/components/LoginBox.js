@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import TextField from '@material-ui/core/TextField';
+import {Link} from 'react-router-dom';
 /**
  * @author utkarsh867
  * The Login box of the login page. Handles all the logic
@@ -49,17 +50,34 @@ class LoginBox extends Component {
 
     render(){
         return (
-            <div className="loginbox">
+            <div style={styles.layout}>
                 <div className="form-group">
-                    <input value={this.state.username} onChange={this.updateUsername} type="email" className="form-control" id="exampleInputEmail1" placeholder="Email Id" name="username"/>
+                    <TextField value={this.state.username} onChange={this.updateUsername} type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" name="username"/>
                 </div>
                 <div className="form-group">
-                    <input type="password" className="form-control" onChange={this.updatePassword} onKeyDown={this.onSubmitAfterPassword} placeholder="Password" name="password"/>
+                    <TextField value={this.state.password} type="password" className="form-control" onChange={this.updatePassword} onKeyDown={this.onSubmitAfterPassword} placeholder="Password" name="password"/>
                 </div>
-                <button type="submit" className="btn btn-primary loginButton" onClick={this.handleSubmit.bind(this)}>Login</button>
+                <div className={'d-flex'} style={styles.forgotPasswordDiv}>
+                    <div className={'mr-auto'}>
+                        <Link to = {'/'}>Forgot password?</Link>
+                    </div>
+                    <div>
+                        <button type="submit" className="btn btn-primary loginButton" onClick={this.handleSubmit.bind(this)}>Login</button>
+                    </div>
+                </div>
             </div>
         );
     }
 }
+
+const styles = {
+    layout: {
+        width: "100%"
+    },
+    forgotPasswordDiv: {
+        paddingTop: "10px",
+        paddingBottom: "20px"
+    }
+};
 
 export default LoginBox;
