@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,800,800i');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1{
+  font-family: 'Roboto', sans-serif;
+  font-size: 250%;
+  font-weight: 900;
+}
+
+h2{
+  font-family: 'Roboto', sans-serif;
+  font-size: 200%;
+    padding: 10px;
+    font-weight: 700;
+}
+
+h3{
+  font-family: 'Roboto', sans-serif;
+  font-size: 150%;
+    font-weight: 500;
+}
+
+h4{
+  font-family: 'Roboto', sans-serif;
+  font-size: 120%;
+    font-weight: 400;
+}
+
+p{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 100%;
+}
+
+label{
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 100%;
+}
+
+.container-fluid{
+  padding: 0 !important;
+}
+
+.row{
+  width:100%;
+  margin: 0;
+}
+
+.top-bar{
+  position: relative;
+  width: 100%;
+}
+
+.circle{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+}
+
+.header-buttons{
+  list-style-type: none;
+}
+
+.header-buttons-li{
+  display: inline-block;
+  padding: 10px;
+}
+
+.motivation-text{
+  font-weight: 300;
+  text-align: center;
+  margin-top: 10vh;
+  line-height: 200%;
+  padding-bottom: 2vh;
+}
+
+.projects-container{
+  margin-top:2vh;
+}
+
+.sidebar{
+  padding-top: 3vh;
+}
+
+.sidebar h3{
+  padding: 10px;
+}
+
+.tags-div{
+  width: 100%;
+  max-height: 20vh;
+  overflow-y: scroll;
+}
+.checkbox-text{
+  padding: 5px;
+  font-size: 100%;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+.searchbar{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.react-autosuggest__container {
+  position: relative;
+}
+
+.react-autosuggest__input {
+  width: 100%;
+  padding: 1vh 1vw;
+  font-weight: 300;
+  font-size: 100%;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  max-height:100px;
+  overflow-y: scroll;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-weight: 300;
+  font-size: 80%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
+
+.loginbox{
+  position: relative;
+  background: white;
+  padding: 2.5vh 2.5vw;
+  width: 100%;
+}
+
+.vertical-center{
+    position: absolute;
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.vertical-center-div{
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.loginDialog{
+  border: 1px solid #aaa;
+  background: white !important;
+  box-shadow: 0 5px 5px #E0E0E0;
+  z-index: 100;
+    text-align: center;
+}
+
+.loginDialog div h1{
+  font-size: 250%;
+  font-weight: 900;
+  text-align: center;
+}
+.loginButton{
+  width: 100%;
+}
+
+.accountOptions{
+  position: absolute;
+  padding-top: .5vh;
+  padding-bottom: .5vh;
+  padding-right: .5vw;
+  padding-left: .5vw;
+  width: 10vw;
+  top: 100%;
+  right: 5%;
+}
+
+.newproject{
+  margin-top: 20px;
+}
+
+.projectTags{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tagButton{
+  position: relative;
+  display: inline-block;
+  white-space:nowrap;
+  padding: 10px;
+  color: #39739d;
+  background-color: #E1ECF4;
+  margin-right: 5px;
+}
+
+.tagButtonCross{
+  padding: 5px;
+}
+
+.coverImage{
+  width:100%;
+  margin-bottom: 10px;
+}
+
+.coverImage img{
+  position: relative;
+  z-index: 100;
+  width: 100%;
+}
+
+.imageUploadBox {
+  padding: 20px;
+}
+
+.imageUploadBox p{
+  padding: 10px;
+}
+
+.collaborator{
+  width: 100%;
+  padding: 20px;
+}
+
+.personal-info-box{
+    width: 100%;
+    padding:10px !important;
+    background-color: white;
+}
+
+.error-text{
+    color: #ff0033;
+}
+
+.logo{
+  margin: 0;
+  padding: 0;
+  font-size: 175%;
+  text-decoration: none !important;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+}
+
+.logo-container{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#verificationError{
+  background-color: #B00020;
+  height: 30px;
+  line-height: 30px;
+}
+
+#verificationErrorText{
+  color: white;
+  font-weight: 600;
+}
+
+#verificationIncText{
+  color: black;
+  height: 30px;
+  line-height: 30px;
+  background-color: #FFDE03;
+  font-weight: 600;
+}
+
+
+@media screen and (max-width: 460px){
+  #newProject{
+    display: none;
+  }
+}

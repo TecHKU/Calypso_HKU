@@ -8,12 +8,12 @@
     "production": "webpack --mode production",
     "dev": "node bin/www",
     "dev_build": "react-scripts build",
-    "dev_mode": "react-scripts start && npm start"
+    "dev_mode": "PORT=5000 react-scripts start && npm run dev"
   },
   "engines": {
     "node": "8.9.4"
   },
-  "proxy": "http://localhost:5000",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@material-ui/core": "^1.2.0",
     "@material-ui/icons": "^1.1.0",
