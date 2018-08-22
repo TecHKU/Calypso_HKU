@@ -59,7 +59,7 @@ class LoginBox extends Component {
                 </div>
                 <div className={'d-flex'} style={styles.forgotPasswordDiv}>
                     <div className={'mr-auto'}>
-                        <Link to = {'/'}>Forgot password?</Link>
+                        <Link to = {'/forgotPassword'}>Forgot password?</Link>
                     </div>
                     <div>
                         <button type="submit" className="btn btn-primary loginButton" onClick={this.handleSubmit.bind(this)}>Login</button>

@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
  * @author utkarsh867
  * The Home page of the project
  */
-class MyProfile extends Component {
+class Verification extends Component {
     state = {
         loading: true,
         isLoggedIn: false,
@@ -111,4 +111,4 @@ const styles = {
     }
 };
 
-export default MyProfile;
+export default Verification;
