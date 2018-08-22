@@ -24,7 +24,7 @@ class ProjectPage extends Component{
         getSessionInfo()
             .then((res)=>{
                 let project = {};
-                if(res && res.projects.includes(projectId)){
+                if(res){
                     this.fetchProjects()
                         .then((p)=>{
                             for(let i = 0; i<p.length; i++){
