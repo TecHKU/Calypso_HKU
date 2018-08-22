@@ -1,42 +1,46 @@
 import React from 'react';
 
-const styles ={
-    jumbotronStyle: {
-        backgroundColor: 'white'
-    },
-    formFields: {
-        marginTop: '30px'
-    }
-};
-
 const ProfileInfo = (props) => {
     const { user } = props;
     return(
-        <div className={'personal-info-box row'}>
-            <div style={styles.jumbotronStyle} className={'jumbotron col-lg-10 offset-lg-1'}>
-                <h2>My Profile</h2>
-                <hr className={'my-4'}/>
-                <h3>Personal Information</h3>
-                <div style={styles.formFields} className={'container-fluid'}>
-                    <fieldset disabled>
-                        <div className="form-group row">
-                            <label htmlFor="fullName" className="col-2 col-form-label">Full Name</label>
-                            <div className="col-10">
-                                <input className="form-control" type="text" value={user.fullName} id="fullName"/>
-                            </div>
-                        </div>
-                        <div className="form-group row">
-                            <label htmlFor="email" className="col-2 col-form-label">Email ID: </label>
-                            <div className="col-10">
-                                <input className="form-control" type="email" value={user.emailId} id="email"/>
-                            </div>
-                        </div>
-                    </fieldset>
+        <div style={styles.profileContainer} className={'container'}>
+            <div className={'row'}>
+                <div id={'profileImage'} className={'col-3'}>
+                    <img style={styles.profilePicture} src={"https://api.adorable.io/avatars/"+user.emailId}/>
+                </div>
+                <div id={'details'} className={'col-9'}>
+                    <h2 style={styles.details.fullname}>{user.fullName}</h2>
+                    <h3 style={styles.details.email}>{user.emailId}</h3>
                 </div>
             </div>
         </div>
     );
 };
 
+const styles  = {
+    profileContainer: {
+        marginTop: "30px",
+        marginBottom: "30px",
+        paddingTop: "20px",
+        paddingBottom: "20px",
+    },
+    profilePicture: {
+        width: "100%"
+    },
+    formFields: {
+        marginTop: '30px'
+    },
+    details: {
+        fullname: {
+            fontSize: "34px",
+            fontWeight: "400",
+        },
+        email: {
+            fontSize: "24px",
+            fontWeight: "100",
+            color: "#7C7B8A"
+        }
+    }
+};
 
 export default ProfileInfo;

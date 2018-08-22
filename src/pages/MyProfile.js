@@ -77,13 +77,46 @@ class MyProfile extends Component {
         else{
             return (
                 <div className={'container-fluid'}>
-                    <Header isLoggedIn={this.state.isLoggedIn} username={this.state.username} verifiedUser={this.state.verifiedUser} onLogout={this.logOutUser}/>
-                    <ProfileInfo user={this.state.user}/>
-                    <MyProjectsSection/>
+                    <div className={'row'} style={styles.pageBanner}>
+                        <div style={styles.overlayBanner}>
+                            <div className={'container'} style={styles.pageContent}>
+                                <Header
+                                    isLoggedIn={this.state.isLoggedIn}
+                                    username={this.state.username}
+                                    verifiedUser={this.state.verifiedUser}
+                                    onLogout={this.logOutUser}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={'row'} style={styles.profileContainer}>
+                        <ProfileInfo user={this.state.user}/>
+                    </div>
+                    <div className={'row'}>
+                        <MyProjectsSection/>
+                    </div>
                 </div>
             );
         }
     }
 }
+
+
+
+const styles = {
+    pageBanner: {
+        width: "100%",
+        margin: "0"
+    },
+    overlayBanner: {
+        backgroundColor: "#3F5EDD",
+        width: "100%",
+    },
+    profileContainer: {
+        borderBottom: "0.5px solid black",
+        marginBottom: "20px",
+        backgroundColor: "#F7F7F7"
+    }
+};
 
 export default MyProfile;

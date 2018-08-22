@@ -19,8 +19,7 @@ h1{
 h2{
   font-family: 'Roboto', sans-serif;
   font-size: 200%;
-    padding: 10px;
-    font-weight: 700;
+  font-weight: 700;
 }
 
 h3{
@@ -57,6 +56,12 @@ label{
 
 #login{
   width: 90vw;
+}
+
+@media screen and (max-width: 639px){
+  #projectsButton{
+    display: none;
+  }
 }
 
 @media screen and (min-width: 640px){
