@@ -35,7 +35,7 @@ router.post('/',function (req,res) {
 	});
 	const link = `http://${req.get('host')}/resetpass?token=${token}`;
 	const message = {
-		subject : "CALYPSO: Please change your password by clicking the link",
+		subject : "Reset your account password",
 		html : "Hello,<br> Please Click on the link to change your password.<br><a href=" + link + ">Click here</a>",
 		text: "Hello, Please go to the link to change your password: " + link, 
 	};

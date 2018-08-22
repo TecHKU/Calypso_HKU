@@ -6,6 +6,7 @@ import SignUp from './pages/SignUp';
 import NewProject from './pages/NewProject';
 import MyProfile from './pages/MyProfile';
 import ProjectPage from './pages/ProjectPage';
+import Verification from './pages/Verification';
 
 import YouHaveBeenLoggedOut from './pages/YouHaveBeenLoggedOut';
 
@@ -35,6 +36,7 @@ class App extends Component {
                         <Route path={'/newproject'} component={NewProject}/>
                         <Route path={'/project'} component={ProjectPage}/>
                         <Route path={'/profile'} component={MyProfile}/>
+                        <Route path={'/verification'} component={Verification}/>
                         <Route path={'/loggedout'} component={YouHaveBeenLoggedOut}/>
                     </div>
                 </Router>
