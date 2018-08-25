@@ -101,6 +101,7 @@ label{
 
 .header-buttons{
   list-style-type: none;
+  margin-top: 1rem;
 }
 
 .header-buttons-li{

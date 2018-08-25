@@ -159,20 +159,20 @@ const styles = {
     logo: {
         margin: "0",
         padding: "0",
-        fontSize: "48px",
+        fontSize: "40px",
         textDecoration: "none",
         fontWeight: "bold",
         color: "white"
     },
     topBar: {
-        marginTop: "1.875rem",
-        marginBottom: "1.875rem"
+        marginTop: "0.5rem",
+        marginBottom: "0.5rem"
     },
     buttonSpan: {
-        paddingTop: "10px",
-        paddingLeft: "20px",
-        paddingRight:"20px",
-        paddingBottom: "10px",
+        paddingTop: "5px",
+        paddingLeft: "15px",
+        paddingRight:"15px",
+        paddingBottom: "5px",
         fontSize: "18px",
         fontWeight: "bold",
         borderWidth: "2px"
@@ -181,7 +181,7 @@ const styles = {
         outline: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",
-        fontSize: "18px",
+        fontSize: "16px",
         fontWeight: "bold"
     }
 };

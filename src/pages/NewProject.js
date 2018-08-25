@@ -236,7 +236,7 @@ class NewProject extends Component{
                     <div className={'row'} style={styles.mainFields}>
                         <div className={'container'}>
                             <div className={'row'}>
-                                <div className={'col-lg-9'}>
+                                <div className={'col-lg-12'} style={{padding:'50px'}}>
                                     <div className={'form-group'} style={styles.formField}>
                                         <label htmlFor="Title">Project Title</label>
                                         <input value={this.state.projectTitle} type="text" id="Title"
@@ -251,10 +251,12 @@ class NewProject extends Component{
                                     </div>
                                     <ImageUploader handleUpload = {this.handleImage}/>
                                 </div>
-                                <div className={'col-lg-3'} style={styles.formField}>
+                                {/*
+                                  <div className={'col-lg-3'} style={styles.formField}>
                                     <h4>Collaborators</h4>
                                     <Collaborator/>
                                 </div>
+                                */}
                             </div>
                         </div>
                     </div>
@@ -262,7 +264,7 @@ class NewProject extends Component{
                     <div className={'row'} style={{marginBottom: "200px"}}>
                         <div className={'container'}>
                             <div className={'row'}>
-                                <div className={'col-lg-9'}>
+                                <div className={'col-lg-12'} style={{padding:'50px'}}>
                                     <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
                                     <SelectedTagButtonView id={'tags'} labels={this.state.tags}
                                                            removeHandler={this.removeTag}/>

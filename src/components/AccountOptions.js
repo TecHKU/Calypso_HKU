@@ -17,7 +17,7 @@ const styles = {
         outline: "none",
         color: "white",
         backgroundColor: "rgba(0,0,0,0)",
-        fontSize: "18px",
+        fontSize: "16px",
         fontWeight: "bold"
     }
 };

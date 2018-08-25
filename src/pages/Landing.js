@@ -82,7 +82,7 @@ class Landing extends Component {
                                 verifiedUser={this.state.verifiedUser}
                                 onLogout={this.logOutUser}/>
                             <div className={'row'} style={styles.homepageBannerText}>
-                                <h2>
+                                <h2 style={{marginTop:"1rem"}}>
                                     Discover, present and collaborate on student projects all over HKU
                                 </h2>
                             </div>
@@ -100,7 +100,7 @@ class Landing extends Component {
                                 <h3 style={styles.homepageBannerMinorText}>Backed and Supported By</h3>
                             </div>
                             <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
-                                <img src={require('../imgs/hkulogocolor150dpi.png')} />
+                                <img style={{marginBottom: '30px'}} src={require('../imgs/hkulogocolor150dpi.png')} />
                             </div>
                         </div>
                     </div>
@@ -115,11 +115,14 @@ class Landing extends Component {
                             className={'row'}
                             style={styles.homepageContentRows}
                         >
-                            <div className={'col-lg-8 col-sm-12 ml-auto mr-auto'}>
-                                <h2>Looking for teammates in HKU to startup your great idea?</h2>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
-                                </p>
+                            <div style={styles.flexColumn} className={'col-lg-8 col-sm-12 ml-auto mr-auto'}>
+                                <div>
+                                  <h2>Looking for teammates in HKU to startup your great idea?</h2>
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
+                                  </p>
+                                </div>
+
                                 <HomepageButtons text="Advertise your project" link = "/newproject"/>
                             </div>
                             <div className={'col-lg-4 col-sm-12 ml-auto mr-auto'}>
@@ -202,7 +205,8 @@ const styles = {
         paddingTop: "22px",
         paddingBottom: "22px",
         paddingLeft: "42px",
-        paddingRight: "42px"
+        paddingRight: "42px",
+        marginBottom:"1rem"
     },
     homepageBannerRows: {
         paddingTop: "30px",
@@ -212,13 +216,19 @@ const styles = {
         maxWidth: "960px"
     },
     homepageContentRows: {
-        padding: "30px"
+        padding: "60px 30px"
     },
     homepageBannerMinorText: {
         fontSize: "24px",
         lineHeight: "28px",
         fontWeight: "100",
-        color: "#A19AFF"
+        color: "rgb(135, 126, 214)"
+    },
+    flexColumn: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      justifyContent: "space-evenly"
     }
 };
 
