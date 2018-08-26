@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent'
 import axios from 'axios';
 import SignUpBox from '../components/SignUpBox';
 
@@ -34,7 +36,9 @@ class SignUp extends Component{
      * @param data JSON object that contains the input fields of signup box
      */
     handleSubmit = (data) =>{
-        this.requestSignUp(data);
+        if(data.username.length > 0 && data.password.length > 0 && data.fullName.length > 0){
+            this.requestSignUp(data);
+        }
     };
 
     /**
@@ -71,18 +75,49 @@ class SignUp extends Component{
         }
         return(
             <div className={'container-fluid'}>
-                <div className={'row vertical-center'}>
-                    <div className={'jumbotron loginDialog col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-sm-10 offset-sm-1'}>
-                        <div>
-                            <h1><Link to={"/"} className={"logo"}>Calypso</Link></h1>
+                <div style={styles.signupPageContainer} className={'row vertical-center'}>
+                    <div className={'container'}>
+                        <div className={'row justify-content-center'}>
+                            <Card style={styles.layout} id={'login'}>
+                                <CardContent>
+                                    <div className={'container-fluid'}>
+                                        <div className={'row d-flex align-items-center justify-content-center'}>
+                                            <Link to={"/"} style={styles.formTitle}><h1 style={styles.formTitle}>Calypso</h1></Link>
+                                        </div>
+                                        <hr className={'my-4'}/>
+                                        <div className={'row justify-content-center'}>
+                                            {(!this.state.success) && this.state.reason==="exists" ? <div className={'error-text'}><p style={styles.errorText}>This email has already been registered</p></div> : null}
+                                            <SignUpBox submitHandler={this.handleSubmit}/>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
                         </div>
-                        <hr className={'my-4'}/>
-                        {(!this.state.success) && this.state.reason==="exists" ? <div>User already exists</div> : null}
-                        <SignUpBox submitHandler={this.handleSubmit}/>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+const styles = {
+    signupPageContainer: {
+        backgroundColor: "#fafafa"
+    },
+    formTitle:{
+        textDecoration: "none",
+        color: "black",
+        paddingTop: "10px",
+        fontSize: "48px",
+        fontWeight: "500"
+    },
+    layout: {
+        padding: "40px",
+    },
+    errorText: {
+        fontSize: "14px",
+        fontWeight: "400"
+    }
+};
+
 export default SignUp;

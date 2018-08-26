@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900');
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,800,800i');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,800,800i');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 body {
@@ -19,8 +19,7 @@ h1{
 h2{
   font-family: 'Roboto', sans-serif;
   font-size: 200%;
-    padding: 10px;
-    font-weight: 700;
+  font-weight: 700;
 }
 
 h3{
@@ -53,6 +52,39 @@ label{
 .row{
   width:100%;
   margin: 0;
+}
+
+#login{
+  width: 90vw;
+}
+
+@media screen and (max-width: 639px){
+  #projectsButton{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 640px){
+  #login{
+    width: 70vw;
+  }
+}
+@media screen and (min-width: 961px){
+  #login{
+    width: 50vw;
+  }
+}
+
+@media screen and (min-width: 1025px){
+  #login{
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 1441px){
+  #login{
+    width: 30vw;
+  }
 }
 
 .top-bar{
@@ -168,13 +200,6 @@ label{
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
-}
-
-.loginbox{
-  position: relative;
-  background: white;
-  padding: 2.5vh 2.5vw;
-  width: 100%;
 }
 
 .vertical-center{

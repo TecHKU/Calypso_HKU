@@ -12,18 +12,16 @@ const style = {
 };
 
 const Loading = () => (
-    <div className={'row'}>
-        <div className={'col-4 offset-4'}>
-            <div style={style.container}>
-                <CircularProgress
-                    size={100}
-                    left={70}
-                    top={0}
-                    loadingColor="#FF9800"
-                    status="loading"
-                    style={style.refresh}
-                />
-            </div>
+    <div className={'row justify-content-center'} style={{width: "100%"}}>
+        <div style={style.container}>
+            <CircularProgress
+                size={100}
+                left={70}
+                top={0}
+                loadingColor="#FF9800"
+                status="loading"
+                style={style.refresh}
+            />
         </div>
     </div>
 );

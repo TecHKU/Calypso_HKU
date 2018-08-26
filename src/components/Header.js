@@ -3,6 +3,7 @@ import { Link, Redirect} from 'react-router-dom';
 import AccountOptions from '../components/AccountOptions';
 import axios from 'axios';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import PropTypes from 'prop-types';
 
 /**
  * @author utkarsh867
@@ -66,10 +67,10 @@ class Header extends Component {
         if(this.props.screen && this.props.screen === "newproject"){
             return(
                 <div className={'d-flex align-items-center'}>
-                    <div style={{padding: "10px"}}>
+                    <div id={'projectsButton'} style={{padding: "10px"}}>
                         {this.state.verifiedUser ?
                             <div>
-                                <Link to={'/newproject'}>
+                                <Link to={'/'}>
                                     <button type="button" className="btn btn-outline-light" style={styles.buttonSpan}>
                                         FIND PROJECTS
                                     </button>
@@ -88,7 +89,7 @@ class Header extends Component {
         else{
             return(
                 <div className={'d-flex align-items-center'}>
-                    <div style={{padding: "10px"}}>
+                    <div id={'projectsButton'} style={{padding: "10px"}}>
                         {this.state.verifiedUser ?
                             <div>
                                 <Link to={'/newproject'}>
@@ -183,6 +184,13 @@ const styles = {
         fontSize: "18px",
         fontWeight: "bold"
     }
+};
+
+Header.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    username: PropTypes.string,
+    verifiedUser: PropTypes.bool,
+    screen: PropTypes.string
 };
 
 export default Header;

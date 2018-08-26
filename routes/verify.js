@@ -9,7 +9,7 @@ router.get('/',function(req,res) {
 	};
 	const host = req.get('host');
 	if ((req.protocol + "://" + host) === ("http://" + host)) {
-		Account.findOneAndUpdate({verificationLink : req.query.id},{isVerified : true, verificationLink : "" }, (error, account) => {
+		Account.findOneAndUpdate({verificationLink : req.query.id},{isVerified : true}, (error, account) => {
 			if (error) {
 				standardResponse.reason = "error in accessing account database " + error;
 				return res.send(standardResponse);

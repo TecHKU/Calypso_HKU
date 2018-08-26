@@ -43,8 +43,8 @@ class MyProjectsSection extends Component{
 
     render(){
         return(
-            <div className={'row'}>
-                <div style={styles.jumbotronStyle} className={'jumbotron col-lg-10 offset-lg-1'}>
+            <div className={'container'}>
+                <div className={'row'}>
                     <h2>My Projects</h2>
                     <hr className={'my-4'}/>
                     <ProjectsScreen projects={this.state.displayProjects} loading={this.state.loading}/>

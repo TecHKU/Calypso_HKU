@@ -6,7 +6,9 @@ import SignUp from './pages/SignUp';
 import NewProject from './pages/NewProject';
 import MyProfile from './pages/MyProfile';
 import ProjectPage from './pages/ProjectPage';
-
+import Verification from './pages/Verification';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import YouHaveBeenLoggedOut from './pages/YouHaveBeenLoggedOut';
 
 import { MuiThemeProvider, createMuiTheme} from '@material-ui/core';
@@ -35,6 +37,9 @@ class App extends Component {
                         <Route path={'/newproject'} component={NewProject}/>
                         <Route path={'/project'} component={ProjectPage}/>
                         <Route path={'/profile'} component={MyProfile}/>
+                        <Route path={'/verification'} component={Verification}/>
+                        <Route path={'/forgotPassword'} component={ForgotPassword}/>
+                        <Route path={'/resetpass'} component={ResetPassword}/>
                         <Route path={'/loggedout'} component={YouHaveBeenLoggedOut}/>
                     </div>
                 </Router>

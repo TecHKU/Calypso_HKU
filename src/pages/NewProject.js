@@ -286,6 +286,7 @@ class NewProject extends Component{
                                         <button
                                         className={'btn ExploreButton'}
                                         style={styles.footerButton}
+                                        onClick={this.handleSubmit}
                                         >
                                             PUBLISH NOW    <span><object data= {require("../imgs/arrow.svg")} type="image/svg+xml"></object></span>
                                         </button>
