@@ -27,6 +27,7 @@ var deleteProject = require('./routes/deleteProject');
 var forgotPassword = require('./routes/forgotPassword');
 var resetPassword = require('./routes/resetPassword');
 var imageUpload = require('./routes/s3Sign');
+var editProject = require('./routes/editProject');
 
 var newproject = require('./routes/newproject');
 var hitCount = require('./routes/hitCounter');
@@ -69,6 +70,7 @@ app.use('/api/deleteProject', deleteProject);
 app.use('/api/forgotPassword', forgotPassword);
 app.use('/api/resetPassword', resetPassword);
 app.use('/api/imageUpload', imageUpload);
+app.use('/api/editProject', editProject);
 
 
 //Pass all other requests to the React server
