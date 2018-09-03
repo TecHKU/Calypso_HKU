@@ -9,6 +9,7 @@ import Loading from '../components/Loading';
 import axios from 'axios';
 import getSessionInfo from "../components/getSessionInfo";
 import Header from '../components/Header';
+import './css/AutoSuggestBox.css';
 
 /**
  * "The Start A New Project" page
@@ -22,6 +23,7 @@ class NewProject extends Component{
     payload = {
         title: "",
         description: "",
+        campaign: "",
         imagePath: "",
         hitCount:0,
         tags:[],
@@ -34,6 +36,7 @@ class NewProject extends Component{
         roles: [],
         projectTitle: "",
         description: "",
+        campaign: "",
         collaborators: [],
         coverImage: "",
         enableSubmit: false,
@@ -148,6 +151,17 @@ class NewProject extends Component{
         });
     };
 
+
+    /**
+     * Update the campaign state variable as the user gives input
+     * @param e The campaign box
+     */
+    handleCampaign = (e) =>{
+        this.setState({
+            campaign: e.target.value
+        });
+    };
+
     /**
      * Update the tags state variable as the user gives input
      * @param tags The tags array that has been selected
@@ -178,6 +192,7 @@ class NewProject extends Component{
             console.log(url);
             this.payload.title = this.state.projectTitle;
             this.payload.description = this.state.description;
+            this.payload.campaign = this.state.campaign;
             this.payload.collaborators = this.state.collaborators;
             this.payload.imagePath = url;
             this.payload.tags = this.state.tags;
@@ -236,7 +251,7 @@ class NewProject extends Component{
                     <div className={'row'} style={styles.mainFields}>
                         <div className={'container'}>
                             <div className={'row'}>
-                                <div className={'col-lg-12'} style={{padding:'50px'}}>
+                                <div className={'col-lg-8 offset-lg-2'} style={{padding:'50px'}}>
                                     <div className={'form-group'} style={styles.formField}>
                                         <label htmlFor="Title">Project Title</label>
                                         <input value={this.state.projectTitle} type="text" id="Title"
@@ -249,6 +264,12 @@ class NewProject extends Component{
                                               placeholder={"Give a short description"}
                                               onChange={this.handleDescription}/>
                                     </div>
+                                    <div className={'form-group'} style={styles.formField}>
+                                        <label htmlFor={'Description'}>Campaign</label>
+                                        <textarea value={this.state.campaign} rows="2" id="Campaign" className={'form-control'}
+                                              placeholder={"Give a short description of the raodmap for your project!"}
+                                              onChange={this.handleCampaign}/>
+                                    </div>
                                     <ImageUploader handleUpload = {this.handleImage}/>
                                 </div>
                                 {/*
@@ -257,6 +278,7 @@ class NewProject extends Component{
                                     <Collaborator/>
                                 </div>
                                 */}
+
                             </div>
                         </div>
                     </div>
@@ -264,7 +286,7 @@ class NewProject extends Component{
                     <div className={'row'} style={{marginBottom: "200px"}}>
                         <div className={'container'}>
                             <div className={'row'}>
-                                <div className={'col-lg-12'} style={{padding:'50px'}}>
+                                <div className={'col-lg-8 offset-lg-2'} style={{padding:'50px'}}>
                                     <AddTagsToProject assignTags={this.handleTags} selectedTags={this.state.tags}/>
                                     <SelectedTagButtonView id={'tags'} labels={this.state.tags}
                                                            removeHandler={this.removeTag}/>
@@ -333,8 +355,8 @@ const styles = {
         position: "fixed",
         bottom: "0",
         backgroundColor: "#3F5EDD",
-        paddingTop: "20px",
-        paddingBottom: "20px",
+        paddingTop: "12px",
+        paddingBottom: "12px",
         color: "white"
     },
     footerButton: {
@@ -346,10 +368,10 @@ const styles = {
         fontSize: "18px",
         lineHeight: "21px",
         fontWeight: "bold",
-        paddingTop: "15px",
-        paddingBottom: "15px",
-        paddingLeft: "42px",
-        paddingRight: "42px"
+        paddingTop: "12px",
+        paddingBottom: "12px",
+        paddingLeft: "36px",
+        paddingRight: "36px"
     }
 };
 

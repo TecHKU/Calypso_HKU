@@ -165,8 +165,8 @@ const styles = {
         color: "white"
     },
     topBar: {
-        marginTop: "0.5rem",
-        marginBottom: "0.5rem"
+        marginTop: "0.25rem",
+        marginBottom: "0.25rem"
     },
     buttonSpan: {
         paddingTop: "5px",

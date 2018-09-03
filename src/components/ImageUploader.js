@@ -97,6 +97,7 @@ let styles = {
         borderStyle: 'dashed',
         borderWidth: '4px',
         borderColor: '#CECECE',
+        cursor: 'pointer'
     },
     dropZonePlus: {
         fontSize: "72px",

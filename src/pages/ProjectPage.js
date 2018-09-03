@@ -49,6 +49,7 @@ class ProjectPage extends Component{
                             for (let i = 0; i < p.length; i++) {
                                 if (p[i]._id === projectId) {
                                     project = p[i];
+                                    console.log(project);
                                     break;
                                 }
                             }
@@ -121,6 +122,9 @@ class ProjectPage extends Component{
                                         <h3 style={styles.description}>{this.state.project.description}</h3>
                                     </div>
                                     <div>
+                                        <h3 style={styles.campaign}>{this.state.project.campaign}</h3>
+                                    </div>
+                                    <div>
                                         <img src={this.state.project.imagePath} style={styles.projectImage}></img>
                                     </div>
                                 </div>
@@ -161,7 +165,9 @@ class ProjectPage extends Component{
                                         className={'btn ExploreButton'}
                                         style={styles.selectionBarButton}
                                     >
-                                        MESSAGE
+                                        <a style={{textDecoration:'none', color: '#fff'}} href={`mailto:${this.state.project.author.emailId}?Subject=Enquiry%20from%20Calypso!`} target="_top">
+                                          MESSAGE
+                                        </a>
                                     </button>
                                 </div>
                             </div>
@@ -222,6 +228,12 @@ const styles = {
         marginBottom: "20px"
     },
     description: {
+        fontSize: "20px",
+        color: "black",
+        fontWeight: "100",
+        marginBottom: "30px"
+    },
+    campaign: {
         fontSize: "20px",
         color: "black",
         fontWeight: "100",
