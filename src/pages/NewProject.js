@@ -267,7 +267,7 @@ class NewProject extends Component{
                                     <div className={'form-group'} style={styles.formField}>
                                         <label htmlFor={'Description'}>Campaign</label>
                                         <textarea value={this.state.campaign} rows="2" id="Campaign" className={'form-control'}
-                                              placeholder={"Give a short description of the raodmap for your project!"}
+                                              placeholder={"Give a short description of the roadmap for your project!"}
                                               onChange={this.handleCampaign}/>
                                     </div>
                                     <ImageUploader handleUpload = {this.handleImage}/>
