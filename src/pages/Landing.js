@@ -96,12 +96,6 @@ class Landing extends Component {
                                     </button>
                                 </a>
                             </div>
-                            <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
-                                <h3 style={styles.homepageBannerMinorText}>Backed and Supported By</h3>
-                            </div>
-                            <div className={'row d-flex justify-content-center'} style={styles.homepageBannerRows}>
-                                <img style={{marginBottom: '30px'}} src={require('../imgs/hkulogocolor150dpi.png')} />
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +113,8 @@ class Landing extends Component {
                                 <div>
                                   <h2>Looking for teammates in HKU to startup your great idea?</h2>
                                   <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
+                                      Post your great ideas for everyone to review. Get connected with students who are
+                                      interested  in your project and get a chance to collaborate with them.
                                   </p>
                                 </div>
 
@@ -148,7 +143,8 @@ class Landing extends Component {
                             <div className={'col-lg-8 col-sm-12'}>
                                 <h2>Finding projects to collaborate on right here in HKU?</h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin efficitur arcu sem. Aliquam eget nisl ut quam lacinia consequat sit amet eu lorem.
+                                    Find projects that interest you the most and contact the coordinator from right here.
+                                    Still exploring? Go ahead and search from the whole catalog of projects.
                                 </p>
                                 <HomepageButtons text="Find a project" link = "#projects"/>
                             </div>

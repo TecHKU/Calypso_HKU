@@ -5,6 +5,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import PropTypes from 'prop-types';
+import Icon from "@material-ui/core/Icon/Icon";
+import Button from "@material-ui/core/Button/Button";
+import SelectedTagButtonView from "./selectedTagButtonsView";
 
 class ProjectTile extends Component {
 
@@ -13,22 +16,33 @@ class ProjectTile extends Component {
         title: this.props.info.title,
         author: this.props.info.author.fullName,
         id: this.props.info._id,
+        tags: this.props.info.tags,
         imagePath: this.props.info.imagePath,
-        openProject: false
+        openProject: false,
+        editProject: false,
+        isEditable: (this.props.isEditable ? this.props.isEditable : false)
     };
 
     componentWillReceiveProps(newProps){
         this.setState({
             title: newProps.info.title,
             author: newProps.info.author.fullName,
+            tags: newProps.info.tags,
             id: newProps.info._id,
-            imagePath: newProps.info.imagePath
+            imagePath: newProps.info.imagePath,
+            isEditable: (newProps.isEditable ? newProps.isEditable : false)
         });
     }
 
     onOpenProject = () => {
         this.setState({
             openProject: true
+        })
+    };
+
+    onEditProject = () => {
+        this.setState({
+            editProject: true
         })
     };
 
@@ -39,9 +53,19 @@ class ProjectTile extends Component {
             );
         }
 
+        else if(this.state.editProject){
+            return(
+                <Redirect to={`/project?id=${this.state.id}&edit=1`}/>
+            );
+        }
+
         else{
             return (
                 <div className={"col-lg-4 col-sm-12"} style={styles.projectTile}>
+                    {this.state.isEditable ?
+                        <Button style={styles.editButton} size={"small"} variant={"fab"} color={"primary"} aria-label={"edit"} onClick={this.onEditProject}>
+                            <Icon>edit_icon</Icon>
+                        </Button> : null}
                     <ButtonBase
                         onClick = {this.onOpenProject}
                         style = {{width: "100%", height: "100%"}}
@@ -53,6 +77,7 @@ class ProjectTile extends Component {
                             />
                             <CardContent style={styles.projectCardContent}>
                                 <h4 style={styles.projectTileTitle}>{this.state.title}</h4>
+                                <SelectedTagButtonView id={'tags'} labels={this.state.tags} removeHandler={null} />
                             </CardContent>
                         </Card>
                     </ButtonBase>
@@ -78,11 +103,18 @@ const styles = {
         fontSize: "14px",
         fontWeight: "400",
         lineHeight: "16px"
+    },
+    editButton: {
+        position: "absolute",
+        top: 10,
+        right: 20,
+        zIndex: 100
     }
 };
 
 ProjectTile.propTypes = {
-    info: PropTypes.object
+    info: PropTypes.object,
+    isEditable: PropTypes.bool
 };
 
 export default ProjectTile;

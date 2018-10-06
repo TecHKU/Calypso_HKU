@@ -10,7 +10,9 @@ class CollaboratorTile extends Component{
     render(){
         return(
             <div className={'d-flex align-items-center'} style={styles.tile}>
-                <div style={styles.circle}></div>
+                <div style={styles.circle}>
+                    <img className="rounded-circle" style={styles.profilePicture} src={`https://api.adorable.io/avatars/"${this.state.email}`}/>
+                </div>
                 <div className={'flex-grow-1'}>
                     <h3 style={styles.text}>{this.state.name}</h3>
                 </div>
@@ -27,9 +29,7 @@ const styles = {
     },
     circle: {
         height: "46px",
-        width: "46px",
-        borderRadius: "50%",
-        backgroundColor: "#C4C4C4"
+        width: "46px"
     },
     text: {
         fontSize: "18px",
@@ -37,6 +37,9 @@ const styles = {
         fontWeight: "100",
         marginLeft: "20px",
         marginBottom: "0"
+    },
+    profilePicture: {
+        width: "100%"
     }
 };
 

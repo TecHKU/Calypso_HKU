@@ -3,7 +3,6 @@ import AddTagsToProject from '../components/addTagsToProject';
 import SelectedTagButtonView from '../components/selectedTagButtonsView';
 import ImageUploader from '../components/ImageUploader';
 import SkillsNeeded from "../components/SkillsNeeded";
-import Collaborator from '../components/Collaborator';
 import { Link , Redirect} from 'react-router-dom';
 import Loading from '../components/Loading';
 import axios from 'axios';
@@ -267,7 +266,7 @@ class NewProject extends Component{
                                     <div className={'form-group'} style={styles.formField}>
                                         <label htmlFor={'Description'}>Campaign</label>
                                         <textarea value={this.state.campaign} rows="2" id="Campaign" className={'form-control'}
-                                              placeholder={"Give a short description of the raodmap for your project!"}
+                                              placeholder={"Give a short description of the road map for your project!"}
                                               onChange={this.handleCampaign}/>
                                     </div>
                                     <ImageUploader handleUpload = {this.handleImage}/>

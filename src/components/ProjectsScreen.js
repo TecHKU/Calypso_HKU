@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ProjectTile from './ProjectTile';
 import Loading from './Loading';
 import Masonry from 'react-masonry-component';
-
+import PropTypes from 'prop-types';
 /**
  * @author utkarsh867
  * The Projects view in the Projects component
@@ -11,13 +11,15 @@ class ProjectsScreen extends Component {
 
     state={
         projects:[],
-        loading: true
+        loading: true,
+        isEditable: (this.props.isEditable ? this.props.isEditable : false)
     };
 
     componentWillReceiveProps(nextProps){
         this.setState({
             projects: nextProps.projects,
-            loading: nextProps.loading
+            loading: nextProps.loading,
+            isEditable: (nextProps.isEditable ? nextProps.isEditable : false)
         })
     }
 
@@ -28,7 +30,7 @@ class ProjectsScreen extends Component {
 
     generateProjectTile = (info) =>{
         return (
-            <ProjectTile info={info}/>
+            <ProjectTile info={info} isEditable={this.state.isEditable}/>
         );
     };
 
@@ -54,5 +56,11 @@ class ProjectsScreen extends Component {
         }
     }
 }
+
+ProjectsScreen.propTypes = {
+    projects: PropTypes.array,
+    loading: PropTypes.bool,
+    isEditable: PropTypes.bool
+};
 
 export default ProjectsScreen;

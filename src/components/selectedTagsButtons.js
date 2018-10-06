@@ -29,7 +29,7 @@ class SelectedTagsButton extends Component {
         if(this.props.deleteHandler === null){
             return (
                 <div>
-                    <span style={{padding: "10px", color: "#7C7B8A"}}>#{this.state.label}</span>
+                    <span style={{padding: "2px", color: "#7C7B8A", fontSize: "12px"}}>#{this.state.label}</span>
                 </div>
             );
         }

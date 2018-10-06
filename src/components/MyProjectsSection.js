@@ -32,7 +32,6 @@ class MyProjectsSection extends Component{
     componentWillMount(){
         this.requestProjects()
             .then(response => {
-                console.log(response);
                 this.setState({
                     loading: false,
                     displayProjects: response.data
@@ -47,7 +46,7 @@ class MyProjectsSection extends Component{
                 <div className={'row'}>
                     <h2>My Projects</h2>
                     <hr className={'my-4'}/>
-                    <ProjectsScreen projects={this.state.displayProjects} loading={this.state.loading}/>
+                    <ProjectsScreen projects={this.state.displayProjects} loading={this.state.loading} isEditable={true}/>
                 </div>
             </div>
         )
