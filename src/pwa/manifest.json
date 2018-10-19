@@ -1,0 +1,15 @@
+{
+    "short_name": "Calypso",
+    "name": "Calypso",
+    "start_url": "/",
+    "icons": [
+        {
+          "src": "logo.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+      ],
+    "display": "standalone",
+    "theme_color": "#5a4fff",
+    "background_color": "#5a4fff"
+}
