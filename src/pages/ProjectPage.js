@@ -15,7 +15,9 @@ class ProjectPage extends Component{
         isLoggedIn: false,
         loading: true,
         project: {},
-        inProgressDialog: false
+        inProgressDialog: false,
+        displayCampaign: true,
+        displayRoles: false
     };
 
     componentWillMount(){
@@ -154,13 +156,23 @@ class ProjectPage extends Component{
                     <div className={'row'} style={styles.selectionBar}>
                         <div className={'container'}>
                             <div className={'row d-flex align-items-center'}>
-                                <div className={'col-1'}>
-                                    <h1 style={styles.selectionBarText}>Campaign</h1>
+                                <div className={'col-4 col-sm-2'}>
+                                    <label
+                                        className={'btn'}
+                                        style={styles.selectionBarButtonOptions}
+                                        >
+                                        <h1 style={styles.selectionBarText}>Campaign</h1>
+                                    </label>
                                 </div>
-                                <div className={'mr-auto col-1 offset-1'}>
-                                    <h1 style={styles.selectionBarText}>Roles</h1>
+                                <div className={'col-4 col-sm-2'}>
+                                    <label
+                                        className={'btn'}
+                                        style={styles.selectionBarButtonOptions}
+                                        >
+                                        <h1 style={styles.selectionBarText}>Roles</h1>
+                                    </label>
                                 </div>
-                                <div>
+                                <div className = {'col-4 offset-sm-4'}>
                                     <button
                                         className={'btn ExploreButton'}
                                         style={styles.selectionBarButton}
@@ -252,11 +264,12 @@ const styles = {
         fontSize: "18px",
         lineHeight: "21px",
         fontWeight: "100",
-        marginRight: "40px"
+        textAlign: "center"
     },
     selectionBarButton: {
         backgroundColor: "#3F5EDD",
         backgroundImage: "none",
+        width: '100%',
         color: "white",
         borderColor: "#3F5EDD",
         borderRadius: "5px",
@@ -265,8 +278,20 @@ const styles = {
         fontWeight: "bold",
         paddingTop: "15px",
         paddingBottom: "15px",
-        paddingLeft: "42px",
-        paddingRight: "42px"
+        paddingLeft: "10px",
+        paddingRight: "10px",
+    },
+    selectionBarButtonOptions: {
+        backgroundColor: "white",
+        width: '100%',
+        color: "black",
+        borderColor: "white",
+        borderRadius: "0px",
+        fontSize: "18px",
+        fontWeight: "bold",
+        paddingTop: "15px",
+        paddingLeft: "10px",
+        paddingRight: "10px",
     },
     collaboratorTiles: {
         width: "100%",
@@ -292,6 +317,7 @@ const styles = {
         paddingBottom: "10px",
         paddingLeft: "42px",
         paddingRight: "42px",
+        marginTop: "32px",
         marginBottom: "32px",
     }
 };
