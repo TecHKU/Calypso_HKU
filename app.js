@@ -1,41 +1,41 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongo = require('mongodb');
+const mongoose = require('mongoose');
 
 //var index = require('./routes/index');
 //var users = require('./routes/users');
-var login = require('./routes/login');
-var signup = require('./routes/signup');
-var logout = require('./routes/logout');
-var getTags = require('./routes/tags');
-var getRoles = require('./routes/roles');
-var sendVerification = require('./routes/sendVerification');
-var verify = require('./routes/verify');
-var sessionDetail = require('./routes/sessionDetail');
-var getProjects = require('./routes/projects');
-var getCurrentUserProjects = require('./routes/currentUserProjects');
-var session = require('express-session');
-var Account = require('./models/account');
-var resendVerification = require('./routes/resendVerification');
-var deleteAccount = require('./routes/deleteAccount');
-var deleteProject = require('./routes/deleteProject');
-var forgotPassword = require('./routes/forgotPassword');
-var resetPassword = require('./routes/resetPassword');
-var imageUpload = require('./routes/s3Sign');
-var editProject = require('./routes/editProject');
+const login = require('./routes/login');
+const signup = require('./routes/signup');
+const logout = require('./routes/logout');
+const getTags = require('./routes/tags');
+const getRoles = require('./routes/roles');
+const sendVerification = require('./routes/sendVerification');
+const verify = require('./routes/verify');
+const sessionDetail = require('./routes/sessionDetail');
+const getProjects = require('./routes/projects');
+const getCurrentUserProjects = require('./routes/currentUserProjects');
+const session = require('express-session');
+const Account = require('./models/account');
+const resendVerification = require('./routes/resendVerification');
+const deleteAccount = require('./routes/deleteAccount');
+const deleteProject = require('./routes/deleteProject');
+const forgotPassword = require('./routes/forgotPassword');
+const resetPassword = require('./routes/resetPassword');
+const imageUpload = require('./routes/s3Sign');
+const editProject = require('./routes/editProject');
 
-var newproject = require('./routes/newproject');
-var hitCount = require('./routes/hitCounter');
+const newproject = require('./routes/newproject');
+const hitCount = require('./routes/hitCounter');
 //mongodb://test:<PASSWORD>@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin
 //var db = mongoose.connect('mongodb://localhost:27017/testcal');
-var db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
+const db = mongoose.connect("mongodb://test:admin@testcalypso-shard-00-00-5ciq9.mongodb.net:27017,testcalypso-shard-00-01-5ciq9.mongodb.net:27017,testcalypso-shard-00-02-5ciq9.mongodb.net:27017/test?ssl=true&replicaSet=testcalypso-shard-0&authSource=admin");
 
-var app = express();
+const app = express();
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -91,7 +91,7 @@ app.use(function (err, req, res, next) {
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    var err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
